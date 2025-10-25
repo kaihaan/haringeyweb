@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PrayerCard from '../../../components/PrayerCard.astro';
+import { prayers } from '../../../data/prayers';
+
+export function getStaticPaths() {
+  return prayers.map((prayer) => ({
+    params: { id: prayer.id },
+    props: { prayer },
+  }));
+}
+
+const { prayer } = Astro.props;
+
+// Get related prayers (same category, excluding current prayer)
+const relatedPrayers = prayers
+  .filter(p => p.category === prayer.category && p.id !== prayer.id)
+  .slice(0, 2);
+---
+
+<BaseLayout title={`${prayer.title} - Prayers`} description={`Prayer by ${prayer.author}`}>
+  <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-6">
+          <a href="/devotional" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Devotional Resources
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 md:p-12 mb-8">
+          <div class="mb-6">
+            <span class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded mb-4">
+              {prayer.category}
+            </span>
+            <h1 class="text-4xl font-bold text-gray-900 mb-3">{prayer.title}</h1>
+            <p class="text-xl text-gray-600">— {prayer.author}</p>
+          </div>
+
+          <div class="border-t border-b border-gray-200 py-8 my-8">
+            <div class="text-gray-800 italic leading-relaxed text-lg whitespace-pre-line">
+              {prayer.text}
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            {prayer.tags.map((tag) => (
+              <span class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded">
+                #{tag}
+              </span>
+            ))}
+          </div>
+
+          <div class="flex gap-4">
+            <button
+              onclick="window.print()"
+              class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              Print
+            </button>
+            <button
+              onclick="navigator.share ? navigator.share({title: '{prayer.title}', text: '{prayer.text.substring(0, 100)}...', url: window.location.href}) : alert('Share feature not supported')"
+              class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              Share
+            </button>
+          </div>
+        </div>
+
+        {relatedPrayers.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Prayers</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              {relatedPrayers.map((relatedPrayer) => (
+                <PrayerCard prayer={relatedPrayer} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @media print {
+    header, footer, .no-print {
+      display: none;
+    }
+  }
+</style>

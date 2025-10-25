@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { events } from '../../data/events';
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
+const formatTime = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+};
+---
+
+<BaseLayout title={`${event.title} - Events`} description={event.description}>
+  <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-6">
+          <a href="/events" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Events
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="flex-shrink-0 bg-blue-100 rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-blue-900">
+                {new Date(event.startDateTime).getDate()}
+              </div>
+              <div class="text-sm text-blue-700 uppercase">
+                {new Date(event.startDateTime).toLocaleDateString('en-US', { month: 'short' })}
+              </div>
+            </div>
+
+            <div class="flex-grow">
+              <h1 class="text-4xl font-bold text-gray-900 mb-4">{event.title}</h1>
+
+              <div class="flex flex-wrap gap-4 text-gray-700">
+                <div class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>{formatDate(event.startDateTime)}</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{formatTime(event.startDateTime)} - {formatTime(event.endDateTime)}</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>{event.location}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
+            <p class="text-gray-700 leading-relaxed text-lg">{event.description}</p>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Details</h2>
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <dt class="text-sm font-medium text-gray-500 mb-1">Event Type</dt>
+                <dd class="text-gray-900">Community Gathering</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500 mb-1">Open to Public</dt>
+                <dd class="text-gray-900">{event.isPublic ? 'Yes' : 'Members Only'}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500 mb-1">Location</dt>
+                <dd class="text-gray-900">{event.location}</dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500 mb-1">Duration</dt>
+                <dd class="text-gray-900">
+                  {Math.abs(new Date(event.endDateTime).getTime() - new Date(event.startDateTime).getTime()) / (1000 * 60)} minutes
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          {event.registrationLink && (
+            <div class="border-t border-gray-200 pt-6">
+              <a
+                href={event.registrationLink}
+                class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105"
+              >
+                Register for This Event
+              </a>
+            </div>
+          )}
+        </div>
+
+        <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Have Questions?</h3>
+          <p class="text-gray-700 mb-4">
+            If you have any questions about this event or would like more information, please don't hesitate to contact us.
+          </p>
+          <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

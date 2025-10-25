@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ResourceDownload from '../components/ResourceDownload.astro';
+import { resources } from '../data/resources';
+import { writings } from '../data/writings';
+
+const studyResources = resources.filter(r => r.category === 'Study Materials');
+---
+
+<BaseLayout title="Study & Deepening" description="Explore study materials, sacred writings, and resources for spiritual deepening.">
+  <Hero
+    title="Study & Deepening"
+    subtitle="Explore the sacred writings and deepen your spiritual understanding"
+  />
+
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">The Ruhi Institute</h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            The Ruhi Institute is an educational institution that develops materials for the spiritual education of Baháʼís and others interested in serving humanity. Its courses help participants deepen their understanding of the Faith and develop the capacity to serve their communities.
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            Study circles using Ruhi Institute materials are offered regularly in our community. These small group sessions provide a supportive environment for learning and personal growth.
+          </p>
+        </div>
+
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Study Materials</h2>
+        <div class="grid gap-6 mb-12">
+          {studyResources.map((resource) => (
+            <ResourceDownload resource={resource} />
+          ))}
+        </div>
+
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Sacred Writings</h2>
+        <p class="text-gray-700 mb-6">
+          Explore the holy writings of the Baháʼí Faith, including works by Baháʼu'lláh, the Báb, ʻAbdu'l-Bahá, and Shoghi Effendi.
+        </p>
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          {writings.map((writing) => (
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{writing.title}</h3>
+              <p class="text-sm text-gray-600 mb-3">— {writing.author}</p>
+              <p class="text-gray-700 mb-4 leading-relaxed">{writing.excerpt}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {writing.tags.map((tag) => (
+                  <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                Read More →
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-blue-50 rounded-lg p-8 border border-blue-200">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Join a Study Circle</h2>
+          <p class="text-gray-700 mb-6">
+            Study circles meet regularly in homes and community centers. All are welcome to participate, regardless of background or belief.
+          </p>
+          <div class="flex gap-4">
+            <a href="/events" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+              Find a Study Circle
+            </a>
+            <a href="/contact" class="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-medium transition">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

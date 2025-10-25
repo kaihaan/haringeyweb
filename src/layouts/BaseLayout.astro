@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Baháʼí Community Website' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-gray-50">
+    <header class="bg-white shadow-sm">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="text-2xl font-bold text-blue-900">Baháʼí Community</a>
+          <ul class="hidden md:flex space-x-6">
+            <li><a href="/" class="text-gray-700 hover:text-blue-900 transition">Home</a></li>
+            <li><a href="/about" class="text-gray-700 hover:text-blue-900 transition">About</a></li>
+            <li><a href="/community" class="text-gray-700 hover:text-blue-900 transition">Community Life</a></li>
+            <li><a href="/study" class="text-gray-700 hover:text-blue-900 transition">Study & Deepening</a></li>
+            <li><a href="/devotional" class="text-gray-700 hover:text-blue-900 transition">Devotional Resources</a></li>
+            <li><a href="/events" class="text-gray-700 hover:text-blue-900 transition">Events</a></li>
+            <li><a href="/news" class="text-gray-700 hover:text-blue-900 transition">News</a></li>
+            <li><a href="/contact" class="text-gray-700 hover:text-blue-900 transition">Contact</a></li>
+          </ul>
+          <button class="md:hidden text-gray-700" aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">About Us</h3>
+            <p class="text-gray-300 text-sm">
+              The Baháʼí Faith is a religion that teaches the essential worth of all religions and the unity of all people.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/about" class="text-gray-300 hover:text-white transition">About the Faith</a></li>
+              <li><a href="/community" class="text-gray-300 hover:text-white transition">Community Life</a></li>
+              <li><a href="/events" class="text-gray-300 hover:text-white transition">Events</a></li>
+              <li><a href="/contact" class="text-gray-300 hover:text-white transition">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Connect</h3>
+            <p class="text-gray-300 text-sm mb-2">Join us for devotional gatherings, study circles, and community events.</p>
+            <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition text-sm">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+          <p>&copy; {new Date().getFullYear()} Baháʼí Community. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

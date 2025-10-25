@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+---
+
+<BaseLayout title="About the Baháʼí Faith" description="Learn about the Baháʼí Faith, its history, teachings, and core principles.">
+  <Hero
+    title="About the Baháʼí Faith"
+    subtitle="Understanding the youngest of the world's independent religions"
+  />
+
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">What is the Baháʼí Faith?</h2>
+          <ContentBlock
+            content={`
+              <p>The Baháʼí Faith is a monotheistic religion founded in the 19th century by Baháʼu'lláh. It teaches that there is only one God who has progressively revealed His will through divine Messengers including Abraham, Moses, Buddha, Krishna, Zoroaster, Christ, Muhammad, and most recently, the Báb and Baháʼu'lláh.</p>
+
+              <p>Baháʼís believe that the essential purpose of religion is to promote the unity of the human race and to foster peace, justice, and prosperity for all people. The Faith has no clergy and is governed by democratically elected councils at the local, national, and international levels.</p>
+            `}
+          />
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Core Principles</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">The Oneness of God</h3>
+              <p class="text-gray-700">There is one God who is the source of all creation. The divine nature is unknowable, but God reveals Himself through His Messengers.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">The Oneness of Religion</h3>
+              <p class="text-gray-700">All major religions come from the same divine source and are chapters in one unfolding story of God's guidance to humanity.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">The Oneness of Humanity</h3>
+              <p class="text-gray-700">All people are created equal and belong to one human family. Prejudices of race, class, creed, and nation must be overcome.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">Equality of Women and Men</h3>
+              <p class="text-gray-700">Women and men are equal in the sight of God. The full participation of women in all aspects of society is essential for human progress.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">Harmony of Science and Religion</h3>
+              <p class="text-gray-700">Science and religion are two complementary systems of knowledge. Both are necessary for human progress and should work in harmony.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">Elimination of Prejudice</h3>
+              <p class="text-gray-700">All forms of prejudice—racial, religious, national, or economic—are destructive and must be overcome.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-semibold text-blue-900 mb-2">Universal Education</h3>
+              <p class="text-gray-700">Education is a fundamental right. Every person should have access to knowledge and learning, with priority given to the education of girls.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">A Brief History</h2>
+          <ContentBlock
+            content={`
+              <p>The Baháʼí Faith was founded in Persia (modern-day Iran) in 1844 by the Báb, whose teachings prepared the way for Baháʼu'lláh. Despite severe persecution, the Faith spread throughout the Middle East.</p>
+
+              <p>Baháʼu'lláh, the founder of the Baháʼí Faith, was imprisoned and exiled for His teachings. He spent the last 24 years of His life in the prison-city of Akká (in present-day Israel), where He wrote numerous letters to world leaders calling for peace and unity.</p>
+
+              <p>After Baháʼu'lláh's passing in 1892, His son ʻAbdu'l-Bahá led the Faith and traveled extensively to promote its teachings. Today, the Baháʼí Faith has more than 5 million followers worldwide and is established in virtually every country.</p>
+            `}
+          />
+        </div>
+
+        <div class="bg-blue-50 rounded-lg p-8 border border-blue-200">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Learn More</h2>
+          <p class="text-gray-700 mb-6">
+            Interested in learning more about the Baháʼí Faith? Join us for a study circle, devotional gathering, or community event.
+          </p>
+          <div class="flex gap-4">
+            <a href="/contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+              Get in Touch
+            </a>
+            <a href="/events" class="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-medium transition">
+              View Events
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
