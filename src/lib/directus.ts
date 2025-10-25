@@ -143,6 +143,32 @@ export interface Page {
 }
 
 /**
+ * Generate a snippet from prayer text for use as a display title
+ * Takes the first few words (up to maxWords) from the prayer text
+ *
+ * @param text - The full prayer text
+ * @param maxWords - Maximum number of words to include (default: 8)
+ * @returns Snippet ending with "..." if truncated
+ */
+export function getPrayerSnippet(text: string, maxWords: number = 8): string {
+  if (!text) return '';
+
+  // Remove markdown formatting and extra whitespace
+  const cleanText = text
+    .replace(/[*_~`#]/g, '')  // Remove markdown chars
+    .replace(/\s+/g, ' ')      // Normalize whitespace
+    .trim();
+
+  const words = cleanText.split(' ');
+
+  if (words.length <= maxWords) {
+    return cleanText;
+  }
+
+  return words.slice(0, maxWords).join(' ') + '...';
+}
+
+/**
  * Query parameters for filtering and sorting
  */
 export interface QueryParams {
