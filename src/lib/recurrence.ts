@@ -45,9 +45,16 @@ function normalizeEventData(event: Event): Event {
   }
 
   // Normalize week_of_month: ensure it's capitalized
-  if (normalized.week_of_month && typeof normalized.week_of_month === 'string') {
-    normalized.week_of_month = (normalized.week_of_month.charAt(0).toUpperCase() +
-      normalized.week_of_month.slice(1).toLowerCase()) as 'First' | 'Second' | 'Third' | 'Fourth' | 'Last';
+  if (normalized.week_of_month) {
+    // Convert array to string if needed (Directus might return as array)
+    let weekValue = normalized.week_of_month;
+    if (Array.isArray(weekValue)) {
+      weekValue = weekValue[0];
+    }
+    if (typeof weekValue === 'string') {
+      normalized.week_of_month = (weekValue.charAt(0).toUpperCase() +
+        weekValue.slice(1).toLowerCase()) as 'First' | 'Second' | 'Third' | 'Fourth' | 'Last';
+    }
   }
 
   return normalized;
