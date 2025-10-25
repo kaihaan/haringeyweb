@@ -1,43 +1,180 @@
-# Astro Starter Kit: Minimal
+# Baháʼí Community Website
 
-```sh
-npm create astro@latest -- --template minimal
+A modern, static-first community website built with Astro, TypeScript, React, and Tailwind CSS. This is Phase 1 (Fullstack POC) demonstrating the complete site layout with dummy content, ready for backend integration.
+
+## Features
+
+### Current Implementation (Phase 1 - POC)
+
+- **Complete Site Layout**: All main pages with dummy content
+- **Responsive Design**: Mobile-first design using Tailwind CSS
+- **Component Library**: Reusable, well-documented components
+- **Dynamic Routing**: Individual pages for events and prayers
+- **Search Functionality**: Client-side search across all content
+- **TypeScript**: Type-safe codebase throughout
+- **Performance Optimized**: Static-first with fast page loads
+
+### Pages Implemented
+
+- **Home**: Welcome page with featured content and upcoming events
+- **About**: Information about the Baháʼí Faith and its principles
+- **Community Life**: Overview of core activities (study circles, devotionals, etc.)
+- **Study & Deepening**: Study materials, Ruhi books, and sacred writings
+- **Devotional Resources**: Prayers library with filtering
+- **Events**: Event calendar with upcoming community events
+- **News**: Blog/news articles
+- **Contact**: Contact form and information
+- **Search**: Site-wide search functionality
+
+### Components
+
+- `Hero`: Page headers with title, subtitle, and CTA
+- `Calendar`: Event calendar with upcoming events list
+- `EventCard`: Event display with date, time, location
+- `PrayerCard`: Prayer display with author and tags
+- `ResourceDownload`: Downloadable resources (PDFs, audio, video)
+- `SearchBar`: Search input with results navigation
+- `LocaleSwitcher`: Language selector (ready for i18n)
+- `ContentBlock`: Markdown content renderer
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── Brief/                  # Project brief and requirements
+├── public/                 # Static assets
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/        # Reusable Astro and React components
+│   │   ├── Calendar.astro
+│   │   ├── ContentBlock.astro
+│   │   ├── EventCard.astro
+│   │   ├── Hero.astro
+│   │   ├── LocaleSwitcher.tsx
+│   │   ├── PrayerCard.astro
+│   │   ├── ResourceDownload.astro
+│   │   └── SearchBar.tsx
+│   ├── data/              # Dummy data (to be replaced with CMS)
+│   │   ├── events.ts
+│   │   ├── prayers.ts
+│   │   ├── resources.ts
+│   │   └── writings.ts
+│   ├── layouts/           # Page layouts
+│   │   └── BaseLayout.astro
+│   ├── pages/             # Route pages
+│   │   ├── about.astro
+│   │   ├── community.astro
+│   │   ├── contact.astro
+│   │   ├── devotional.astro
+│   │   ├── devotional/prayers/
+│   │   │   ├── [id].astro      # Dynamic prayer pages
+│   │   │   └── index.astro     # Prayer listing
+│   │   ├── events.astro
+│   │   ├── events/[id].astro   # Dynamic event pages
+│   │   ├── index.astro
+│   │   ├── news.astro
+│   │   ├── search.astro
+│   │   └── study.astro
+│   └── styles/
+│       └── global.css     # Global Tailwind styles
+├── astro.config.mjs       # Astro configuration
+├── package.json
+├── tailwind.config.js     # Tailwind configuration
+└── tsconfig.json          # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Node.js 18+ and npm
+- Git
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+2. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
-## 👀 Want to learn more?
+   The site will be available at `http://localhost:4321/`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+   The static site will be generated in `./dist/`
+
+4. **Preview production build**:
+   ```bash
+   npm run preview
+   ```
+
+## Commands
+
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run astro ...` | Run Astro CLI commands |
+
+## Technology Stack
+
+- **Framework**: [Astro](https://astro.build/) - Static-first framework
+- **UI Library**: [React](https://react.dev/) - For interactive components
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - Type safety
+- **Version Control**: Git
+
+## Next Steps (Phase 2)
+
+Phase 2 will integrate the backend CMS:
+
+1. **Set up Directus CMS**
+   - Configure PostgreSQL database on Neon
+   - Deploy Directus on Render
+   - Create collections schema (pages, events, prayers, writings, resources)
+
+2. **Replace Dummy Data**
+   - Create Directus API client in `src/lib/directus.ts`
+   - Replace dummy data imports with API calls
+   - Implement build-time data fetching
+
+3. **Configure Deployment**
+   - Set up Vercel for hosting
+   - Configure environment variables
+   - Set up webhook for content publish → rebuild
+
+4. **Implement Remaining Features**
+   - Integrate Pagefind for search
+   - Add multilingual support (i18n)
+   - Configure Formspree for contact form
+   - Set up analytics (Plausible/Fathom)
+
+## Environment Variables (For Phase 2)
+
+Create a `.env` file with:
+
+```env
+PUBLIC_DIRECTUS_URL=https://your-directus-instance.com
+DIRECTUS_TOKEN=your-api-token
+```
+
+## Contributing
+
+This project follows the implementation plan outlined in `/Brief/Brief.md`.
+
+## License
+
+Copyright © 2025 Baháʼí Community. All rights reserved.
+
+## Support
+
+For questions or support, please contact: kaihaan@gmail.com
