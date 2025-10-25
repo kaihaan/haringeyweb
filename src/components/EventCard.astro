@@ -14,6 +14,7 @@ const formatTime = (date: Date) => {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/London',
   });
 };
 
@@ -34,7 +35,7 @@ const recurrenceText = formatRecurrencePattern(event);
         {startDate.getDate()}
       </div>
       <div class="text-sm text-blue-700 uppercase">
-        {startDate.toLocaleDateString('en-GB', { month: 'short' })}
+        {startDate.toLocaleDateString('en-GB', { month: 'short', timeZone: 'Europe/London' })}
       </div>
     </div>
 

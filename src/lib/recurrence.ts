@@ -14,6 +14,64 @@ import type { Event } from './directus';
 const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 /**
+ * Extract hours and minutes from a date in Europe/London timezone
+ * This ensures consistent time display regardless of build server timezone
+ */
+function getTimeInLondon(date: Date): { hours: number; minutes: number } {
+  // Format the date in London timezone and parse the time
+  const timeStr = date.toLocaleString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'Europe/London'
+  });
+
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return { hours, minutes };
+}
+
+/**
+ * Create a date with specific time in Europe/London timezone
+ * Returns a Date object representing that date/time in London
+ */
+function createDateWithLondonTime(
+  year: number,
+  month: number,  // 0-indexed
+  day: number,
+  hours: number,
+  minutes: number
+): Date {
+  // Create ISO string: "2025-11-02T18:00:00"
+  const isoStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+
+  // Use Intl to determine what UTC time corresponds to this London time
+  // Create a reference date
+  const refDate = new Date(isoStr + 'Z'); // Treat as UTC first
+
+  // Format it as London time to see the difference
+  const londonStr = refDate.toLocaleString('sv-SE', {
+    timeZone: 'Europe/London',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).replace(' ', 'T');
+
+  // Parse both
+  const refMs = refDate.getTime();
+  const londonMs = new Date(londonStr + 'Z').getTime();
+
+  // The difference tells us the offset
+  const offsetMs = refMs - londonMs;
+
+  // Now apply inverse: we want isoStr to be London time
+  // So the UTC time should be isoStr minus the offset
+  return new Date(new Date(isoStr + 'Z').getTime() - offsetMs);
+}
+
+/**
  * Get the next occurrence of a recurring event
  *
  * @param event - The event to calculate occurrence for
@@ -107,10 +165,9 @@ function getWeeklyOccurrences(event: Event, count: number, fromDate: Date): Date
     return [];
   }
 
-  // Get time from template
+  // Get time from template in London timezone
   const templateDate = new Date(event.start_datetime);
-  const hours = templateDate.getHours();
-  const minutes = templateDate.getMinutes();
+  const { hours, minutes } = getTimeInLondon(templateDate);
 
   // Start from today
   let currentDate = new Date(fromDate);
@@ -127,9 +184,17 @@ function getWeeklyOccurrences(event: Event, count: number, fromDate: Date): Date
 
       // Find next occurrence of this day of week
       const daysUntilTarget = (targetDayIndex - currentDate.getDay() + 7) % 7;
-      const nextDate = new Date(currentDate);
-      nextDate.setDate(currentDate.getDate() + daysUntilTarget);
-      nextDate.setHours(hours, minutes, 0, 0);
+      const tempDate = new Date(currentDate);
+      tempDate.setDate(currentDate.getDate() + daysUntilTarget);
+
+      // Create date with London timezone
+      const nextDate = createDateWithLondonTime(
+        tempDate.getFullYear(),
+        tempDate.getMonth(),
+        tempDate.getDate(),
+        hours,
+        minutes
+      );
 
       // Only add if it's in the future
       if (nextDate > fromDate) {
@@ -169,10 +234,9 @@ function getMonthlyOccurrences(event: Event, count: number, fromDate: Date): Dat
     return [];
   }
 
-  // Get time from template
+  // Get time from template in London timezone
   const templateDate = new Date(event.start_datetime);
-  const hours = templateDate.getHours();
-  const minutes = templateDate.getMinutes();
+  const { hours, minutes } = getTimeInLondon(templateDate);
 
   // Start from current month
   let currentDate = new Date(fromDate);
@@ -184,10 +248,17 @@ function getMonthlyOccurrences(event: Event, count: number, fromDate: Date): Dat
     const checkDate = new Date(currentDate);
     checkDate.setMonth(currentDate.getMonth() + monthsAhead);
 
-    const occurrence = getWeekOfMonthDate(checkDate.getFullYear(), checkDate.getMonth(), weekOfMonth, dayIndex);
+    const occurrenceDate = getWeekOfMonthDate(checkDate.getFullYear(), checkDate.getMonth(), weekOfMonth, dayIndex);
 
-    if (occurrence) {
-      occurrence.setHours(hours, minutes, 0, 0);
+    if (occurrenceDate) {
+      // Create date with London timezone
+      const occurrence = createDateWithLondonTime(
+        occurrenceDate.getFullYear(),
+        occurrenceDate.getMonth(),
+        occurrenceDate.getDate(),
+        hours,
+        minutes
+      );
 
       // Only add if it's in the future
       if (occurrence > fromDate) {
@@ -321,7 +392,8 @@ export function formatEventDate(
     day: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true
+    hour12: true,
+    timeZone: 'Europe/London'  // Always display in UK time
   }
 ): string {
   return date.toLocaleString('en-GB', options);
