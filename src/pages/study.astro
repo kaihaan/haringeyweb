@@ -1,9 +1,22 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ResourceDownload from '../components/ResourceDownload.astro';
-import { resources } from '../data/resources';
-import { writings } from '../data/writings';
+
+// Get resources and writings from content collections
+const resourcesCollection = await getCollection('resources');
+const writingsCollection = await getCollection('writings');
+
+const resources = resourcesCollection.map(entry => ({
+  id: entry.id,
+  ...entry.data
+}));
+
+const writings = writingsCollection.map(entry => ({
+  id: entry.id,
+  ...entry.data
+}));
 
 const studyResources = resources.filter(r => r.category === 'Study Materials');
 ---

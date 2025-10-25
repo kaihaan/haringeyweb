@@ -1,19 +1,37 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PrayerCard from '../../../components/PrayerCard.astro';
-import { prayers } from '../../../data/prayers';
 
-export function getStaticPaths() {
-  return prayers.map((prayer) => ({
-    params: { id: prayer.id },
-    props: { prayer },
+export async function getStaticPaths() {
+  const prayersCollection = await getCollection('prayers');
+  return prayersCollection.map((entry) => ({
+    params: { id: entry.id },
+    props: {
+      prayer: {
+        id: entry.id,
+        title: entry.data.title,
+        author: entry.data.author,
+        category: entry.data.category,
+        text: entry.body,
+        tags: entry.data.tags
+      },
+      allPrayers: prayersCollection.map(e => ({
+        id: e.id,
+        title: e.data.title,
+        author: e.data.author,
+        category: e.data.category,
+        text: e.body,
+        tags: e.data.tags
+      }))
+    },
   }));
 }
 
-const { prayer } = Astro.props;
+const { prayer, allPrayers } = Astro.props;
 
 // Get related prayers (same category, excluding current prayer)
-const relatedPrayers = prayers
+const relatedPrayers = allPrayers
   .filter(p => p.category === prayer.category && p.id !== prayer.id)
   .slice(0, 2);
 ---

@@ -1,11 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { events } from '../../data/events';
 
-export function getStaticPaths() {
-  return events.map((event) => ({
-    params: { id: event.id },
-    props: { event },
+export async function getStaticPaths() {
+  const eventsCollection = await getCollection('events');
+  return eventsCollection.map((entry) => ({
+    params: { id: entry.id },
+    props: { event: { id: entry.id, ...entry.data } },
   }));
 }
 
