@@ -2,22 +2,33 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchBar from '../components/SearchBar';
+import { getPublishedItems, getPrayerSnippet } from '../lib/directus';
+import type { Event, Prayer } from '../lib/directus';
 
-// Get all content from collections
-const eventsCollection = await getCollection('events');
-const prayersCollection = await getCollection('prayers');
+// Get content from Directus
+const directusEvents = await getPublishedItems<Event>('events');
+const directusPrayers = await getPublishedItems<Prayer>('prayers');
+
+// Get content from Content Collections (still using these)
 const writingsCollection = await getCollection('writings');
 const resourcesCollection = await getCollection('resources');
 
-const events = eventsCollection.map(entry => ({ id: entry.id, ...entry.data }));
-const prayers = prayersCollection.map(entry => ({
-  id: entry.id,
-  title: entry.data.title,
-  author: entry.data.author,
-  category: entry.data.category,
-  text: entry.body,
-  tags: entry.data.tags
+// Format Directus data
+const events = directusEvents.map(event => ({
+  id: event.id,
+  title: event.title,
+  description: event.description,
 }));
+
+const prayers = directusPrayers.map(prayer => ({
+  id: prayer.id,
+  snippet: getPrayerSnippet(prayer.text, 8), // Use snippet as title
+  author: prayer.author,
+  category: prayer.category,
+  text: prayer.text,
+  tags: prayer.tags || []
+}));
+
 const writings = writingsCollection.map(entry => ({ id: entry.id, ...entry.data }));
 const resources = resourcesCollection.map(entry => ({ id: entry.id, ...entry.data }));
 
@@ -47,12 +58,12 @@ function searchContent(query: string) {
 
   // Search prayers
   prayers.forEach(prayer => {
-    if (prayer.title.toLowerCase().includes(lowerQuery) ||
-        prayer.text.toLowerCase().includes(lowerQuery) ||
+    if (prayer.text.toLowerCase().includes(lowerQuery) ||
+        prayer.category.toLowerCase().includes(lowerQuery) ||
         prayer.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) {
       results.push({
         type: 'Prayer',
-        title: prayer.title,
+        title: prayer.snippet, // Use snippet as title
         excerpt: prayer.text.substring(0, 150) + '...',
         url: `/devotional/prayers/${prayer.id}`,
       });

@@ -1,19 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import PrayerCard from '../components/PrayerCard.astro';
+import { getPublishedItems } from '../lib/directus';
+import type { Prayer } from '../lib/directus';
 
-// Get all prayers from content collection
-const prayersCollection = await getCollection('prayers');
-const prayers = prayersCollection.map(entry => ({
-  id: entry.id,
-  title: entry.data.title,
-  author: entry.data.author,
-  category: entry.data.category,
-  text: entry.body,
-  tags: entry.data.tags
-}));
+// Get all published prayers from Directus
+const prayers = await getPublishedItems<Prayer>('prayers');
 ---
 
 <BaseLayout title="Devotional Resources" description="Access prayers, devotional programs, and spiritual guidance from the Baháʼí writings.">
