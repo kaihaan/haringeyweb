@@ -134,41 +134,70 @@ A modern, static-first community website for the Haringey Baháʼí Community, b
 - **UI Library**: [React](https://react.dev/) - For interactive components
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - **Language**: [TypeScript](https://www.typescriptlang.org/) - Type safety
+- **CMS**: [Directus](https://directus.io/) - Headless CMS
+- **Database**: [Neon](https://neon.tech/) - Serverless PostgreSQL
+- **Hosting**: [Vercel](https://vercel.com/) - Frontend hosting with automatic deployments
+- **CMS Hosting**: [Render](https://render.com/) - Directus backend hosting
 - **Version Control**: Git
 
-## Next Steps (Phase 2)
+## Phase 2 Complete ✅
 
-Phase 2 will integrate the backend CMS:
+Phase 2 CMS integration is now complete:
 
-1. **Set up Directus CMS**
-   - Configure PostgreSQL database on Neon
-   - Deploy Directus on Render
-   - Create collections schema (pages, events, prayers, writings, resources)
+1. **✅ Directus CMS Setup**
+   - PostgreSQL database configured on Neon
+   - Directus deployed on Render
+   - Prayers collection schema created and configured
+   - Public API permissions configured
 
-2. **Replace Dummy Data**
-   - Create Directus API client in `src/lib/directus.ts`
-   - Replace dummy data imports with API calls
-   - Implement build-time data fetching
+2. **✅ API Integration**
+   - Directus API client implemented in `src/lib/directus.ts`
+   - Prayers page migrated to fetch from Directus
+   - Helper functions for data fetching and display
 
-3. **Configure Deployment**
-   - Set up Vercel for hosting
-   - Configure environment variables
-   - Set up webhook for content publish → rebuild
+3. **✅ Deployment & Automation**
+   - Environment variables configured in Vercel
+   - Automatic deployments from GitHub
+   - Webhook configured: content publish → automatic site rebuild
+   - Build tested and verified
 
-4. **Implement Remaining Features**
-   - Integrate Pagefind for search
-   - Add multilingual support (i18n)
-   - Configure Formspree for contact form
-   - Set up analytics (Plausible/Fathom)
+## Phase 2 Documentation
 
-## Environment Variables (For Phase 2)
+- **DIRECTUS_SCHEMA.md** - Complete schema documentation for all collections
+- **DIRECTUS_CONFIGURATION_GUIDE.md** - Step-by-step setup instructions
+- **EDITOR_GUIDE.md** - User guide for content editors
+- **DEPLOYMENT.md** - Deployment and update procedures
+
+## Environment Variables
 
 Create a `.env` file with:
 
 ```env
-PUBLIC_DIRECTUS_URL=https://your-directus-instance.com
-DIRECTUS_TOKEN=your-api-token
+PUBLIC_DIRECTUS_URL=https://haringey-directus.onrender.com
+DIRECTUS_TOKEN=your-static-api-token
 ```
+
+**Note**: Copy `.env.example` and fill in your values.
+
+## Next Steps (Phase 3)
+
+Future enhancements:
+
+1. **Expand CMS Collections**
+   - Migrate events, writings, resources, news to Directus
+   - Add pages collection for static content management
+   - Create site settings singleton
+
+2. **Additional Features**
+   - Integrate Pagefind for site-wide search
+   - Add multilingual support (i18n)
+   - Configure Formspree for contact form
+   - Set up analytics (Plausible/Fathom)
+
+3. **Content Migration**
+   - Import all existing prayers from markdown files
+   - Migrate events and resources
+   - Add role-based permissions (Editor, Reviewer, Admin)
 
 ## Contributing
 
