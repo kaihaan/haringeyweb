@@ -26,6 +26,34 @@ export function getNextOccurrence(event: Event, fromDate: Date = new Date()): Da
 }
 
 /**
+ * Normalize event data to ensure correct format
+ * Handles Directus returning strings instead of arrays, lowercase instead of capitalized
+ */
+function normalizeEventData(event: Event): Event {
+  const normalized = { ...event };
+
+  // Normalize days_of_week: ensure it's an array with capitalized days
+  if (normalized.days_of_week) {
+    if (typeof normalized.days_of_week === 'string') {
+      // Convert string to array
+      normalized.days_of_week = [normalized.days_of_week];
+    }
+    // Capitalize each day
+    normalized.days_of_week = normalized.days_of_week.map(day =>
+      day.charAt(0).toUpperCase() + day.slice(1).toLowerCase()
+    );
+  }
+
+  // Normalize week_of_month: ensure it's capitalized
+  if (normalized.week_of_month && typeof normalized.week_of_month === 'string') {
+    normalized.week_of_month = (normalized.week_of_month.charAt(0).toUpperCase() +
+      normalized.week_of_month.slice(1).toLowerCase()) as 'First' | 'Second' | 'Third' | 'Fourth' | 'Last';
+  }
+
+  return normalized;
+}
+
+/**
  * Get the next N occurrences of a recurring event
  *
  * @param event - The event to calculate occurrences for
@@ -38,16 +66,19 @@ export function getNextOccurrences(
   count: number = 5,
   fromDate: Date = new Date()
 ): Date[] {
-  if (!event.is_recurring) {
+  // Normalize event data to handle various Directus field configurations
+  const normalizedEvent = normalizeEventData(event);
+
+  if (!normalizedEvent.is_recurring) {
     // For non-recurring events, just return the event date if it's in the future
-    const eventDate = new Date(event.start_datetime);
+    const eventDate = new Date(normalizedEvent.start_datetime);
     return eventDate > fromDate ? [eventDate] : [];
   }
 
-  if (event.recurrence_pattern === 'weekly') {
-    return getWeeklyOccurrences(event, count, fromDate);
-  } else if (event.recurrence_pattern === 'monthly') {
-    return getMonthlyOccurrences(event, count, fromDate);
+  if (normalizedEvent.recurrence_pattern === 'weekly') {
+    return getWeeklyOccurrences(normalizedEvent, count, fromDate);
+  } else if (normalizedEvent.recurrence_pattern === 'monthly') {
+    return getMonthlyOccurrences(normalizedEvent, count, fromDate);
   }
 
   return [];
@@ -237,8 +268,11 @@ export function formatRecurrencePattern(event: Event): string {
     return '';
   }
 
-  if (event.recurrence_pattern === 'weekly') {
-    const days = event.days_of_week || [];
+  // Normalize event data first
+  const normalizedEvent = normalizeEventData(event);
+
+  if (normalizedEvent.recurrence_pattern === 'weekly') {
+    const days = normalizedEvent.days_of_week || [];
     if (days.length === 0) return '';
 
     if (days.length === 1) {
@@ -252,9 +286,9 @@ export function formatRecurrencePattern(event: Event): string {
     }
   }
 
-  if (event.recurrence_pattern === 'monthly') {
-    const week = event.week_of_month;
-    const day = event.days_of_week?.[0];
+  if (normalizedEvent.recurrence_pattern === 'monthly') {
+    const week = normalizedEvent.week_of_month;
+    const day = normalizedEvent.days_of_week?.[0];
 
     if (!week || !day) return '';
 
