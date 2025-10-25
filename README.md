@@ -1,6 +1,6 @@
-# Baháʼí Community Website
+# Haringey Baháʼí Community Website
 
-A modern, static-first community website built with Astro, TypeScript, React, and Tailwind CSS. This is Phase 1 (Fullstack POC) demonstrating the complete site layout with dummy content, ready for backend integration.
+A modern, static-first community website for the Haringey Baháʼí Community, built with Astro, TypeScript, React, and Tailwind CSS. This is Phase 1 (Fullstack POC) demonstrating the complete site layout with dummy content, ready for backend integration.
 
 ## Features
 
@@ -176,7 +176,7 @@ This project follows the implementation plan outlined in `/Brief/Brief.md`.
 
 ## License
 
-Copyright © 2025 Baháʼí Community. All rights reserved.
+Copyright © 2025 Haringey Baháʼí Community. All rights reserved.
 
 ## Support
 
