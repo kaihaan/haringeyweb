@@ -53,11 +53,13 @@ A modern, static-first community website built with Astro, TypeScript, React, an
 │   │   ├── PrayerCard.astro
 │   │   ├── ResourceDownload.astro
 │   │   └── SearchBar.tsx
-│   ├── data/              # Dummy data (to be replaced with CMS)
-│   │   ├── events.ts
-│   │   ├── prayers.ts
-│   │   ├── resources.ts
-│   │   └── writings.ts
+│   ├── content/           # Content collections (Markdown & JSON)
+│   │   ├── config.ts     # Content schemas with Zod validation
+│   │   ├── events/       # Event data (JSON)
+│   │   ├── prayers/      # Prayer text (Markdown)
+│   │   ├── writings/     # Sacred writings metadata (JSON)
+│   │   ├── resources/    # Resource files metadata (JSON)
+│   │   └── news/         # News articles (Markdown)
 │   ├── layouts/           # Page layouts
 │   │   └── BaseLayout.astro
 │   ├── pages/             # Route pages
@@ -77,6 +79,7 @@ A modern, static-first community website built with Astro, TypeScript, React, an
 │   └── styles/
 │       └── global.css     # Global Tailwind styles
 ├── astro.config.mjs       # Astro configuration
+├── CONTENT_STRUCTURE.md   # Content collections documentation
 ├── package.json
 ├── tailwind.config.js     # Tailwind configuration
 └── tsconfig.json          # TypeScript configuration
