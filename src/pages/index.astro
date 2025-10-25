@@ -1,28 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Calendar from '../components/Calendar.astro';
+import { getPublishedItems, expandRecurringEventsSync } from '../lib/directus';
+import { getNextOccurrences, formatEventDate } from '../lib/recurrence';
+import type { Event, Prayer } from '../lib/directus';
 
-// Get all events and prayers from content collections
-const eventsCollection = await getCollection('events');
-const prayersCollection = await getCollection('prayers');
+// Get all published events and prayers from Directus
+const events = await getPublishedItems<Event>('events');
+const prayers = await getPublishedItems<Prayer>('prayers');
 
-// Transform events to include id from entry
-const events = eventsCollection.map(entry => ({
-  id: entry.id,
-  ...entry.data
-}));
-
-// Transform prayers
-const prayers = prayersCollection.map(entry => ({
-  id: entry.id,
-  title: entry.data.title,
-  author: entry.data.author,
-  category: entry.data.category,
-  text: entry.body,
-  tags: entry.data.tags
-}));
+// Expand recurring events to show next 5 occurrences each
+const eventOccurrences = expandRecurringEventsSync(events, getNextOccurrences, formatEventDate, 5);
 ---
 
 <BaseLayout title="Home - Haringey Baháʼí Community" description="Welcome to the Haringey Baháʼí Community website. Learn about the Faith, join our events, and explore spiritual resources.">
@@ -102,7 +91,7 @@ const prayers = prayersCollection.map(entry => ({
         </div>
 
         <div>
-          <Calendar events={events} />
+          <Calendar occurrences={eventOccurrences} />
         </div>
       </div>
     </div>

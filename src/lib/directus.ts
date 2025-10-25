@@ -59,11 +59,24 @@ export interface Event {
   location: string;
   is_public: boolean;
   registration_link?: string;
-  calendar_uid?: string;
   category?: string;
   image?: string;
+  is_recurring: boolean;
+  recurrence_pattern?: 'weekly' | 'monthly';
+  days_of_week?: string[];
+  week_of_month?: 'First' | 'Second' | 'Third' | 'Fourth' | 'Last';
   date_created: string;
   date_updated: string;
+}
+
+/**
+ * Expanded event occurrence with calculated date
+ * Used for displaying individual occurrences of recurring events
+ */
+export interface EventOccurrence {
+  event: Event;
+  occurrence_date: Date;
+  display_date: string;
 }
 
 export interface Writing {
@@ -362,4 +375,118 @@ export function getPrayerExcerpt(text: string, maxLength: number = 100): string 
   }
 
   return plainText.substring(0, maxLength).trim() + '...';
+}
+
+/**
+ * Expand recurring events into individual occurrences
+ *
+ * @param events - Array of events from Directus
+ * @param occurrenceCount - Number of occurrences per recurring event (default 5)
+ * @returns Array of event occurrences, sorted by date
+ *
+ * Example:
+ * const events = await getPublishedItems<Event>('events');
+ * const occurrences = expandRecurringEvents(events, 3);
+ */
+export function expandRecurringEvents(
+  events: Event[],
+  occurrenceCount: number = 5
+): EventOccurrence[] {
+  // Import recurrence functions dynamically to avoid circular dependencies
+  const occurrences: EventOccurrence[] = [];
+  const now = new Date();
+
+  for (const event of events) {
+    if (event.is_recurring) {
+      // Get next occurrences using recurrence logic
+      // Import here to avoid issues
+      import('./recurrence').then(({ getNextOccurrences, formatEventDate }) => {
+        const dates = getNextOccurrences(event, occurrenceCount, now);
+
+        for (const date of dates) {
+          occurrences.push({
+            event,
+            occurrence_date: date,
+            display_date: formatEventDate(date)
+          });
+        }
+      });
+    } else {
+      // For non-recurring events, just add if it's in the future
+      const eventDate = new Date(event.start_datetime);
+      if (eventDate > now) {
+        occurrences.push({
+          event,
+          occurrence_date: eventDate,
+          display_date: eventDate.toLocaleString('en-GB', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          })
+        });
+      }
+    }
+  }
+
+  // Sort by occurrence date
+  return occurrences.sort((a, b) => a.occurrence_date.getTime() - b.occurrence_date.getTime());
+}
+
+/**
+ * Synchronous version of expandRecurringEvents that doesn't use dynamic imports
+ * Use this in Astro pages where you can import recurrence module at the top
+ *
+ * @param events - Array of events from Directus
+ * @param getNextOccurrences - The getNextOccurrences function from recurrence module
+ * @param formatEventDate - The formatEventDate function from recurrence module
+ * @param occurrenceCount - Number of occurrences per recurring event (default 5)
+ * @returns Array of event occurrences, sorted by date
+ */
+export function expandRecurringEventsSync(
+  events: Event[],
+  getNextOccurrences: (event: Event, count: number, fromDate: Date) => Date[],
+  formatEventDate: (date: Date) => string,
+  occurrenceCount: number = 5
+): EventOccurrence[] {
+  const occurrences: EventOccurrence[] = [];
+  const now = new Date();
+
+  for (const event of events) {
+    if (event.is_recurring) {
+      const dates = getNextOccurrences(event, occurrenceCount, now);
+
+      for (const date of dates) {
+        occurrences.push({
+          event,
+          occurrence_date: date,
+          display_date: formatEventDate(date)
+        });
+      }
+    } else {
+      // For non-recurring events, just add if it's in the future
+      const eventDate = new Date(event.start_datetime);
+      if (eventDate > now) {
+        occurrences.push({
+          event,
+          occurrence_date: eventDate,
+          display_date: eventDate.toLocaleString('en-GB', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          })
+        });
+      }
+    }
+  }
+
+  // Sort by occurrence date
+  return occurrences.sort((a, b) => a.occurrence_date.getTime() - b.occurrence_date.getTime());
 }

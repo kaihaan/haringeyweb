@@ -1,16 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import EventCard from '../components/EventCard.astro';
 import Calendar from '../components/Calendar.astro';
+import { getPublishedItems, expandRecurringEventsSync } from '../lib/directus';
+import { getNextOccurrences, formatEventDate } from '../lib/recurrence';
+import type { Event } from '../lib/directus';
 
-// Get all events from content collection
-const eventsCollection = await getCollection('events');
-const events = eventsCollection.map(entry => ({
-  id: entry.id,
-  ...entry.data
-}));
+// Get all published events from Directus
+const events = await getPublishedItems<Event>('events');
+
+// Expand recurring events to show next 5 occurrences each
+const eventOccurrences = expandRecurringEventsSync(events, getNextOccurrences, formatEventDate, 5);
 ---
 
 <BaseLayout title="Events" description="Join us for devotional gatherings, study circles, children's classes, and community events.">
@@ -25,12 +26,12 @@ const events = eventsCollection.map(entry => ({
         <div class="lg:col-span-2">
           <h2 class="text-3xl font-bold text-gray-900 mb-6">Upcoming Events</h2>
           <div class="space-y-6">
-            {events.map((event) => (
-              <EventCard event={event} />
+            {eventOccurrences.map((occurrence) => (
+              <EventCard occurrence={occurrence} />
             ))}
           </div>
 
-          {events.length === 0 && (
+          {eventOccurrences.length === 0 && (
             <div class="bg-white rounded-lg shadow-md p-12 text-center">
               <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -45,7 +46,7 @@ const events = eventsCollection.map(entry => ({
         </div>
 
         <div>
-          <Calendar events={events} title="Event Calendar" />
+          <Calendar occurrences={eventOccurrences} title="Event Calendar" />
 
           <div class="bg-white rounded-lg shadow-md p-6 mt-8">
             <h3 class="text-xl font-bold text-gray-900 mb-4">Event Types</h3>
