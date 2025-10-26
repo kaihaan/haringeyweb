@@ -97,15 +97,16 @@ export interface Writing {
 }
 
 export interface Resource {
-  id: string;
+  id: number;
   status: 'draft' | 'published' | 'archived';
   title: string;
   type: 'pdf' | 'audio' | 'video' | 'link';
   description: string;
   file?: string;
-  file_url?: string;
+  resource_url?: string;
   tags?: string[];
   category: string;
+  author?: string;
   language: string;
   date_created: string;
   date_updated: string;

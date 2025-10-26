@@ -1,0 +1,368 @@
+{
+  "2025": {
+    "feasts": [
+      {
+        "title": "Feast of Bahá (Splendour)",
+        "date": [2025, 3, 20],
+        "description": "The first month of the Baháʼí calendar, celebrating Splendour. This monthly gathering is the foundation of Baháʼí community life, combining worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Jalál (Glory)",
+        "date": [2025, 4, 8],
+        "description": "The second month of the Baháʼí calendar, celebrating Glory. Monthly gathering for worship, consultation on community affairs, and social fellowship."
+      },
+      {
+        "title": "Feast of Jamál (Beauty)",
+        "date": [2025, 4, 27],
+        "description": "The third month of the Baháʼí calendar, celebrating Beauty. Monthly gathering for worship, consultation, and community building."
+      },
+      {
+        "title": "Feast of ʻAẓamat (Grandeur)",
+        "date": [2025, 5, 16],
+        "description": "The fourth month of the Baháʼí calendar, celebrating Grandeur. Monthly gathering for spiritual and administrative community life."
+      },
+      {
+        "title": "Feast of Núr (Light)",
+        "date": [2025, 6, 4],
+        "description": "The fifth month of the Baháʼí calendar, celebrating Light. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Raḥmat (Mercy)",
+        "date": [2025, 6, 23],
+        "description": "The sixth month of the Baháʼí calendar, celebrating Mercy. Monthly gathering for community worship and consultation."
+      },
+      {
+        "title": "Feast of Kalimát (Words)",
+        "date": [2025, 7, 12],
+        "description": "The seventh month of the Baháʼí calendar, celebrating Words. Monthly gathering for spiritual nourishment and community fellowship."
+      },
+      {
+        "title": "Feast of Kamál (Perfection)",
+        "date": [2025, 7, 31],
+        "description": "The eighth month of the Baháʼí calendar, celebrating Perfection. Monthly gathering for worship, consultation, and community unity."
+      },
+      {
+        "title": "Feast of Asmáʼ (Names)",
+        "date": [2025, 8, 19],
+        "description": "The ninth month of the Baháʼí calendar, celebrating Names. Monthly gathering for spiritual development and community building."
+      },
+      {
+        "title": "Feast of ʻIzzat (Might)",
+        "date": [2025, 9, 7],
+        "description": "The tenth month of the Baháʼí calendar, celebrating Might. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Mashíyyat (Will)",
+        "date": [2025, 9, 26],
+        "description": "The eleventh month of the Baháʼí calendar, celebrating Will. Monthly gathering for community spiritual life."
+      },
+      {
+        "title": "Feast of ʻIlm (Knowledge)",
+        "date": [2025, 10, 15],
+        "description": "The twelfth month of the Baháʼí calendar, celebrating Knowledge. Monthly gathering for worship, learning, and community consultation."
+      },
+      {
+        "title": "Feast of Qudrat (Power)",
+        "date": [2025, 11, 3],
+        "description": "The thirteenth month of the Baháʼí calendar, celebrating Power. Monthly gathering for spiritual strengthening and community unity."
+      },
+      {
+        "title": "Feast of Qawl (Speech)",
+        "date": [2025, 11, 22],
+        "description": "The fourteenth month of the Baháʼí calendar, celebrating Speech. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Masáʼil (Questions)",
+        "date": [2025, 12, 11],
+        "description": "The fifteenth month of the Baháʼí calendar, celebrating Questions. Monthly gathering for spiritual inquiry and community building."
+      },
+      {
+        "title": "Feast of Sharaf (Honour)",
+        "date": [2025, 12, 30],
+        "description": "The sixteenth month of the Baháʼí calendar, celebrating Honour. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Sulṭán (Sovereignty)",
+        "date": [2026, 1, 18],
+        "description": "The seventeenth month of the Baháʼí calendar, celebrating Sovereignty. Monthly gathering for community spiritual and administrative life."
+      },
+      {
+        "title": "Feast of Mulk (Dominion)",
+        "date": [2026, 2, 6],
+        "description": "The eighteenth month of the Baháʼí calendar, celebrating Dominion. Monthly gathering for worship, consultation, and unity."
+      },
+      {
+        "title": "Feast of ʻAláʼ (Loftiness)",
+        "date": [2026, 3, 1],
+        "description": "The nineteenth and final month of the Baháʼí calendar, celebrating Loftiness. Monthly gathering before Naw-Rúz."
+      }
+    ],
+    "holyDays": [
+      {
+        "title": "Naw-Rúz (Baháʼí New Year)",
+        "date": [2025, 3, 20],
+        "time": [18, 0],
+        "description": "The Baháʼí New Year, celebrated on the spring equinox. This joyous occasion marks the end of the annual 19-Day Fast and the beginning of year 182 B.E. Everyone is welcome to join in celebrating the renewal of spring and the start of a new year."
+      },
+      {
+        "title": "First Day of Riḍván",
+        "date": [2025, 4, 20],
+        "time": [18, 0],
+        "description": "The first day of the 12-day Festival of Riḍván, the holiest Baháʼí festival. It commemorates Baháʼuʼlláh's declaration of His mission in the Garden of Riḍván in Baghdad in 1863. All are welcome to celebrate this King of Festivals."
+      },
+      {
+        "title": "Ninth Day of Riḍván",
+        "date": [2025, 4, 28],
+        "time": [18, 0],
+        "description": "The ninth day of the Festival of Riḍván, when Baháʼuʼlláh's family joined Him in the Garden of Riḍván. A holy day within the 12-day festival, welcoming everyone to join in celebration."
+      },
+      {
+        "title": "Twelfth Day of Riḍván",
+        "date": [2025, 5, 1],
+        "time": [18, 0],
+        "description": "The final day of the Festival of Riḍván, concluding the 12-day celebration of Baháʼuʼlláh's declaration. All are invited to commemorate this sacred occasion."
+      },
+      {
+        "title": "Declaration of the Báb",
+        "date": [2025, 5, 23],
+        "time": [20, 0],
+        "description": "Commemorates the night the Báb declared His mission to Mullá Ḥusayn in Shíráz, Persia (1844). This declaration began a new religious cycle. Everyone is welcome to join in remembering this pivotal moment in history."
+      },
+      {
+        "title": "Ascension of Baháʼuʼlláh",
+        "date": [2025, 5, 29],
+        "time": [3, 0],
+        "description": "Commemorates the passing of Baháʼuʼlláh in 1892 in Bahjí, near ʻAkká, Palestine. This solemn occasion is observed at the hour of His ascension. All are invited to join in prayers and reflection."
+      },
+      {
+        "title": "Martyrdom of the Báb",
+        "date": [2025, 7, 9],
+        "time": [12, 0],
+        "description": "Commemorates the execution of the Báb in Tabríz, Persia, in 1850. This solemn holy day remembers His sacrifice and steadfastness. Everyone is welcome to join in prayers and remembrance."
+      },
+      {
+        "title": "Birth of the Báb",
+        "date": [2025, 10, 22],
+        "time": [18, 0],
+        "description": "Celebrates the birth of the Báb (1819) in Shíráz, Persia. The Báb was the herald of the Baháʼí Faith and the founder of the Bábí religion. All are welcome to join in this joyous celebration."
+      },
+      {
+        "title": "Birth of Baháʼuʼlláh",
+        "date": [2025, 10, 23],
+        "time": [18, 0],
+        "description": "Celebrates the birth of Baháʼuʼlláh (1817) in Tehran, Persia. Baháʼuʼlláh is the founder of the Baháʼí Faith and the Manifestation of God for this age. Everyone is invited to celebrate this joyous occasion."
+      },
+      {
+        "title": "Day of the Covenant",
+        "date": [2025, 11, 25],
+        "time": [19, 0],
+        "description": "Celebrates the Covenant of Baháʼuʼlláh and the appointment of ʻAbduʼl-Bahá as the Center of His Covenant. This day honors the unique and binding agreement between God, His Manifestation, and humanity. All are welcome."
+      },
+      {
+        "title": "Ascension of ʻAbduʼl-Bahá",
+        "date": [2025, 11, 27],
+        "time": [1, 0],
+        "description": "Commemorates the passing of ʻAbduʼl-Bahá in 1921 in Haifa, Palestine. This solemn occasion remembers the life of service of the eldest son of Baháʼuʼlláh and exemplar of His teachings. All are invited to join in prayers."
+      }
+    ],
+    "special": [
+      {
+        "title": "Ayyám-i-Há (Intercalary Days)",
+        "date": [2025, 2, 26],
+        "endDate": [2025, 3, 1],
+        "time": [18, 0],
+        "description": "Four days of celebration, hospitality, charity, and gift-giving before the 19-Day Fast. A time for joy, generosity, and preparation for the Fast. Everyone is welcome to join in the spirit of giving."
+      },
+      {
+        "title": "19-Day Fast",
+        "date": [2025, 3, 2],
+        "endDate": [2025, 3, 20],
+        "time": [6, 0],
+        "description": "The annual Baháʼí Fast from sunrise to sunset for 19 days, ending at Naw-Rúz. This is a time of spiritual renewal, detachment from the material world, and preparation for the new year. (Obligatory for Baháʼís aged 15-70 with certain exemptions.)"
+      }
+    ]
+  },
+  "2026": {
+    "feasts": [
+      {
+        "title": "Feast of Bahá (Splendour)",
+        "date": [2026, 3, 21],
+        "description": "The first month of the Baháʼí calendar, celebrating Splendour. This monthly gathering is the foundation of Baháʼí community life, combining worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Jalál (Glory)",
+        "date": [2026, 4, 9],
+        "description": "The second month of the Baháʼí calendar, celebrating Glory. Monthly gathering for worship, consultation on community affairs, and social fellowship."
+      },
+      {
+        "title": "Feast of Jamál (Beauty)",
+        "date": [2026, 4, 28],
+        "description": "The third month of the Baháʼí calendar, celebrating Beauty. Monthly gathering for worship, consultation, and community building."
+      },
+      {
+        "title": "Feast of ʻAẓamat (Grandeur)",
+        "date": [2026, 5, 17],
+        "description": "The fourth month of the Baháʼí calendar, celebrating Grandeur. Monthly gathering for spiritual and administrative community life."
+      },
+      {
+        "title": "Feast of Núr (Light)",
+        "date": [2026, 6, 5],
+        "description": "The fifth month of the Baháʼí calendar, celebrating Light. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Raḥmat (Mercy)",
+        "date": [2026, 6, 24],
+        "description": "The sixth month of the Baháʼí calendar, celebrating Mercy. Monthly gathering for community worship and consultation."
+      },
+      {
+        "title": "Feast of Kalimát (Words)",
+        "date": [2026, 7, 13],
+        "description": "The seventh month of the Baháʼí calendar, celebrating Words. Monthly gathering for spiritual nourishment and community fellowship."
+      },
+      {
+        "title": "Feast of Kamál (Perfection)",
+        "date": [2026, 8, 1],
+        "description": "The eighth month of the Baháʼí calendar, celebrating Perfection. Monthly gathering for worship, consultation, and community unity."
+      },
+      {
+        "title": "Feast of Asmáʼ (Names)",
+        "date": [2026, 8, 20],
+        "description": "The ninth month of the Baháʼí calendar, celebrating Names. Monthly gathering for spiritual development and community building."
+      },
+      {
+        "title": "Feast of ʻIzzat (Might)",
+        "date": [2026, 9, 8],
+        "description": "The tenth month of the Baháʼí calendar, celebrating Might. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Mashíyyat (Will)",
+        "date": [2026, 9, 27],
+        "description": "The eleventh month of the Baháʼí calendar, celebrating Will. Monthly gathering for community spiritual life."
+      },
+      {
+        "title": "Feast of ʻIlm (Knowledge)",
+        "date": [2026, 10, 16],
+        "description": "The twelfth month of the Baháʼí calendar, celebrating Knowledge. Monthly gathering for worship, learning, and community consultation."
+      },
+      {
+        "title": "Feast of Qudrat (Power)",
+        "date": [2026, 11, 4],
+        "description": "The thirteenth month of the Baháʼí calendar, celebrating Power. Monthly gathering for spiritual strengthening and community unity."
+      },
+      {
+        "title": "Feast of Qawl (Speech)",
+        "date": [2026, 11, 23],
+        "description": "The fourteenth month of the Baháʼí calendar, celebrating Speech. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Masáʼil (Questions)",
+        "date": [2026, 12, 12],
+        "description": "The fifteenth month of the Baháʼí calendar, celebrating Questions. Monthly gathering for spiritual inquiry and community building."
+      },
+      {
+        "title": "Feast of Sharaf (Honour)",
+        "date": [2026, 12, 31],
+        "description": "The sixteenth month of the Baháʼí calendar, celebrating Honour. Monthly gathering for worship, consultation, and fellowship."
+      },
+      {
+        "title": "Feast of Sulṭán (Sovereignty)",
+        "date": [2027, 1, 19],
+        "description": "The seventeenth month of the Baháʼí calendar, celebrating Sovereignty. Monthly gathering for community spiritual and administrative life."
+      },
+      {
+        "title": "Feast of Mulk (Dominion)",
+        "date": [2027, 2, 7],
+        "description": "The eighteenth month of the Baháʼí calendar, celebrating Dominion. Monthly gathering for worship, consultation, and unity."
+      },
+      {
+        "title": "Feast of ʻAláʼ (Loftiness)",
+        "date": [2027, 2, 26],
+        "description": "The nineteenth and final month of the Baháʼí calendar, celebrating Loftiness. Monthly gathering before Naw-Rúz."
+      }
+    ],
+    "holyDays": [
+      {
+        "title": "Naw-Rúz (Baháʼí New Year)",
+        "date": [2026, 3, 21],
+        "time": [18, 0],
+        "description": "The Baháʼí New Year, celebrated on the spring equinox. This joyous occasion marks the end of the annual 19-Day Fast and the beginning of year 183 B.E. Everyone is welcome to join in celebrating the renewal of spring and the start of a new year."
+      },
+      {
+        "title": "First Day of Riḍván",
+        "date": [2026, 4, 21],
+        "time": [18, 0],
+        "description": "The first day of the 12-day Festival of Riḍván, the holiest Baháʼí festival. It commemorates Baháʼuʼlláh's declaration of His mission in the Garden of Riḍván in Baghdad in 1863. All are welcome to celebrate this King of Festivals."
+      },
+      {
+        "title": "Ninth Day of Riḍván",
+        "date": [2026, 4, 29],
+        "time": [18, 0],
+        "description": "The ninth day of the Festival of Riḍván, when Baháʼuʼlláh's family joined Him in the Garden of Riḍván. A holy day within the 12-day festival, welcoming everyone to join in celebration."
+      },
+      {
+        "title": "Twelfth Day of Riḍván",
+        "date": [2026, 5, 2],
+        "time": [18, 0],
+        "description": "The final day of the Festival of Riḍván, concluding the 12-day celebration of Baháʼuʼlláh's declaration. All are invited to commemorate this sacred occasion."
+      },
+      {
+        "title": "Declaration of the Báb",
+        "date": [2026, 5, 23],
+        "time": [20, 0],
+        "description": "Commemorates the night the Báb declared His mission to Mullá Ḥusayn in Shíráz, Persia (1844). This declaration began a new religious cycle. Everyone is welcome to join in remembering this pivotal moment in history."
+      },
+      {
+        "title": "Ascension of Baháʼuʼlláh",
+        "date": [2026, 5, 29],
+        "time": [3, 0],
+        "description": "Commemorates the passing of Baháʼuʼlláh in 1892 in Bahjí, near ʻAkká, Palestine. This solemn occasion is observed at the hour of His ascension. All are invited to join in prayers and reflection."
+      },
+      {
+        "title": "Martyrdom of the Báb",
+        "date": [2026, 7, 9],
+        "time": [12, 0],
+        "description": "Commemorates the execution of the Báb in Tabríz, Persia, in 1850. This solemn holy day remembers His sacrifice and steadfastness. Everyone is welcome to join in prayers and remembrance."
+      },
+      {
+        "title": "Birth of the Báb",
+        "date": [2026, 11, 11],
+        "time": [18, 0],
+        "description": "Celebrates the birth of the Báb (1819) in Shíráz, Persia. The Báb was the herald of the Baháʼí Faith and the founder of the Bábí religion. All are welcome to join in this joyous celebration. NOTE: This date is calculated based on lunar calendar and should be confirmed with official UK Baháʼí sources."
+      },
+      {
+        "title": "Birth of Baháʼuʼlláh",
+        "date": [2026, 11, 12],
+        "time": [18, 0],
+        "description": "Celebrates the birth of Baháʼuʼlláh (1817) in Tehran, Persia. Baháʼuʼlláh is the founder of the Baháʼí Faith and the Manifestation of God for this age. Everyone is invited to celebrate this joyous occasion. NOTE: This date is calculated based on lunar calendar and should be confirmed with official UK Baháʼí sources."
+      },
+      {
+        "title": "Day of the Covenant",
+        "date": [2026, 11, 26],
+        "time": [19, 0],
+        "description": "Celebrates the Covenant of Baháʼuʼlláh and the appointment of ʻAbduʼl-Bahá as the Center of His Covenant. This day honors the unique and binding agreement between God, His Manifestation, and humanity. All are welcome."
+      },
+      {
+        "title": "Ascension of ʻAbduʼl-Bahá",
+        "date": [2026, 11, 28],
+        "time": [1, 0],
+        "description": "Commemorates the passing of ʻAbduʼl-Bahá in 1921 in Haifa, Palestine. This solemn occasion remembers the life of service of the eldest son of Baháʼuʼlláh and exemplar of His teachings. All are invited to join in prayers."
+      }
+    ],
+    "special": [
+      {
+        "title": "Ayyám-i-Há (Intercalary Days)",
+        "date": [2026, 2, 25],
+        "endDate": [2026, 2, 28],
+        "time": [18, 0],
+        "description": "Four days of celebration, hospitality, charity, and gift-giving before the 19-Day Fast. A time for joy, generosity, and preparation for the Fast. Everyone is welcome to join in the spirit of giving."
+      },
+      {
+        "title": "19-Day Fast",
+        "date": [2026, 3, 2],
+        "endDate": [2026, 3, 20],
+        "time": [6, 0],
+        "description": "The annual Baháʼí Fast from sunrise to sunset for 19 days, ending at Naw-Rúz. This is a time of spiritual renewal, detachment from the material world, and preparation for the new year. (Obligatory for Baháʼís aged 15-70 with certain exemptions.)"
+      }
+    ]
+  }
+}

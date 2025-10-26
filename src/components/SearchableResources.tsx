@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import type { Resource } from '../data/resources';
+import TagsFilter from './TagsFilter';
 
 interface Props {
   resources: Resource[];
@@ -86,9 +87,11 @@ export default function SearchableResources({ resources, categories, allTags }: 
   };
 
   return (
-    <div className="space-y-6">
-      {/* Search and Filter Controls */}
-      <div className="bg-base-200 rounded-lg p-6 shadow-md">
+    <div className="flex flex-col lg:flex-row gap-6">
+      {/* Main Content */}
+      <div className="flex-1 space-y-6">
+        {/* Search and Filter Controls */}
+        <div className="bg-base-200 rounded-lg p-6 shadow-md">
         {/* Search Bar */}
         <div className="mb-4">
           <label htmlFor="search" className="block text-sm font-medium text-base-content mb-2">
@@ -136,34 +139,12 @@ export default function SearchableResources({ resources, categories, allTags }: 
           </div>
         </div>
 
-        {/* Tags Filter */}
-        <div>
-          <label className="block text-sm font-medium text-base-content mb-2">
-            Filter by Tags
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                onClick={() => toggleTag(tag)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition ${
-                  selectedTags.includes(tag)
-                    ? 'bg-secondary text-secondary-content'
-                    : 'bg-base-100 text-base-content hover:bg-base-300'
-                }`}
-              >
-                #{tag}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Clear Filters */}
         {(searchQuery || selectedCategory !== 'all' || selectedTags.length > 0) && (
           <div className="mt-4">
             <button
               onClick={clearFilters}
-              className="text-sm text-primary hover:underline"
+              className="text-sm text-accent-cyan hover:text-accent-cyan-dark hover:underline transition"
             >
               Clear all filters
             </button>
@@ -184,14 +165,14 @@ export default function SearchableResources({ resources, categories, allTags }: 
           {filteredResources.map(resource => (
             <article
               key={resource.id}
-              className="bg-base-200 rounded-lg shadow-md hover:shadow-lg transition p-6 flex flex-col"
+              className="bg-base-200 text-base-content rounded-lg shadow-md hover:shadow-lg transition p-6 flex flex-col"
             >
               {/* Category Badge */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-primary">
+                <span className="text-accent-cyan">
                   {getCategoryIcon(resource.category)}
                 </span>
-                <span className="text-xs font-semibold text-primary uppercase tracking-wide">
+                <span className="text-xs font-semibold text-accent-cyan uppercase tracking-wide">
                   {resource.category}
                 </span>
               </div>
@@ -235,7 +216,7 @@ export default function SearchableResources({ resources, categories, allTags }: 
                 href={resource.link}
                 target={resource.link.startsWith('http') ? '_blank' : undefined}
                 rel={resource.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="inline-flex items-center gap-2 text-primary hover:text-primary-focus font-medium text-sm"
+                className="inline-flex items-center gap-2 text-accent-cyan hover:text-accent-cyan-dark font-medium text-sm transition"
               >
                 {resource.link.startsWith('http') ? 'Visit Resource' : 'View'}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +227,7 @@ export default function SearchableResources({ resources, categories, allTags }: 
           ))}
         </div>
       ) : (
-        <div className="bg-base-200 rounded-lg p-12 text-center">
+        <div className="bg-base-200 text-base-content rounded-lg p-12 text-center">
           <svg className="w-16 h-16 text-base-content opacity-40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -262,6 +243,16 @@ export default function SearchableResources({ resources, categories, allTags }: 
           </button>
         </div>
       )}
+      </div>
+
+      {/* Sidebar - Tags Filter (Desktop: right side, Mobile: below content) */}
+      <aside className="lg:w-64 lg:order-last order-first lg:order-none">
+        <TagsFilter
+          allTags={allTags}
+          selectedTags={selectedTags}
+          onToggleTag={toggleTag}
+        />
+      </aside>
     </div>
   );
 }

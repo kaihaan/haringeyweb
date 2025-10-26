@@ -1,0 +1,87 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  backgroundImage?: string;
+  variant?: 'default' | 'featured' | 'inline';
+}
+
+const {
+  quote,
+  author,
+  backgroundImage,
+  variant = 'default'
+} = Astro.props;
+
+const hasBackground = backgroundImage && backgroundImage !== '';
+---
+
+{variant === 'featured' && (
+  <div class="quote-box-featured relative overflow-hidden rounded-2xl shadow-2xl p-8 md:p-12" style={hasBackground ? `background-image: url('${backgroundImage}'); background-size: cover; background-position: center;` : ''}>
+    {hasBackground && (
+      <div class="absolute inset-0 bg-gradient-to-br from-black/70 to-black/50"></div>
+    )}
+    <div class="relative z-10">
+      <svg class="w-12 h-12 text-primary/50 mb-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+      </svg>
+      <blockquote class="text-2xl md:text-3xl font-serif italic text-white leading-relaxed mb-6">
+        "{quote}"
+      </blockquote>
+      <cite class="text-lg text-white/90 font-medium not-italic block">
+        — {author}
+      </cite>
+    </div>
+  </div>
+)}
+
+{variant === 'inline' && (
+  <div class="quote-box-inline bg-gradient-to-br from-primary/5 to-primary/10 border-l-4 border-primary rounded-r-lg p-6 my-6">
+    <blockquote class="text-lg md:text-xl italic text-base-content leading-relaxed mb-3">
+      "{quote}"
+    </blockquote>
+    <cite class="text-base-content opacity-70 text-sm font-medium not-italic block">
+      — {author}
+    </cite>
+  </div>
+)}
+
+{variant === 'default' && (
+  <div class="quote-box-default bg-base-200 rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow duration-300">
+    <div class="flex items-start gap-4">
+      <svg class="w-10 h-10 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+      </svg>
+      <div class="flex-1">
+        <blockquote class="text-xl md:text-2xl italic text-base-content leading-relaxed mb-4">
+          "{quote}"
+        </blockquote>
+        <cite class="text-base-content opacity-70 font-medium not-italic block">
+          — {author}
+        </cite>
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  blockquote {
+    quotes: none;
+  }
+
+  .quote-box-featured,
+  .quote-box-default {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>

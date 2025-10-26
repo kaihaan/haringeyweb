@@ -86,6 +86,7 @@ daisyui: {
 }
 ```
 
+
 You can toggle these with:
 
 ```html

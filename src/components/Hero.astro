@@ -5,39 +5,58 @@ interface Props {
   imageUrl?: string;
   ctaText?: string;
   ctaLink?: string;
+  overlayOpacity?: number; // 0-100, default 50
 }
 
 const {
   title,
   subtitle,
-  imageUrl = '/images/hero-default.jpg',
+  imageUrl,
   ctaText,
-  ctaLink
+  ctaLink,
+  overlayOpacity = 50
 } = Astro.props;
+
+const hasBackground = imageUrl && imageUrl !== '';
+const backgroundStyle = hasBackground
+  ? `background-image: url('${imageUrl}'); background-size: cover; background-position: center; background-repeat: no-repeat;`
+  : '';
 ---
 
-<section class="relative bg-blue-900 text-white py-20 md:py-32">
-  {imageUrl && (
-    <div class="absolute inset-0 bg-black opacity-50"></div>
+<section
+  class="relative text-hero-text py-20 md:py-32"
+  class:list={[
+    { 'bg-hero-bg': !hasBackground }
+  ]}
+  style={backgroundStyle}
+>
+  {hasBackground && (
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60"
+      style={`opacity: ${overlayOpacity / 100}`}
+    ></div>
   )}
   <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-3xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-        {title}
-      </h1>
-      {subtitle && (
-        <p class="text-xl md:text-2xl mb-8 text-gray-200">
-          {subtitle}
-        </p>
-      )}
-      {ctaText && ctaLink && (
-        <a
-          href={ctaLink}
-          class="inline-block bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition transform hover:scale-105"
-        >
-          {ctaText}
-        </a>
-      )}
+      {/* Dark transparent box behind text for better legibility */}
+      <div class={hasBackground ? "bg-black/40 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-2xl" : ""}>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+          {title}
+        </h1>
+        {subtitle && (
+          <p class="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-md">
+            {subtitle}
+          </p>
+        )}
+        {ctaText && ctaLink && (
+          <a
+            href={ctaLink}
+            class="inline-block bg-white/95 text-neutral px-8 py-3 rounded-lg font-semibold hover:bg-accent-cyan hover:text-white transition transform hover:scale-105 shadow-lg backdrop-blur-sm"
+          >
+            {ctaText}
+          </a>
+        )}
+      </div>
     </div>
   </div>
 </section>

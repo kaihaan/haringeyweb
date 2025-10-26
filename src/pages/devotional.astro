@@ -13,66 +13,68 @@ const prayers = await getPublishedItems<Prayer>('prayers');
   <Hero
     title="Devotional Resources"
     subtitle="Prayers and spiritual guidance for daily life"
+    imageUrl="/images/bahai/buildings/shrine-bahaullah/shrine-bahaullah-001.jpg"
+    overlayOpacity={55}
   />
 
   <section class="py-12">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Prayer in the Baháʼí Faith</h2>
-          <p class="text-gray-700 mb-4 leading-relaxed">
+        <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-base-content mb-6">Prayer in the Baháʼí Faith</h2>
+          <p class="text-base-content opacity-90 mb-4 leading-relaxed">
             Prayer is a vital part of Baháʼí life. Baháʼís are encouraged to pray daily, turning to God in gratitude, supplication, and reflection. The prayers revealed by Baháʼu'lláh, the Báb, and ʻAbdu'l-Bahá cover a wide range of spiritual needs and occasions.
           </p>
-          <p class="text-gray-700 leading-relaxed">
+          <p class="text-base-content opacity-90 leading-relaxed">
             In addition to personal prayer, Baháʼís gather regularly for devotional meetings where prayers and sacred writings are shared in a spirit of fellowship and unity.
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          <button class="bg-blue-100 hover:bg-blue-200 text-blue-900 px-4 py-2 rounded-lg font-medium transition">
+          <button class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-lg font-medium transition">
             All Prayers
           </button>
-          <button class="bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition border border-gray-300">
+          <button class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg font-medium transition border border-base-300">
             Morning
           </button>
-          <button class="bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition border border-gray-300">
+          <button class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg font-medium transition border border-base-300">
             Assistance
           </button>
-          <button class="bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition border border-gray-300">
+          <button class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg font-medium transition border border-base-300">
             Healing
           </button>
-          <button class="bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition border border-gray-300">
+          <button class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg font-medium transition border border-base-300">
             Children
           </button>
-          <button class="bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition border border-gray-300">
+          <button class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg font-medium transition border border-base-300">
             Unity
           </button>
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Prayers</h2>
+        <h2 class="text-3xl font-bold text-base-content mb-6">Prayers</h2>
         <div class="grid md:grid-cols-2 gap-6 mb-12">
           {prayers.map((prayer) => (
             <PrayerCard prayer={prayer} />
           ))}
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">Obligatory Prayer</h2>
-          <p class="text-gray-700 mb-4 leading-relaxed">
+        <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-base-content mb-6">Obligatory Prayer</h2>
+          <p class="text-base-content opacity-90 mb-4 leading-relaxed">
             Baháʼís are required to recite one of three Obligatory Prayers each day. These prayers are a means of drawing closer to God and fulfilling one's spiritual duty. Baháʼu'lláh revealed a short, medium, and long Obligatory Prayer, and individuals may choose which one to recite according to their circumstances.
           </p>
         </div>
 
-        <div class="bg-blue-50 rounded-lg p-8 border border-blue-200">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Join a Devotional Gathering</h2>
-          <p class="text-gray-700 mb-6">
+        <div class="bg-primary/5 rounded-lg p-8 border border-primary/20">
+          <h2 class="text-2xl font-bold text-base-content mb-4">Join a Devotional Gathering</h2>
+          <p class="text-base-content opacity-90 mb-6">
             Devotional gatherings are held regularly in homes and community spaces. Everyone is welcome to attend, regardless of background or belief. These gatherings create a peaceful atmosphere for prayer and reflection.
           </p>
           <div class="flex gap-4">
-            <a href="/events" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+            <a href="/events" class="bg-primary hover:bg-accent-cyan-dark text-white px-6 py-3 rounded-lg font-medium transition">
               Find a Gathering
             </a>
-            <a href="/contact" class="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-medium transition">
+            <a href="/contact" class="bg-base-200 hover:bg-base-300 text-accent-cyan border-2 border-primary px-6 py-3 rounded-lg font-medium transition">
               Contact Us
             </a>
           </div>

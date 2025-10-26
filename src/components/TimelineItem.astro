@@ -1,0 +1,136 @@
+---
+interface Props {
+  year: string;
+  title: string;
+  content: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  quote?: string;
+  quoteAuthor?: string;
+  expandedContent?: string;
+  position?: 'left' | 'right';
+}
+
+const {
+  year,
+  title,
+  content,
+  imageUrl,
+  imageAlt = '',
+  quote,
+  quoteAuthor,
+  expandedContent,
+  position = 'left'
+} = Astro.props;
+
+const hasExpandedContent = expandedContent && expandedContent.trim().length > 0;
+---
+
+<div class={`timeline-item relative ${position === 'right' ? 'md:flex-row-reverse' : ''}`}>
+  <!-- Timeline Node & Connector -->
+  <div class="timeline-connector absolute left-0 md:left-1/2 transform md:-translate-x-1/2 flex flex-col items-center z-10">
+    <div class="timeline-node w-6 h-6 bg-primary rounded-full border-4 border-base-100 shadow-lg hover:scale-110 transition-transform"></div>
+    <div class="timeline-line w-0.5 h-full bg-primary/30 mt-2"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class={`timeline-content ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${position === 'right' ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+    <div class="bg-base-200 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
+      <!-- Year Badge -->
+      <div class="inline-block bg-primary text-primary-content px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-md">
+        {year}
+      </div>
+
+      <!-- Title -->
+      <h3 class="text-2xl md:text-3xl font-bold text-base-content mb-4">{title}</h3>
+
+      <!-- Image (if provided) -->
+      {imageUrl && (
+        <div class="mb-6 rounded-lg overflow-hidden shadow-md group">
+          <img
+            src={imageUrl}
+            alt={imageAlt}
+            class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <!-- Main Content -->
+      <div class="prose prose-lg max-w-none mb-6">
+        <p class="text-base-content opacity-90 leading-relaxed" set:html={content} />
+      </div>
+
+      <!-- Quote (if provided) -->
+      {quote && (
+        <div class="bg-primary/5 border-l-4 border-primary rounded-r-lg p-6 mb-6 italic">
+          <p class="text-base-content text-lg mb-2">"{quote}"</p>
+          {quoteAuthor && (
+            <p class="text-base-content opacity-70 text-sm font-medium">— {quoteAuthor}</p>
+          )}
+        </div>
+      )}
+
+      <!-- Expandable Content -->
+      {hasExpandedContent && (
+        <details class="group">
+          <summary class="cursor-pointer text-primary hover:text-accent-cyan-dark font-medium flex items-center gap-2 select-none">
+            <svg class="w-5 h-5 transform group-open:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Read More</span>
+          </summary>
+          <div class="mt-4 pl-7 prose prose-lg max-w-none">
+            <div class="text-base-content opacity-90 leading-relaxed" set:html={expandedContent} />
+          </div>
+        </details>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline-item {
+    display: flex;
+    margin-bottom: 3rem;
+    position: relative;
+    min-height: 200px;
+  }
+
+  .timeline-line:last-child {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-connector {
+      left: 0;
+      transform: none;
+    }
+  }
+
+  /* Animation on scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline-content {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] > summary {
+    margin-bottom: 0.5rem;
+  }
+</style>

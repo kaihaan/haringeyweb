@@ -33,11 +33,11 @@ const formatTime = (dateString: string) => {
 ---
 
 <BaseLayout title={`${event.title} - Events`} description={event.description}>
-  <section class="py-12 bg-gradient-to-b from-blue-50 to-white">
+  <section class="py-12 bg-gradient-to-b from-primary/5 to-base-100">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="mb-6">
-          <a href="/events" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-2">
+          <a href="/events" class="text-accent-cyan hover:text-accent-cyan-dark font-medium inline-flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
@@ -45,37 +45,37 @@ const formatTime = (dateString: string) => {
           </a>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <div class="bg-base-200 rounded-lg shadow-lg p-8 mb-8">
           <div class="flex items-start gap-4 mb-6">
-            <div class="flex-shrink-0 bg-blue-100 rounded-lg p-4 text-center">
-              <div class="text-3xl font-bold text-blue-900">
+            <div class="flex-shrink-0 bg-primary/10 rounded-lg p-4 text-center">
+              <div class="text-3xl font-bold text-primary">
                 {new Date(event.startDateTime).getDate()}
               </div>
-              <div class="text-sm text-blue-700 uppercase">
+              <div class="text-sm text-accent-cyan-dark uppercase">
                 {new Date(event.startDateTime).toLocaleDateString('en-US', { month: 'short' })}
               </div>
             </div>
 
             <div class="flex-grow">
-              <h1 class="text-4xl font-bold text-gray-900 mb-4">{event.title}</h1>
+              <h1 class="text-4xl font-bold text-base-content mb-4">{event.title}</h1>
 
-              <div class="flex flex-wrap gap-4 text-gray-700">
+              <div class="flex flex-wrap gap-4 text-base-content opacity-90">
                 <div class="flex items-center gap-2">
-                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   <span>{formatDate(event.startDateTime)}</span>
                 </div>
 
                 <div class="flex items-center gap-2">
-                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span>{formatTime(event.startDateTime)} - {formatTime(event.endDateTime)}</span>
                 </div>
 
                 <div class="flex items-center gap-2">
-                  <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -85,17 +85,17 @@ const formatTime = (dateString: string) => {
             </div>
           </div>
 
-          <div class="border-t border-gray-200 pt-6 mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
-            <p class="text-gray-700 leading-relaxed text-lg">{event.description}</p>
+          <div class="border-t border-base-300 pt-6 mb-6">
+            <h2 class="text-2xl font-bold text-base-content mb-4">About This Event</h2>
+            <p class="text-base-content opacity-90 leading-relaxed text-lg">{event.description}</p>
           </div>
 
-          <div class="border-t border-gray-200 pt-6 mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Details</h2>
+          <div class="border-t border-base-300 pt-6 mb-6">
+            <h2 class="text-2xl font-bold text-base-content mb-4">Details</h2>
             <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <dt class="text-sm font-medium text-gray-500 mb-1">Event Type</dt>
-                <dd class="text-gray-900">Community Gathering</dd>
+                <dt class="text-sm font-medium text-base-content opacity-70 mb-1">Event Type</dt>
+                <dd class="text-base-content">Community Gathering</dd>
               </div>
               <div>
                 <dt class="text-sm font-medium text-gray-500 mb-1">Open to Public</dt>

@@ -106,7 +106,7 @@ const searchResults = searchContent(query);
   <section class="py-12">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-gray-900 mb-8 text-center">Search</h1>
+        <h1 class="text-4xl font-bold text-base-content mb-8 text-center">Search</h1>
 
         <div class="mb-12">
           <SearchBar client:load placeholder="Search prayers, events, writings, and more..." />
@@ -114,7 +114,7 @@ const searchResults = searchContent(query);
 
         {query && (
           <div class="mb-6">
-            <h2 class="text-2xl font-bold text-gray-900">
+            <h2 class="text-2xl font-bold text-base-content">
               {searchResults.length > 0
                 ? `Found ${searchResults.length} result${searchResults.length !== 1 ? 's' : ''} for "${query}"`
                 : `No results found for "${query}"`
@@ -126,19 +126,19 @@ const searchResults = searchContent(query);
         {searchResults.length > 0 ? (
           <div class="space-y-6">
             {searchResults.map((result) => (
-              <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+              <article class="bg-base-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
                 <div class="mb-2">
-                  <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded">
                     {result.type}
                   </span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  <a href={result.url} class="hover:text-blue-700 transition">
+                <h3 class="text-xl font-bold text-base-content mb-2">
+                  <a href={result.url} class="hover:text-accent-cyan-dark transition">
                     {result.title}
                   </a>
                 </h3>
-                <p class="text-gray-700 mb-4">{result.excerpt}</p>
-                <a href={result.url} class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-1">
+                <p class="text-base-content opacity-90 mb-4">{result.excerpt}</p>
+                <a href={result.url} class="text-accent-cyan hover:text-accent-cyan-dark font-medium inline-flex items-center gap-1">
                   View {result.type}
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -148,40 +148,40 @@ const searchResults = searchContent(query);
             ))}
           </div>
         ) : query && (
-          <div class="bg-white rounded-lg shadow-md p-12 text-center">
-            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="bg-base-200 rounded-lg shadow-md p-12 text-center">
+            <svg class="w-16 h-16 text-base-content opacity-40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">No Results Found</h3>
-            <p class="text-gray-600 mb-6">
+            <h3 class="text-xl font-bold text-base-content mb-2">No Results Found</h3>
+            <p class="text-base-content opacity-70 mb-6">
               We couldn't find any results matching your search. Try using different keywords or browse our pages:
             </p>
             <div class="flex flex-wrap gap-4 justify-center">
-              <a href="/devotional/prayers" class="text-blue-600 hover:text-blue-800 font-medium">Prayers</a>
-              <a href="/events" class="text-blue-600 hover:text-blue-800 font-medium">Events</a>
-              <a href="/study" class="text-blue-600 hover:text-blue-800 font-medium">Study Resources</a>
-              <a href="/about" class="text-blue-600 hover:text-blue-800 font-medium">About</a>
+              <a href="/devotional/prayers" class="text-accent-cyan hover:text-accent-cyan-dark font-medium">Prayers</a>
+              <a href="/events" class="text-accent-cyan hover:text-accent-cyan-dark font-medium">Events</a>
+              <a href="/study" class="text-accent-cyan hover:text-accent-cyan-dark font-medium">Study Resources</a>
+              <a href="/about" class="text-accent-cyan hover:text-accent-cyan-dark font-medium">About</a>
             </div>
           </div>
         )}
 
         {!query && (
-          <div class="bg-blue-50 rounded-lg p-8 border border-blue-200 text-center">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">What are you looking for?</h3>
-            <p class="text-gray-700 mb-6">
+          <div class="bg-primary/5 rounded-lg p-8 border border-primary/20 text-center">
+            <h3 class="text-xl font-bold text-base-content mb-3">What are you looking for?</h3>
+            <p class="text-base-content opacity-90 mb-6">
               Search for prayers, events, writings, and resources. Try searching for topics like "unity", "children", "devotional", or "study".
             </p>
             <div class="flex flex-wrap gap-3 justify-center">
-              <a href="/search?q=prayer" class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 transition">
+              <a href="/search?q=prayer" class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg border border-base-300 transition">
                 Prayers
               </a>
-              <a href="/search?q=study" class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 transition">
+              <a href="/search?q=study" class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg border border-base-300 transition">
                 Study
               </a>
-              <a href="/search?q=children" class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 transition">
+              <a href="/search?q=children" class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg border border-base-300 transition">
                 Children
               </a>
-              <a href="/search?q=unity" class="bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 transition">
+              <a href="/search?q=unity" class="bg-base-200 hover:bg-base-300 text-base-content px-4 py-2 rounded-lg border border-base-300 transition">
                 Unity
               </a>
             </div>

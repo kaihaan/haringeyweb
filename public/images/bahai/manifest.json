@@ -1,0 +1,542 @@
+{
+  "downloaded_at": "2025-10-26T17:39:16.238Z",
+  "source": "https://media.bahai.org",
+  "purpose": "Educational and non-commercial use for Haringey Bahá'í Community website",
+  "collections": {
+    "buildings/shrine-bahaullah": {
+      "name": "Shrine of Bahá'u'lláh",
+      "source_url": "https://media.bahai.org/buildings-places/akka-area/shrine-bahaullah/",
+      "images": [
+        {
+          "filename": "shrine-bahaullah-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041303-8557481-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Aerial view of the Shrine of Bahá’u’lláh, Mansion of Bahjí and surrounding gardens"
+        },
+        {
+          "filename": "shrine-bahaullah-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041284-6301884-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Glass roof of the Shrine of Bahá’u’lláh"
+        },
+        {
+          "filename": "shrine-bahaullah-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041274-6059195-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of Bahá’u’lláh and surrounding gardens, 1957"
+        },
+        {
+          "filename": "shrine-bahaullah-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041262-5229919-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Pathway to the Shrine of Bahá’u’lláh, 1950s"
+        },
+        {
+          "filename": "shrine-bahaullah-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041251-4577456-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of Bahá’u’lláh, 1952"
+        },
+        {
+          "filename": "shrine-bahaullah-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041239-4335610-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "A view of the Shrine of Bahá’u’lláh from Collins Gate, named after Hand of the Cause of God Amelia Collins"
+        },
+        {
+          "filename": "shrine-bahaullah-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041219-3853352-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Pathway to the Shrine of Bahá’u’lláh"
+        },
+        {
+          "filename": "shrine-bahaullah-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041199-2802585-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Door detail of the Shrine of Bahá’u’lláh"
+        },
+        {
+          "filename": "shrine-bahaullah-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041179-2664935-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The Shrine of Bahá’u’lláh and its surrounding gardens"
+        },
+        {
+          "filename": "shrine-bahaullah-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704041167-2646345-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Aerial view of the Shrine of Bahá’u’lláh, Mansion of Bahjí and surrounding gardens"
+        }
+      ]
+    },
+    "buildings/shrine-bab": {
+      "name": "Shrine of the Báb & Terraces",
+      "source_url": "https://media.bahai.org/buildings-places/haifa-area/shrine-bab-terraces/",
+      "images": [
+        {
+          "filename": "shrine-bab-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043203-954406-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb"
+        },
+        {
+          "filename": "shrine-bab-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043815-2220972-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Construction of the colonnade of the Shrine of the Báb, 1950"
+        },
+        {
+          "filename": "shrine-bab-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043796-2211496-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Detail of the pathway to the Shrine of the Báb"
+        },
+        {
+          "filename": "shrine-bab-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043787-2207524-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Construction of the Shrine of the Báb, 1952"
+        },
+        {
+          "filename": "shrine-bab-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043755-2204832-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View of the Shrine of the Báb from the road which later became Ben Gurion Avenue (1905-1910)"
+        },
+        {
+          "filename": "shrine-bab-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043737-2181719-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb and Terraces"
+        },
+        {
+          "filename": "shrine-bab-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043699-2052567-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb and Terraces as seen from Ben Gurion"
+        },
+        {
+          "filename": "shrine-bab-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043673-2045008-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Cypress grove on the south side of the Shrine of the Báb, where Bahá’u’lláh indicated to ‘Abdu’l-Bahá where the Shrine of the Báb was to be built, early 1900s"
+        },
+        {
+          "filename": "shrine-bab-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043633-1858537-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Lamp inside the arcade of the Shrine of the Báb"
+        },
+        {
+          "filename": "shrine-bab-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704043597-1798396-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb, 1954"
+        }
+      ]
+    },
+    "buildings/mansion-bahji": {
+      "name": "Mansion Bahjí & Gardens",
+      "source_url": "https://media.bahai.org/buildings-places/akka-area/mansion-bahji-gardens/",
+      "images": [
+        {
+          "filename": "mansion-bahji-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039549-8889361-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Stairs to the garden terrace at Bahjí"
+        },
+        {
+          "filename": "mansion-bahji-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039529-8558828-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gardens at Bahjí"
+        },
+        {
+          "filename": "mansion-bahji-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039517-6935278-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gardens at Bahjí, c. 1962"
+        },
+        {
+          "filename": "mansion-bahji-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039503-6038058-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gardens at Bahjí"
+        },
+        {
+          "filename": "mansion-bahji-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039490-5824629-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gardens at Bahjí, 1950s"
+        },
+        {
+          "filename": "mansion-bahji-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039468-5472316-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gardens of Bahjí"
+        },
+        {
+          "filename": "mansion-bahji-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039448-5192875-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Entrance to the Mansion of Bahjí"
+        },
+        {
+          "filename": "mansion-bahji-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039428-5093668-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Mansion of Bahjí and surrounding gardens"
+        },
+        {
+          "filename": "mansion-bahji-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039421-5047802-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View from roof of the small building where Shoghi Effendi would supervise the landscaping work and survey the development of the gardens, 1950s"
+        },
+        {
+          "filename": "mansion-bahji-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704039401-4267642-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Mansion of Bahjí and surrounding gardens"
+        }
+      ]
+    },
+    "buildings/administrative-haifa": {
+      "name": "Administrative Buildings (Haifa)",
+      "source_url": "https://media.bahai.org/buildings-places/haifa-area/administrative-buildings/",
+      "images": [
+        {
+          "filename": "administrative-haifa-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042539-9987016-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Column detail of the Seat of the Universal House of Justice"
+        },
+        {
+          "filename": "administrative-haifa-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042531-9773689-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "International Archives Building and surrounding gardens, 1963"
+        },
+        {
+          "filename": "administrative-haifa-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042512-9761624-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Seat of the Universal House of Justice (left) and Centre for the Study of the Sacred Texts (right) on the Arc"
+        },
+        {
+          "filename": "administrative-haifa-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042492-9475189-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Seat of the Universal House of Justice and surrounding gardens"
+        },
+        {
+          "filename": "administrative-haifa-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042479-9396130-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Entrance of the International Teaching Centre"
+        },
+        {
+          "filename": "administrative-haifa-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042461-8756675-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Portico entrance of the Centre for the Study of the Sacred Texts"
+        },
+        {
+          "filename": "administrative-haifa-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042442-8709191-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View from the portico entrance of the Centre for the Study of the Sacred Texts"
+        },
+        {
+          "filename": "administrative-haifa-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042430-8644316-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Column detail of the Seat of the Universal House of Justice"
+        },
+        {
+          "filename": "administrative-haifa-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042417-7695862-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb viewed in between the colonnade of the Seat of the Universal House of Justice"
+        },
+        {
+          "filename": "administrative-haifa-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704042404-7611315-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Aerial view of the Arc, 1960s"
+        }
+      ]
+    },
+    "buildings/houses-of-worship/north-america": {
+      "name": "House of Worship - North America",
+      "source_url": "https://media.bahai.org/buildings-places/bahai-houses-worship/north-america/",
+      "images": [
+        {
+          "filename": "north-america-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046193-6996999-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of North America (Wilmette, United States)"
+        },
+        {
+          "filename": "north-america-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046185-2776065-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Interview view of the dome of the Continental Bahá’í House of Worship of North America (Wilmette, United States)"
+        },
+        {
+          "filename": "north-america-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046171-2496999-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of North America (Wilmette, United States), c. 1947"
+        },
+        {
+          "filename": "north-america-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046135-1768430-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of North America (Wilmette, United States)"
+        },
+        {
+          "filename": "north-america-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046117-1391876-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Detail of the ornamental features of the Continental Bahá’í House of Worship of North America (Wilmette, United States), 1988"
+        }
+      ]
+    },
+    "buildings/houses-of-worship/india": {
+      "name": "House of Worship - India",
+      "source_url": "https://media.bahai.org/buildings-places/bahai-houses-worship/indian-subcontinent/",
+      "images": [
+        {
+          "filename": "india-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046102-8828288-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India), December 1986"
+        },
+        {
+          "filename": "india-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046084-7449097-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hand of the Cause Amatu’l-Bahá Rúhíyyih Khánum at the Dedication of the Continental House of Worship of the Indian Subcontinent (New Delhi, India), December 1986"
+        },
+        {
+          "filename": "india-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046066-7190772-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Visitors approaching the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046058-6441627-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Visitors on the grounds of the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046048-5270094-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046036-2649253-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046019-2627195-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Visitors on the grounds of the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704046006-2579974-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Marble-clad petal detail from the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704045989-2311233-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Cleaning the marble-clad petals of the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        },
+        {
+          "filename": "india-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704045972-1973363-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Visitors approaching the entrance to the Continental Bahá’í House of Worship of the Indian Subcontinent (New Delhi, India)"
+        }
+      ]
+    },
+    "history/bahaullah": {
+      "name": "Bahá'u'lláh",
+      "source_url": "https://media.bahai.org/history/images-related-central-figures/bahaullah/",
+      "images": [
+        {
+          "filename": "bahaullah-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047389-9733468-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View of the mountains where Bahá’u’lláh stayed in Sulaymaniyyih, 1940"
+        },
+        {
+          "filename": "bahaullah-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047381-9555584-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Mansion of Bahj�í where Bahá’u’lláh spent the final years of His life, early 1900s"
+        },
+        {
+          "filename": "bahaullah-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047371-9475285-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Brocade pouch belonging to Bahá’u’lláh, 1952"
+        },
+        {
+          "filename": "bahaullah-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047361-8919119-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The mosque in Amul, Mázandarán, Iran, where Bahá’u’lláh was tortured, c. 1930"
+        },
+        {
+          "filename": "bahaullah-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047354-8080361-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The village of Niyarvaran near Tehran, where Bahá’u’lláh stayed overnight, 1930"
+        },
+        {
+          "filename": "bahaullah-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047328-8027753-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Taj belonging to Bahá’u’lláh"
+        },
+        {
+          "filename": "bahaullah-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047317-6801202-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "In 1873, Bahá’u’lláh completed His most important work, the Most Holy Book (Kitáb-i-Aqdas), written in His room (pictured here) in the House of ‘Údí Khammár, now part of the House of ‘Abbúd, 2000"
+        },
+        {
+          "filename": "bahaullah-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047309-5243141-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The city of Tehran, Iran, where Bahá’u’lláh was born in 1817, c. 1930"
+        },
+        {
+          "filename": "bahaullah-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047298-4686352-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Bahá’u’lláh departed the city of ‘Akká in 1877 through the land gate, seen here from outside the city walls, 1921"
+        },
+        {
+          "filename": "bahaullah-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047287-2783170-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Cut reed pen belonging to Bahá’u’lláh"
+        }
+      ]
+    },
+    "history/bab": {
+      "name": "The Báb",
+      "source_url": "https://media.bahai.org/history/images-related-central-figures/the-bab/",
+      "images": [
+        {
+          "filename": "bab-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047424-1064215-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View of the front door of the House of the Báb, <u>Sh</u>íráz"
+        },
+        {
+          "filename": "bab-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047401-1008842-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Room where the Báb was born, <u>Sh</u>íráz"
+        },
+        {
+          "filename": "bab-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047587-1804700-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Dress worn under the jubbih, worn by the Báb"
+        },
+        {
+          "filename": "bab-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047517-1505149-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "View of the site of the moat that surrounded Tabríz, where the Báb's body was thrown"
+        },
+        {
+          "filename": "bab-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047494-1428466-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Áqá Ján-i-<u>Kh</u>amsih, commander of the Nasiri regiment, who volunteered to carry out the execution a second time"
+        },
+        {
+          "filename": "bab-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047461-1230761-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The castle-fortress prison under its great cliff, the town of Máh-Kú"
+        },
+        {
+          "filename": "bab-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047436-1135587-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Bahá’ís of Burma with the sarcophagus they built for the sacred remains of the Báb"
+        },
+        {
+          "filename": "bab-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047891-9671065-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Cap worn by the Báb beneath His turban"
+        },
+        {
+          "filename": "bab-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047853-8614947-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Mosque of Vakil where the Báb spoke from the pulpit"
+        },
+        {
+          "filename": "bab-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704047762-2554436-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Shrine of the Báb"
+        }
+      ]
+    },
+    "history/abdul-baha": {
+      "name": "'Abdu'l-Bahá",
+      "source_url": "https://media.bahai.org/history/images-related-central-figures/abdul-baha/",
+      "images": [
+        {
+          "filename": "abdul-baha-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048855-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Colorized image of ‘Abdu’l-Bahá in the Holy Land, c. 1920"
+        },
+        {
+          "filename": "abdul-baha-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048792-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Colorized portrait of ‘Abdu’l-Bahá taken in Paris, France, October 1911"
+        },
+        {
+          "filename": "abdul-baha-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048838-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Colorized portrait of ‘Abdu’l-Bahá in Paris, France, October 1911"
+        },
+        {
+          "filename": "abdul-baha-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704620870-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "‘Abdu’l-Bahá in the Holy Land"
+        },
+        {
+          "filename": "abdul-baha-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048777-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Colorized image of ‘Abdu’l-Bahá on board the S.S. Celtic as He sailed from New York City to Liverpool, England, 5 December 1912"
+        },
+        {
+          "filename": "abdul-baha-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048768-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "‘Abdu’l-Bahá in the ‘Akká–Haifa area"
+        },
+        {
+          "filename": "abdul-baha-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048665-9859049-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "‘Abdu’l-Bahá (right) with His brother Mírzá Mihdí, The Purest Branch (left), taken in Edirne, c. 1864-1868"
+        },
+        {
+          "filename": "abdul-baha-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048639-8866971-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "‘Abdu’l-Bahá with a group of Bahá’ís at Lincoln Park in Chicago, Illinois, 3 May 1912"
+        },
+        {
+          "filename": "abdul-baha-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048898-original.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Portrait of ‘Abdu’l-Bahá taken in New York, c. 1912"
+        },
+        {
+          "filename": "abdul-baha-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704048626-8293056-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "‘Abdu’l-Bahá with a group of Egyptian, Turkish, Indian and British friends in a mosque's courtyard in Woking, England, January 1913"
+        }
+      ]
+    },
+    "history/early-believers": {
+      "name": "Early Bahá'ís and Pioneers",
+      "source_url": "https://media.bahai.org/history/other-historical-figures/early-bahais-pioneers/",
+      "images": [
+        {
+          "filename": "early-believers-001.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704014762-9942751-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gloria Faizi (center) with students of her Bahá’í class in Najafabad, Iran, early 1940s"
+        },
+        {
+          "filename": "early-believers-002.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704031008-8961281-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "The Bahá’ís of Ngalibui with Gertrude Blum (at front, right) and Barbara Hunt (partly obscured), 1977"
+        },
+        {
+          "filename": "early-believers-003.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030993-8051639-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hand of the Cause Martha Root with a group of women in Melbourne, Australia, c. 1924"
+        },
+        {
+          "filename": "early-believers-004.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030981-7864435-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hands of the Cause Enoch Olinga (left) and Rahmatu’lláh Muhájir (right) in front of the Shrine of the Báb, 1973"
+        },
+        {
+          "filename": "early-believers-005.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1749044309-164-272-1-k16111-oct-1953_2.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hand of the Cause Dorothy Baker with a group of Bahá’ís at the Bahá’í Centre in Belgaum, India, 1953"
+        },
+        {
+          "filename": "early-believers-006.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030955-6559901-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Sara Louisa Blomfield (1859-1939)"
+        },
+        {
+          "filename": "early-believers-007.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030945-6101668-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Gloria Faizi and Lutfu’llah Hakim, member of the Universal House of Justice (1963-1968), outside the Shrine of the Báb, Mount Carmel, Haifa, Israel"
+        },
+        {
+          "filename": "early-believers-008.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030934-6013542-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hand of the Cause Amatu’l-Bahá Rúhíyyih Khánum in Kampala, Uganda, January 1961"
+        },
+        {
+          "filename": "early-believers-009.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030917-6005647-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hand of the Cause Dorothy Baker with a group of Bahá’ís at the Bahá’í Centre in Kanpur, Uttar Pradesh, India, 5 December 1953"
+        },
+        {
+          "filename": "early-believers-010.jpg",
+          "source_url": "https://www.datocms-assets.com/98132/1704030906-5872118-master.jpg?auto=format&fit=max&w=1600",
+          "alt_text": "Hands of the Cause Hyde Dunn and Clara Dunn with a group of Bahá’ís in Australia, c. 1940"
+        }
+      ]
+    }
+  }
+}

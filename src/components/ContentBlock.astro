@@ -13,14 +13,14 @@ const { content, className = '' } = Astro.props;
 
 <style>
   .prose {
-    color: #374151;
+    color: hsl(var(--bc) / 0.9);
   }
 
   .prose h1 {
     font-size: 1.875rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #111827;
+    color: hsl(var(--bc));
   }
 
   .prose h2 {
@@ -28,7 +28,7 @@ const { content, className = '' } = Astro.props;
     font-weight: 700;
     margin-bottom: 0.75rem;
     margin-top: 2rem;
-    color: #111827;
+    color: hsl(var(--bc));
   }
 
   .prose h3 {
@@ -36,7 +36,7 @@ const { content, className = '' } = Astro.props;
     font-weight: 600;
     margin-bottom: 0.5rem;
     margin-top: 1.5rem;
-    color: #111827;
+    color: hsl(var(--bc));
   }
 
   .prose p {
@@ -54,25 +54,26 @@ const { content, className = '' } = Astro.props;
   }
 
   .prose a {
-    color: #2563eb;
+    color: hsl(var(--p));
     text-decoration: underline;
   }
 
   .prose a:hover {
-    color: #1e40af;
+    color: hsl(var(--pf));
   }
 
   .prose blockquote {
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid hsl(var(--p));
     padding-left: 1rem;
     font-style: italic;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    color: #374151;
+    color: hsl(var(--bc) / 0.9);
   }
 
   .prose code {
-    background-color: #f3f4f6;
+    background-color: hsl(var(--b2));
+    color: hsl(var(--bc));
     padding: 0.125rem 0.25rem;
     border-radius: 0.25rem;
     font-size: 0.875rem;

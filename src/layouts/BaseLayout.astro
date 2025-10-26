@@ -32,14 +32,15 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
           <a href="/" class="text-2xl font-bold text-neutral">Haringey Baháʼí Community</a>
           <div class="flex items-center gap-4">
             <ul class="hidden md:flex space-x-6">
-              <li><a href="/" class="text-base-content hover:text-primary transition">Home</a></li>
-              <li><a href="/about" class="text-base-content hover:text-primary transition">About</a></li>
-              <li><a href="/seekers" class="text-base-content hover:text-primary transition">Seekers</a></li>
-              <li><a href="/resources" class="text-base-content hover:text-primary transition">Resources</a></li>
-              <li><a href="/study" class="text-base-content hover:text-primary transition">Study</a></li>
-              <li><a href="/devotional" class="text-base-content hover:text-primary transition">Devotional</a></li>
-              <li><a href="/events" class="text-base-content hover:text-primary transition">Events</a></li>
-              <li><a href="/contact" class="text-base-content hover:text-primary transition">Contact</a></li>
+              <li><a href="/" class="text-base-content hover:text-accent-cyan transition">Home</a></li>
+              <li><a href="/about" class="text-base-content hover:text-accent-cyan transition">About</a></li>
+              <li><a href="/history" class="text-base-content hover:text-accent-cyan transition">History</a></li>
+              <li><a href="/seekers" class="text-base-content hover:text-accent-cyan transition">Seekers</a></li>
+              <li><a href="/resources" class="text-base-content hover:text-accent-cyan transition">Resources</a></li>
+              <li><a href="/study" class="text-base-content hover:text-accent-cyan transition">Study</a></li>
+              <li><a href="/devotional" class="text-base-content hover:text-accent-cyan transition">Devotional</a></li>
+              <li><a href="/events" class="text-base-content hover:text-accent-cyan transition">Events</a></li>
+              <li><a href="/contact" class="text-base-content hover:text-accent-cyan transition">Contact</a></li>
             </ul>
             <ThemeToggle client:load />
             <button id="mobile-menu-button" class="md:hidden text-base-content" aria-label="Toggle menu">
@@ -55,14 +56,15 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
       <div id="mobile-menu" class="hidden md:hidden bg-base-200 border-t border-base-300">
         <div class="container mx-auto px-4 py-4">
           <ul class="space-y-3">
-            <li><a href="/" class="block text-base-content hover:text-primary py-2 transition">Home</a></li>
-            <li><a href="/about" class="block text-base-content hover:text-primary py-2 transition">About</a></li>
-            <li><a href="/seekers" class="block text-base-content hover:text-primary py-2 transition">Seekers</a></li>
-            <li><a href="/resources" class="block text-base-content hover:text-primary py-2 transition">Resources</a></li>
-            <li><a href="/study" class="block text-base-content hover:text-primary py-2 transition">Study</a></li>
-            <li><a href="/devotional" class="block text-base-content hover:text-primary py-2 transition">Devotional</a></li>
-            <li><a href="/events" class="block text-base-content hover:text-primary py-2 transition">Events</a></li>
-            <li><a href="/contact" class="block text-base-content hover:text-primary py-2 transition">Contact</a></li>
+            <li><a href="/" class="block text-base-content hover:text-accent-cyan py-2 transition">Home</a></li>
+            <li><a href="/about" class="block text-base-content hover:text-accent-cyan py-2 transition">About</a></li>
+            <li><a href="/history" class="block text-base-content hover:text-accent-cyan py-2 transition">History</a></li>
+            <li><a href="/seekers" class="block text-base-content hover:text-accent-cyan py-2 transition">Seekers</a></li>
+            <li><a href="/resources" class="block text-base-content hover:text-accent-cyan py-2 transition">Resources</a></li>
+            <li><a href="/study" class="block text-base-content hover:text-accent-cyan py-2 transition">Study</a></li>
+            <li><a href="/devotional" class="block text-base-content hover:text-accent-cyan py-2 transition">Devotional</a></li>
+            <li><a href="/events" class="block text-base-content hover:text-accent-cyan py-2 transition">Events</a></li>
+            <li><a href="/contact" class="block text-base-content hover:text-accent-cyan py-2 transition">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -72,33 +74,34 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
       <slot />
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
+    <footer class="bg-footer-bg text-footer-text py-8 mt-auto">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 class="text-lg font-bold mb-4">About Us</h3>
-            <p class="text-gray-300 text-sm">
+            <p class="opacity-80 text-sm">
               The Baháʼí Faith is a religion that teaches the essential worth of all religions and the unity of all people.
             </p>
           </div>
           <div>
             <h3 class="text-lg font-bold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="/about" class="text-gray-300 hover:text-white transition">About the Faith</a></li>
-              <li><a href="/community" class="text-gray-300 hover:text-white transition">Community Life</a></li>
-              <li><a href="/events" class="text-gray-300 hover:text-white transition">Events</a></li>
-              <li><a href="/contact" class="text-gray-300 hover:text-white transition">Contact Us</a></li>
+              <li><a href="/about" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">About the Faith</a></li>
+              <li><a href="/history" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">History</a></li>
+              <li><a href="/community" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Community Life</a></li>
+              <li><a href="/events" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Events</a></li>
+              <li><a href="/contact" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Contact Us</a></li>
             </ul>
           </div>
           <div>
             <h3 class="text-lg font-bold mb-4">Connect</h3>
-            <p class="text-gray-300 text-sm mb-2">Join us for devotional gatherings, study circles, and community events.</p>
-            <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition text-sm">
+            <p class="opacity-80 text-sm mb-2">Join us for devotional gatherings, study circles, and community events.</p>
+            <a href="/contact" class="inline-block bg-primary hover:bg-accent-cyan-dark text-white px-4 py-2 rounded transition text-sm">
               Get in Touch
             </a>
           </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+        <div class="mt-8 pt-8 border-t border-footer-text/20 text-center text-sm opacity-70">
           <p>&copy; {new Date().getFullYear()} Haringey Baháʼí Community. All rights reserved.</p>
         </div>
       </div>

@@ -18,6 +18,8 @@ const eventOccurrences = expandRecurringEventsSync(events, getNextOccurrences, f
   <Hero
     title="Community Events"
     subtitle="Join us for devotional gatherings, study circles, and community activities"
+    imageUrl="/images/bahai/buildings/houses-of-worship/north-america/north-america-001.jpg"
+    overlayOpacity={60}
   />
 
   <section class="py-12">
@@ -32,13 +34,13 @@ const eventOccurrences = expandRecurringEventsSync(events, getNextOccurrences, f
           </div>
 
           {eventOccurrences.length === 0 && (
-            <div class="bg-white rounded-lg shadow-md p-12 text-center">
-              <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="bg-base-200 rounded-lg shadow-md p-12 text-center">
+              <svg class="w-16 h-16 text-base-content opacity-40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <h3 class="text-xl font-bold text-gray-900 mb-2">No Upcoming Events</h3>
-              <p class="text-gray-600 mb-6">Check back soon for new events, or contact us to learn about ongoing activities.</p>
-              <a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+              <h3 class="text-xl font-bold text-base-content mb-2">No Upcoming Events</h3>
+              <p class="text-base-content opacity-70 mb-6">Check back soon for new events, or contact us to learn about ongoing activities.</p>
+              <a href="/contact" class="inline-block bg-primary hover:bg-accent-cyan-dark text-white px-6 py-3 rounded-lg font-medium transition">
                 Contact Us
               </a>
             </div>
