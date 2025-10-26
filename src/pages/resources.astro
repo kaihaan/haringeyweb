@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SearchableResources from '../components/SearchableResources';
+import { resources, categories, allTags } from '../data/resources';
+---
+
+<BaseLayout
+  title="Learning Resources - Bahá'í Faith"
+  description="Explore books, videos, articles, and study programs to learn about the Bahá'í Faith. Searchable and filterable resources for seekers and students."
+>
+  <Hero
+    title="Learning Resources"
+    subtitle="Discover books, videos, articles, and study programs to explore the Bahá'í Faith"
+  />
+
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-7xl mx-auto">
+        <!-- Introduction -->
+        <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
+          <h2 class="text-3xl font-bold text-base-content mb-4">Your Journey of Discovery</h2>
+          <p class="text-lg text-base-content opacity-80 leading-relaxed">
+            Whether you're just beginning to explore the Baháʼí Faith or looking to deepen your understanding,
+            these carefully curated resources offer guidance, insight, and inspiration. Use the search and
+            filters below to find exactly what you need.
+          </p>
+        </div>
+
+        <!-- Searchable Resources Component -->
+        <SearchableResources
+          resources={resources}
+          categories={categories}
+          allTags={allTags}
+          client:load
+        />
+
+        <!-- Additional Help -->
+        <div class="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8 border border-primary/20">
+          <h3 class="text-2xl font-bold text-base-content mb-4">Need Help Finding Something?</h3>
+          <p class="text-base-content opacity-80 mb-6 leading-relaxed">
+            If you're not sure where to start or have specific questions, we're here to help.
+            Feel free to reach out to us or explore our spiritual search page designed for seekers.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/seekers" class="btn btn-primary">
+              Spiritual Search Guide
+            </a>
+            <a href="/contact" class="btn btn-outline">
+              Contact Us
+            </a>
+            <a href="/study" class="btn btn-outline">
+              Study Circles
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
