@@ -1,10 +1,15 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ContentBlock from '../components/ContentBlock.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ContentBlock from "../components/ContentBlock.astro";
+import TimelineItem from "../components/TimelineItem.astro";
+import QuoteBox from "../components/QuoteBox.astro";
 ---
 
-<BaseLayout title="About the Baháʼí Faith" description="Learn about the Baháʼí Faith, its history, teachings, and core principles.">
+<BaseLayout
+  title="About the Baháʼí Faith"
+  description="Learn about the Baháʼí Faith, its history, teachings, and core principles."
+>
   <Hero
     title="About the Baháʼí Faith"
     subtitle="Understanding the youngest of the world's independent religions"
@@ -16,7 +21,9 @@ import ContentBlock from '../components/ContentBlock.astro';
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-base-content mb-6">What is the Baháʼí Faith?</h2>
+          <h2 class="text-3xl font-bold text-base-content mb-6">
+            What is the Baháʼí Faith?
+          </h2>
           <ContentBlock
             content={`
               <p>The Baháʼí Faith is a monotheistic religion founded in the 19th century by Baháʼu'lláh. It teaches that there is only one God who has progressively revealed His will through divine Messengers including Abraham, Moses, Buddha, Krishna, Zoroaster, Christ, Muhammad, and most recently, the Báb and Baháʼu'lláh.</p>
@@ -25,75 +32,279 @@ import ContentBlock from '../components/ContentBlock.astro';
             `}
           />
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-base-content mb-6">Core Principles</h2>
-          <div class="space-y-6">
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">The Oneness of God</h3>
-              <p class="text-base-content opacity-90">There is one God who is the source of all creation. The divine nature is unknowable, but God reveals Himself through His Messengers.</p>
-            </div>
+  <!-- Core Principles Section -->
+  <section class="bg-gradient-to-b from-base-100 to-primary/5 py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-base-content text-center mb-12">
+          Core Principles
+        </h2>
 
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">The Oneness of Religion</h3>
-              <p class="text-base-content opacity-90">All major religions come from the same divine source and are chapters in one unfolding story of God's guidance to humanity.</p>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">The Oneness of Humanity</h3>
-              <p class="text-base-content opacity-90">All people are created equal and belong to one human family. Prejudices of race, class, creed, and nation must be overcome.</p>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">Equality of Women and Men</h3>
-              <p class="text-base-content opacity-90">Women and men are equal in the sight of God. The full participation of women in all aspects of society is essential for human progress.</p>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">Harmony of Science and Religion</h3>
-              <p class="text-base-content opacity-90">Science and religion are two complementary systems of knowledge. Both are necessary for human progress and should work in harmony.</p>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">Elimination of Prejudice</h3>
-              <p class="text-base-content opacity-90">All forms of prejudice—racial, religious, national, or economic—are destructive and must be overcome.</p>
-            </div>
-
-            <div>
-              <h3 class="text-xl font-semibold text-primary mb-2">Universal Education</h3>
-              <p class="text-base-content opacity-90">Education is a fundamental right. Every person should have access to knowledge and learning, with priority given to the education of girls.</p>
-            </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Principle Card 1 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              The Oneness of God
+            </h3>
+            <p class="text-base-content opacity-90">
+              There is one God who is the source of all creation. The divine
+              nature is unknowable, but God reveals Himself through His
+              Messengers.
+            </p>
           </div>
-        </div>
 
-        <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-base-content mb-6">A Brief History</h2>
-          <ContentBlock
-            content={`
-              <p>The Baháʼí Faith was founded in Persia (modern-day Iran) in 1844 by the Báb, whose teachings prepared the way for Baháʼu'lláh. Despite severe persecution, the Faith spread throughout the Middle East.</p>
+          <!-- Principle Card 2 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              The Oneness of Religion
+            </h3>
+            <p class="text-base-content opacity-90">
+              All major religions come from the same divine source and are
+              chapters in one unfolding story of God's guidance to humanity.
+            </p>
+          </div>
 
-              <p>Baháʼu'lláh, the founder of the Baháʼí Faith, was imprisoned and exiled for His teachings. He spent the last 24 years of His life in the prison-city of Akká (in present-day Israel), where He wrote numerous letters to world leaders calling for peace and unity.</p>
+          <!-- Principle Card 3 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              The Oneness of Humanity
+            </h3>
+            <p class="text-base-content opacity-90">
+              All people are created equal and belong to one human family.
+              Prejudices of race, class, creed, and nation must be overcome.
+            </p>
+          </div>
 
-              <p>After Baháʼu'lláh's passing in 1892, His son ʻAbdu'l-Bahá led the Faith and traveled extensively to promote its teachings. Today, the Baháʼí Faith has more than 5 million followers worldwide and is established in virtually every country.</p>
-            `}
-          />
-        </div>
+          <!-- Principle Card 4 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Equality of Women and Men
+            </h3>
+            <p class="text-base-content opacity-90">
+              Women and men are equal in the sight of God. The full
+              participation of women in all aspects of society is essential for
+              human progress.
+            </p>
+          </div>
 
-        <div class="bg-primary/5 rounded-lg p-8 border border-primary/20">
-          <h2 class="text-2xl font-bold text-base-content mb-4">Learn More</h2>
-          <p class="text-base-content opacity-90 mb-6">
-            Interested in learning more about the Baháʼí Faith? Join us for a study circle, devotional gathering, or community event.
-          </p>
-          <div class="flex gap-4">
-            <a href="/contact" class="bg-primary hover:bg-accent-cyan-dark text-white px-6 py-3 rounded-lg font-medium transition">
-              Get in Touch
-            </a>
-            <a href="/events" class="bg-base-200 hover:bg-base-300 text-accent-cyan border-2 border-primary px-6 py-3 rounded-lg font-medium transition">
-              View Events
-            </a>
+          <!-- Principle Card 5 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Harmony of Science and Religion
+            </h3>
+            <p class="text-base-content opacity-90">
+              Science and religion are two complementary systems of knowledge.
+              Both are necessary for human progress and should work in harmony.
+            </p>
+          </div>
+
+          <!-- Principle Card 6 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Elimination of Prejudice
+            </h3>
+            <p class="text-base-content opacity-90">
+              All forms of prejudice—racial, religious, national, or
+              economic—are destructive and must be overcome.
+            </p>
+          </div>
+
+          <!-- Principle Card 7 -->
+          <div
+            class="bg-base-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          >
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Universal Education
+            </h3>
+            <p class="text-base-content opacity-90">
+              Education is a fundamental right. Every person should have access
+              to knowledge and learning, with priority given to the education of
+              girls.
+            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Key Dates Highlight -->
+  <section class="py-12 bg-gradient-to-b from-primary/5 to-base-100">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-4 mb-16">
+          <div
+            class="bg-primary/10 rounded-lg p-6 text-center border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all"
+          >
+            <div class="text-3xl font-bold text-primary mb-2">1844</div>
+            <div class="text-sm text-base-content opacity-80">
+              Declaration of the Báb
+            </div>
+          </div>
+          <div
+            class="bg-primary/10 rounded-lg p-6 text-center border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all"
+          >
+            <div class="text-3xl font-bold text-primary mb-2">1863</div>
+            <div class="text-sm text-base-content opacity-80">
+              Bahá'u'lláh's Declaration
+            </div>
+          </div>
+          <div
+            class="bg-primary/10 rounded-lg p-6 text-center border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all"
+          >
+            <div class="text-3xl font-bold text-primary mb-2">1892</div>
+            <div class="text-sm text-base-content opacity-80">
+              'Abdu'l-Bahá's Ministry Begins
+            </div>
+          </div>
+          <div
+            class="bg-primary/10 rounded-lg p-6 text-center border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all"
+          >
+            <div class="text-3xl font-bold text-primary mb-2">1963</div>
+            <div class="text-sm text-base-content opacity-80">
+              Universal House of Justice
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-16 bg-base-100">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-base-content text-center mb-16">
+          The Historical Timeline
+        </h2>
+
+        <div class="timeline-container relative">
+          <!-- Central Timeline Line (Desktop) -->
+          <div
+            class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-primary/20 h-full"
+          >
+          </div>
+
+          <TimelineItem
+            year="1800-1844"
+            title="The Shaykhí Movement — Seeds of Expectation"
+            content="In the early nineteenth century, the Islamic world stirred with expectancy. The Shaykhí school, led by Shaykh Ahmad and Siyyid Kázim, sought the inner meaning of revelation and heralded the dawn of a new spiritual age — preparing hearts for the coming of the Promised One."
+            imageUrl="/images/bahai/history/early-believers/early-believers-003.jpg"
+            imageAlt="Early spiritual seekers"
+            expandedContent="<p>Shaykh Ahmad al-Ahsá’í and his successor Siyyid Kázim-i-Rashtí developed a school of Islamic thought that emphasized spiritual interpretation and the imminent appearance of a divine messenger. Their teachings attracted devoted followers across Persia who earnestly sought spiritual renewal.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1800-1844)</p><p class='text-sm opacity-90'>This era witnessed profound global transformation: the <strong>Industrial Revolution</strong> was reshaping economies and societies, the <strong>Napoleonic Wars</strong> had redrawn Europe’s political map, and <strong>colonial empires</strong> were expanding across Asia and Africa. The rise of <strong>nationalism</strong> and modern nation-states was challenging old orders. In this age of material progress and political upheaval, spiritual seekers across faiths sensed the approach of a new era of human consciousness.</p></div><p><strong>Reflection:</strong> <em>How do spiritual movements in every faith prepare humanity for renewal? What role does spiritual expectation play in our own lives?</em></p>"
+            position="right"
+          />
+
+          <TimelineItem
+            year="1844"
+            title="The Bábí Revelation — The Herald of a New Day"
+            content="On May 23, 1844, in Shiraz, Persia, a young merchant named Siyyid 'Alí-Muhammad declared Himself to be the Báb (the 'Gate'), heralding a new era in religious history. His teachings called for spiritual and moral renewal and prepared the way for Bahá'u'lláh."
+            imageUrl="/images/bahai/history/bab/bab-001.jpg"
+            imageAlt="The Báb"
+            quote="The world's equilibrium hath been upset through the vibrating influence of this most great, this new World Order."
+            quoteAuthor="Bahá'u'lláh, on the Báb's revelation"
+            expandedContent="<p>In 1844, a young merchant from Shiraz declared Himself the Báb — the Gate of God — and called humanity to spiritual rebirth. His teachings of purity, equality, and divine unity shook an old world clinging to dogma. Despite fierce persecution, His followers' steadfastness became a beacon for generations.</p><p>The Báb's declaration marked the beginning of the Bahá'í Era. Within six years, tens of thousands had embraced His cause. The Báb revealed numerous works, including the Persian Bayán, which outlined His vision for spiritual and social transformation.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1844)</p><p class='text-sm opacity-90'>1844 was a year of remarkable breakthroughs: Samuel Morse sent the first <strong>telegraph message</strong> (&quot;What hath God wrought&quot;), forever changing human communication. The <strong>Victorian era</strong> was entering its golden age in Britain, while seeds of the <strong>revolutionary movements of 1848</strong> were being sown across Europe. Colonial empires were at their height, yet voices calling for freedom, equality, and human dignity were beginning to challenge the old order.</p></div><p><strong>Reflection:</strong> <em>What does it mean to be a spiritual herald? How do we recognize and respond to calls for renewal in our own time?</em></p>"
+            position="left"
+          />
+
+          <TimelineItem
+            year="1850"
+            title="The Martyrdom of the Báb"
+            content="The Báb was publicly executed in Tabriz, Persia, on July 9, 1850. His martyrdom did not end His influence—rather, it ignited the faith of His followers and set the stage for the revelation of Bahá'u'lláh."
+            imageUrl="/images/bahai/history/bab/bab-002.jpg"
+            imageAlt="Shrine of the Báb"
+            quote="The glory of My Revelation is far greater than that which has been given to the Prophets of old."
+            quoteAuthor="The Báb"
+            expandedContent="<p>On July 9, 1850, the Báb was led to the barracks square in Tabriz. An entire regiment of 750 soldiers fired upon Him, yet when the smoke cleared, He had vanished—the bullets had only severed His bonds. He was found calmly completing His final instructions to a disciple. A second regiment completed the execution, but the Báb’s final words echoed through history: ‘O wayward generation! Had you believed in Me, every one of you would have followed the example of this youth.’</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1850)</p><p class='text-sm opacity-90'>The mid-19th century saw the world in transition: the <strong>California Gold Rush</strong> drew hundreds of thousands westward, <strong>industrialization</strong> was rapidly transforming cities and labor, and the first <strong>undersea telegraph cables</strong> were being laid. In Europe, the failed revolutions of 1848 had led to both disillusionment and renewed determination for change. While material progress accelerated, questions of human dignity, freedom, and spiritual meaning grew more urgent.</p></div><p><strong>Reflection:</strong> <em>How do acts of sacrifice and steadfastness in the face of persecution inspire future generations? What truth is worth standing for, regardless of cost?</em></p>"
+            position="right"
+          />
+
+          <TimelineItem
+            year="1863"
+            title="Bahá'u'lláh — The Revelation of Oneness"
+            content="From the darkness of a Persian dungeon, Bahá'u'lláh arose with a message of light. In April 1863, in the Garden of Ridván in Baghdad, He declared that He was the Promised One foretold by the Báb. This twelve-day period marks the holiest time in the Bahá'í calendar."
+            imageUrl="/images/bahai/history/bahaullah/bahaullah-001.jpg"
+            imageAlt="Bahá'u'lláh"
+            quote="The earth is but one country, and mankind its citizens."
+            quoteAuthor="Bahá'u'lláh"
+            expandedContent="<p>Exiled from land to land, Bahá'u'lláh proclaimed that the age of humanity's unity had dawned. His letters to kings and rulers called for peace, justice, and disarmament — long before the world dreamed of global governance.</p><p>This declaration initiated a ministry that would last forty years, during which Bahá'u'lláh revealed thousands of letters and books, including the Hidden Words and the Kitáb-i-Íqán, outlining His vision for the unification of humanity.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1863)</p><p class='text-sm opacity-90'>1863 marked pivotal moments in human history: the <strong>American Civil War</strong> reached its turning point with the Emancipation Proclamation, <strong>Italy unified</strong> as a nation-state, and <strong>Russia abolished serfdom</strong>, freeing millions. The world was convulsing with movements for freedom, equality, and national self-determination. The <strong>International Red Cross</strong> was founded this same year, reflecting growing consciousness of universal humanitarian values. Against this backdrop of social transformation, Bahá'u'lláh proclaimed a spiritual revolution—the oneness of all humanity.</p></div><p><strong>Reflection:</strong> <em>How might the vision of unity reshape political, economic, and spiritual life today?</em></p>"
+            position="left"
+          />
+
+          <TimelineItem
+            year="1863-1892"
+            title="The Prison Years"
+            content="Bahá'u'lláh spent the remainder of His life in exile and imprisonment, eventually arriving in the prison-city of 'Akká (Acre) in present-day Israel in 1868. Despite harsh conditions, He continued to reveal His writings and guide His followers."
+            imageUrl="/images/bahai/history/bahaullah/bahaullah-003.jpg"
+            imageAlt="Prison of 'Akká"
+            quote="Be anxiously concerned with the needs of the age ye live in, and center your deliberations on its exigencies and requirements."
+            quoteAuthor="Bahá'u'lláh"
+            expandedContent="<p>During His years in 'Akká, Bahá'u'lláh wrote letters to the kings and rulers of the world, calling them to establish justice and work towards peace. He revealed the Kitáb-i-Aqdas (The Most Holy Book), which outlines the laws and principles of the Bahá'í Faith.</p><p>Gradually, the conditions of His imprisonment eased, and He was eventually able to reside at the Mansion of Bahjí, where He passed away in 1892.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1863-1892)</p><p class='text-sm opacity-90'>The late 19th century was the <strong>Age of Imperialism</strong>: European powers carved up Africa in the 'Scramble for Africa,' the <strong>Suez Canal</strong> opened (1869), and colonial empires reached their zenith. Technological marvels emerged—the <strong>telephone</strong> (1876), <strong>electric light</strong> (1879), and <strong>automobiles</strong>. While writing His letters to world leaders, Bahá'u'lláh witnessed the <strong>Franco-Prussian War</strong>, the unification of Germany, and the rapid industrialization that was creating both unprecedented wealth and stark inequality. His call for collective security and international governance was prophetic.</p></div><p><strong>Reflection:</strong> <em>In an age of technological advancement, how do we ensure that material progress serves spiritual and moral advancement?</em></p>"
+            position="right"
+          />
+
+          <TimelineItem
+            year="1892-1921"
+            title="'Abdu'l-Bahá — The Servant of Glory"
+            content="The son of Bahá'u'lláh, 'Abdu'l-Bahá, embodied service and humility. Following Bahá'u'lláh's passing, 'Abdu'l-Bahá ('Servant of Bahá') became the appointed interpreter and exemplar of His teachings, dedicating His life to spreading the Bahá'í message and serving humanity."
+            imageUrl="/images/bahai/history/abdul-baha/abdul-baha-001.jpg"
+            imageAlt="'Abdu'l-Bahá"
+            quote="Be kind to all peoples; deal with them with love and affection."
+            quoteAuthor="'Abdu'l-Bahá"
+            expandedContent="<p>Freed after decades of imprisonment, He journeyed across the West — calling for racial harmony, women's equality, and peace. After His release in 1908, 'Abdu'l-Bahá traveled extensively to Egypt, Europe, and North America between 1910-1913, sharing the Bahá'í teachings and promoting peace, equality, and unity.</p><p>During the Great War, He fed the hungry of Palestine and was knighted for His humanitarian work. His life exemplified the Bahá'í principles of service, compassion, and dedication to the betterment of humanity.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1892-1921)</p><p class='text-sm opacity-90'>This era witnessed cataclysmic change: <strong>World War I</strong> (1914-1918) shattered the old world order, claiming millions of lives and toppling four empires—Ottoman, Austro-Hungarian, Russian, and German. The <strong>Russian Revolution</strong> (1917) ushered in communism. <strong>Women's suffrage movements</strong> gained victories across the West. The <strong>League of Nations</strong> was formed in 1920, humanity's first attempt at global governance. As 'Abdu'l-Bahá traveled through America and Europe preaching racial unity, He addressed packed halls at universities, churches, and peace societies, planting seeds that would bloom in future civil rights and peace movements.</p></div><p><strong>Reflection:</strong> <em>How can service and kindness transform our communities and world?</em></p>"
+            position="left"
+          />
+
+          <TimelineItem
+            year="1921-1957"
+            title="The Guardian — Shoghi Effendi"
+            content="Appointed by 'Abdu'l-Bahá, Shoghi Effendi guided the Faith through turbulent decades of war and upheaval. He built the administrative order — a model of unity without uniformity — and envisioned the growth of a world community grounded in justice and cooperation."
+            imageUrl="/images/bahai/history/early-believers/early-believers-001.jpg"
+            imageAlt="Early Bahá'ís"
+            expandedContent="<p>During his 36-year guardianship, Shoghi Effendi systematically built the administrative structure outlined in Bahá'u'lláh's writings. He launched teaching campaigns that spread the Faith to nearly every country and territory, linking his ministry to the rise of the United Nations and decolonization.</p><p>He translated the sacred writings into English with eloquence and precision. His translations and interpretations remain authoritative today, and his vision shaped the development of the Bahá'í World Centre in Haifa, Israel.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1921-1957)</p><p class='text-sm opacity-90'>Shoghi Effendi's guardianship spanned humanity's most turbulent decades: the <strong>Great Depression</strong>, the rise of totalitarian regimes, <strong>World War II</strong> and the Holocaust, the <strong>atomic bombings</strong> of Hiroshima and Nagasaki, and the beginning of the <strong>Cold War</strong>. Yet this era also saw hope: the <strong>United Nations</strong> was founded (1945), implementing Bahá'u'lláh's vision of collective security. The <strong>decolonization movement</strong> freed dozens of nations in Africa and Asia. The <strong>Universal Declaration of Human Rights</strong> (1948) enshrined principles the Bahá'ís had long championed. Shoghi Effendi systematically built a global administrative order capable of uniting diverse peoples in this fractured world.</p></div><p><strong>Reflection:</strong> <em>What does 'unity without uniformity' mean in practice? How can diverse peoples unite while honoring their unique identities?</em></p>"
+            position="right"
+          />
+
+          <TimelineItem
+            year="1963-Present"
+            title="The Universal House of Justice — The Global Era"
+            content="The Universal House of Justice, elected in 1963, guides a worldwide community united in purpose. In every land, Bahá'ís work for peace, education, equality, and the elimination of prejudice — building the foundations of a global civilization envisioned by Bahá'u'lláh."
+            imageUrl="/images/bahai/buildings/administrative-haifa/administrative-haifa-001.jpg"
+            imageAlt="Seat of the Universal House of Justice"
+            quote="So powerful is the light of unity that it can illuminate the whole earth."
+            quoteAuthor="Bahá'u'lláh"
+            expandedContent="<p>The Universal House of Justice is elected every five years by members of National Spiritual Assemblies from around the world. It provides guidance on the application of Bahá'í teachings to contemporary issues and directs the spiritual and administrative affairs of the Faith.</p><p>Today, the Bahá'í Faith has more than 5 million followers worldwide, with communities established in virtually every nation. The Faith continues to grow and work toward Bahá'u'lláh's vision of world unity and peace.</p><div class='bg-primary/5 border-l-4 border-primary/50 rounded-r-lg p-4 my-4'><p class='text-sm font-semibold text-primary mb-2'>📜 Historical Context (1963-Present)</p><p class='text-sm opacity-90'>The Universal House of Justice has guided the Faith through an era of unprecedented change: the <strong>Civil Rights Movement</strong> and the struggle for racial equality, humanity's <strong>first steps on the moon</strong> (1969), the <strong>fall of the Berlin Wall</strong> (1989) and end of the Cold War, the <strong>digital revolution</strong> and rise of the internet, and accelerating <strong>globalization</strong>. The world has grown both more interconnected and more fragmented. Environmental crises, economic inequality, and the search for meaning in a rapidly changing world have become defining challenges. Throughout, the Bahá'í community has worked at the grassroots—building capacity for service, advancing gender equality, promoting education, and fostering interfaith understanding. The vision of world unity is no longer utopian—it has become an urgent necessity.</p></div><p><strong>Reflection:</strong> <em>The story of the Bahá'í Faith is not confined to the past — it is the unfolding narrative of humanity's spiritual awakening. How does your own search for truth contribute to this global transformation?</em></p>"
+            position="left"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .timeline-container {
+    padding-top: 20rem; /* Compensates for timeline item overlap */
+    padding-bottom: 4rem;
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

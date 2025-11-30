@@ -1,17 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchBar from '../components/SearchBar';
 import { getPublishedItems, getPrayerSnippet } from '../lib/directus';
-import type { Event, Prayer } from '../lib/directus';
+import type { Event, Prayer, Writing, Resource } from '../lib/directus';
 
-// Get content from Directus
+// Get all content from Directus
 const directusEvents = await getPublishedItems<Event>('events');
 const directusPrayers = await getPublishedItems<Prayer>('prayers');
-
-// Get content from Content Collections (still using these)
-const writingsCollection = await getCollection('writings');
-const resourcesCollection = await getCollection('resources');
+const directusWritings = await getPublishedItems<Writing>('writings');
+const directusResources = await getPublishedItems<Resource>('resources');
 
 // Format Directus data
 const events = directusEvents.map(event => ({
@@ -29,8 +26,19 @@ const prayers = directusPrayers.map(prayer => ({
   tags: prayer.tags || []
 }));
 
-const writings = writingsCollection.map(entry => ({ id: entry.id, ...entry.data }));
-const resources = resourcesCollection.map(entry => ({ id: entry.id, ...entry.data }));
+const writings = directusWritings.map(writing => ({
+  id: writing.id,
+  title: writing.title,
+  excerpt: writing.excerpt,
+  external_link: writing.external_link,
+}));
+
+const resources = directusResources.map(resource => ({
+  id: resource.id,
+  title: resource.title,
+  description: resource.description,
+  resource_url: resource.resource_url,
+}));
 
 // Get query from URL params
 const url = new URL(Astro.request.url);
@@ -78,7 +86,7 @@ function searchContent(query: string) {
         type: 'Writing',
         title: writing.title,
         excerpt: writing.excerpt,
-        url: '#',
+        url: writing.external_link || '#',
       });
     }
   });
@@ -91,7 +99,7 @@ function searchContent(query: string) {
         type: 'Resource',
         title: resource.title,
         excerpt: resource.description,
-        url: resource.fileUrl || '#',
+        url: resource.resource_url || '#',
       });
     }
   });

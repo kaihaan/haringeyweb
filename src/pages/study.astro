@@ -1,27 +1,34 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ResourceDownload from '../components/ResourceDownload.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SearchableResources from "../components/SearchableResources";
+import { getPublishedItems } from "../lib/directus";
+import type { Writing, DirectusResource } from "../lib/directus";
 
-// Get resources and writings from content collections
-const resourcesCollection = await getCollection('resources');
-const writingsCollection = await getCollection('writings');
+// Fetch writings and resources from Directus
+const writings = await getPublishedItems<Writing>("writings");
+const directusResources = await getPublishedItems<DirectusResource>("resources");
 
-const resources = resourcesCollection.map(entry => ({
-  id: entry.id,
-  ...entry.data
+// Transform for SearchableResources component (matches resources.astro pattern)
+const resources = directusResources.map(resource => ({
+  id: String(resource.id),
+  title: resource.title,
+  category: resource.category,
+  tags: resource.tags || [],
+  description: resource.description,
+  link: resource.resource_url || '',
+  author: resource.author,
 }));
 
-const writings = writingsCollection.map(entry => ({
-  id: entry.id,
-  ...entry.data
-}));
-
-const studyResources = resources.filter(r => r.category === 'Study Materials');
+// Extract categories and tags for filters
+const categories = Array.from(new Set(resources.map(r => r.category))).sort();
+const allTags = Array.from(new Set(resources.flatMap(r => r.tags))).sort();
 ---
 
-<BaseLayout title="Study & Deepening" description="Explore study materials, sacred writings, and resources for spiritual deepening.">
+<BaseLayout
+  title="Study & Deepening"
+  description="Explore study materials, sacred writings, and resources for spiritual deepening."
+>
   <Hero
     title="Study & Deepening"
     subtitle="Explore the sacred writings and deepen your spiritual understanding"
@@ -33,60 +40,72 @@ const studyResources = resources.filter(r => r.category === 'Study Materials');
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
-          <h2 class="text-3xl font-bold text-base-content mb-6">The Ruhi Institute</h2>
+          <h2 class="text-3xl font-bold text-base-content mb-6">
+            The Ruhi Institute
+          </h2>
           <p class="text-base-content opacity-90 mb-4 leading-relaxed">
-            The Ruhi Institute is an educational institution that develops materials for the spiritual education of Baháʼís and others interested in serving humanity. Its courses help participants deepen their understanding of the Faith and develop the capacity to serve their communities.
+            The Ruhi Institute is an educational institution that develops
+            materials for the spiritual education of Baháʼís and others
+            interested in serving humanity. Its courses help participants deepen
+            their understanding of the Faith and develop the capacity to serve
+            their communities.
           </p>
           <p class="text-base-content opacity-90 leading-relaxed">
-            Study circles using Ruhi Institute materials are offered regularly in our community. These small group sessions provide a supportive environment for learning and personal growth.
+            Study circles using Ruhi Institute materials are offered regularly
+            in our community. These small group sessions provide a supportive
+            environment for learning and personal growth.
           </p>
-        </div>
-
-        <h2 class="text-3xl font-bold text-base-content mb-6">Study Materials</h2>
-        <div class="grid gap-6 mb-12">
-          {studyResources.map((resource) => (
-            <ResourceDownload resource={resource} />
-          ))}
-        </div>
-
-        <h2 class="text-3xl font-bold text-base-content mb-6">Sacred Writings</h2>
-        <p class="text-base-content opacity-90 mb-6">
-          Explore the holy writings of the Baháʼí Faith, including works by Baháʼu'lláh, the Báb, ʻAbdu'l-Bahá, and Shoghi Effendi.
-        </p>
-        <div class="grid md:grid-cols-2 gap-6 mb-12">
-          {writings.map((writing) => (
-            <div class="bg-base-200 rounded-lg shadow-md p-6 hover:shadow-lg transition">
-              <h3 class="text-xl font-bold text-base-content mb-2">{writing.title}</h3>
-              <p class="text-sm text-base-content opacity-70 mb-3">— {writing.author}</p>
-              <p class="text-base-content opacity-90 mb-4 leading-relaxed">{writing.excerpt}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {writing.tags.map((tag) => (
-                  <span class="text-xs text-base-content opacity-70 bg-base-300 px-2 py-1 rounded">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-              <a href="#" class="text-accent-cyan hover:text-accent-cyan-dark font-medium text-sm">
-                Read More →
-              </a>
-            </div>
-          ))}
         </div>
 
         <div class="bg-primary/5 rounded-lg p-8 border border-primary/20">
-          <h2 class="text-2xl font-bold text-base-content mb-4">Join a Study Circle</h2>
+          <h2 class="text-2xl font-bold text-base-content mb-4">
+            Join a Study Circle
+          </h2>
           <p class="text-base-content opacity-90 mb-6">
-            Study circles meet regularly in homes and community centers. All are welcome to participate, regardless of background or belief.
+            Study circles meet regularly in homes and community centers. All are
+            welcome to participate, regardless of background or belief.
           </p>
           <div class="flex gap-4">
-            <a href="/events" class="bg-primary hover:bg-accent-cyan-dark text-white px-6 py-3 rounded-lg font-medium transition">
+            <a
+              href="/events"
+              class="bg-primary hover:bg-accent-cyan-dark text-white px-6 py-3 rounded-lg font-medium transition"
+            >
               Find a Study Circle
             </a>
-            <a href="/contact" class="bg-base-200 hover:bg-base-300 text-accent-cyan border-2 border-primary px-6 py-3 rounded-lg font-medium transition">
+            <a
+              href="/contact"
+              class="bg-base-200 hover:bg-base-300 text-accent-cyan border-2 border-primary px-6 py-3 rounded-lg font-medium transition"
+            >
               Contact Us
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Study Materials & Resources Section -->
+  <section class="py-12 bg-base-100 border-t border-base-300">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-base-content mb-6">Study Materials & Resources</h2>
+
+        <!-- Introduction -->
+        <div class="bg-base-200 rounded-lg shadow-md p-6 mb-8">
+          <h3 class="text-xl font-bold text-base-content mb-3">Your Journey of Discovery</h3>
+          <p class="text-base-content opacity-90 leading-relaxed">
+            We've curated a collection of books, videos, articles, and study programs to support your exploration of the Bahá'í teachings.
+            Use the search and filters below to find materials that speak to your interests and questions.
+          </p>
+        </div>
+
+        <!-- SearchableResources Component -->
+        <SearchableResources
+          resources={resources}
+          categories={categories}
+          allTags={allTags}
+          client:load
+        />
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@
  * Test recurrence calculation with actual Directus event data
  */
 
-import { getNextOccurrences, formatRecurrencePattern } from './src/lib/recurrence.ts';
+import { getNextOccurrences, formatRecurrencePattern } from '../src/lib/recurrence.ts';
 
 // Simulate the event data from Directus
 const testEvent = {

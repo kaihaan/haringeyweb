@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the **Haringey Baháʼí Community Website** - a static-first community website built with Astro v5, TypeScript, React, and Tailwind CSS. The site uses **Directus CMS** (hosted on Render) as a headless CMS backed by **Neon PostgreSQL**, with automatic deployments via **Vercel**.
 
-**Current Phase**: Phase 2 complete - CMS integration with Directus. Events and prayers now fetch from Directus API.
+**Current Phase**: Phase 3 complete - Full CMS migration. All content (events, prayers, writings, resources, news) now fetched from Directus API. Local content collections removed.
 
 ## Commands
 
@@ -25,13 +25,13 @@ node debug-normalize.mjs   # Debug data normalization
 
 ## Architecture
 
-### Hybrid Content Strategy
+### Content Strategy
 
-The site uses a **transitional architecture** migrating from file-based content to Directus CMS:
+The site uses **Directus CMS exclusively** for all content management:
 
-- **Directus CMS** (Phase 2+): Events and prayers now fetched from Directus API
-- **Content Collections** (Phase 1): Writings, resources, news still use Astro Content Collections (`src/content/`)
-- **Future**: Gradually migrate remaining collections to Directus
+- **Directus CMS**: All content types (events, prayers, writings, resources, news) fetched from Directus API
+- **No local collections**: Astro Content Collections (`src/content/`) have been removed
+- **Single source of truth**: All content managed in Directus, deployed to Vercel
 
 ### Key Architectural Components
 
@@ -177,16 +177,16 @@ When showing recurring events:
 3. Pass `EventOccurrence[]` to components (not `Event[]`)
 4. Each occurrence has `occurrence_date` and `display_date` fields
 
-### Content Collections vs Directus
+### All Content from Directus
 
-**Directus** (use `getPublishedItems`):
+All content types use **Directus CMS** with `getPublishedItems()`:
+
+**Collections**:
 - Events (`events` collection)
 - Prayers (`prayers` collection)
-
-**Content Collections** (use `getCollection`):
-- Writings (`src/content/writings/`)
-- Resources (`src/content/resources/`)
-- News (`src/content/news/`)
+- Writings (`writings` collection)
+- Resources (`resources` collection)
+- News (`news` collection)
 
 ### Build Troubleshooting
 
@@ -197,12 +197,23 @@ If events don't appear after Directus changes:
 4. Verify webhook is triggering rebuilds in Vercel dashboard
 
 ## Documentation Files
+Documentation is maintained in .claude/docs.
 
-- **DIRECTUS_SCHEMA.md** - Complete Directus collection schemas
-- **DIRECTUS_CONFIGURATION_GUIDE.md** - CMS setup instructions
-- **EDITOR_GUIDE.md** - Content editor manual
-- **DEPLOYMENT.md** - Deployment procedures
-- **CONTENT_STRUCTURE.md** - Content collections documentation (legacy)
+Generated documents should be stored in the est match folder:
+/site_map
+/guides
+    - **EDITOR_GUIDE.md** - Content editor manual
+    - **DEPLOYMENT.md** - Deployment procedures
+/project_planning
+/CMS
+    - **DIRECTUS_SCHEMA.md** - Complete Directus collection schemas
+    - **DIRECTUS_CONFIGURATION_GUIDE.md** - CMS setup instructions
+
+## code generation
+Always use context7 when I need code generation, setup or configuration steps, or
+library/API documentation. This means you should automatically use the Context7 MCP
+tools to resolve library id and get library docs without me having to explicitly ask.
+
 
 ## Tech Stack
 

@@ -2,7 +2,14 @@
   "extends": "astro/tsconfigs/strict",
   "include": [
     ".astro/types.d.ts",
-    "**/*"
+    "**/*",
+    ".claude/scripts/debug-build.mjs",
+    ".claude/scripts/migrate-prayers.mjs",
+    ".claude/scripts/add-author-field.js",
+    ".claude/scripts/download-bahai-images.js",
+    ".claude/scripts/populate-bahai-events.js",
+    ".claude/scripts/populate-resources.js",
+    ".claude/scripts/debug-normalize.mjs"
   ],
   "exclude": [
     "dist"

@@ -3,7 +3,7 @@
  */
 
 import { createDirectus, rest, readItems, staticToken } from '@directus/sdk';
-import { getNextOccurrences, formatEventDate } from './src/lib/recurrence.ts';
+import { getNextOccurrences, formatEventDate } from '../../src/lib/recurrence.ts';
 import 'dotenv/config';
 
 console.log('=== Debugging Build Process ===\n');

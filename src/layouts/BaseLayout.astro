@@ -1,16 +1,17 @@
 ---
-import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle';
+import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle";
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = 'Haringey Baháʼí Community Website' } = Astro.props;
+const { title, description = "Haringey Baháʼí Community Website" } =
+  Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="tranquil">
   <head>
     <meta charset="UTF-8" />
@@ -21,31 +22,73 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       // Set theme before page renders to avoid flash
-      const theme = localStorage.getItem('theme') || 'tranquil';
-      document.documentElement.setAttribute('data-theme', theme);
+      const theme = localStorage.getItem("theme") || "tranquil";
+      document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
   <body class="min-h-screen flex flex-col bg-base-100">
     <header class="bg-base-200 shadow-sm">
       <nav class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <a href="/" class="text-2xl font-bold text-neutral">Haringey Baháʼí Community</a>
+          <a href="/" class="text-2xl font-bold text-neutral"
+            >Haringey Baháʼí Community</a
+          >
           <div class="flex items-center gap-4">
             <ul class="hidden md:flex space-x-6">
-              <li><a href="/" class="text-base-content hover:text-accent-cyan transition">Home</a></li>
-              <li><a href="/about" class="text-base-content hover:text-accent-cyan transition">About</a></li>
-              <li><a href="/history" class="text-base-content hover:text-accent-cyan transition">History</a></li>
-              <li><a href="/seekers" class="text-base-content hover:text-accent-cyan transition">Seekers</a></li>
-              <li><a href="/resources" class="text-base-content hover:text-accent-cyan transition">Resources</a></li>
-              <li><a href="/study" class="text-base-content hover:text-accent-cyan transition">Study</a></li>
-              <li><a href="/devotional" class="text-base-content hover:text-accent-cyan transition">Devotional</a></li>
-              <li><a href="/events" class="text-base-content hover:text-accent-cyan transition">Events</a></li>
-              <li><a href="/contact" class="text-base-content hover:text-accent-cyan transition">Contact</a></li>
+              <li>
+                <a
+                  href="/"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >Home</a>
+              </li>
+              <li>
+                <a
+                  href="/about"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >About</a>
+              </li>
+              <li>
+                <a
+                  href="/study"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >Study</a>
+              </li>
+              <li>
+                <a
+                  href="/devotional"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >Devotional</a>
+              </li>
+              <li>
+                <a
+                  href="/events"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >Events</a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="text-base-content hover:text-accent-cyan transition"
+                  >Contact</a>
+              </li>
             </ul>
             <ThemeToggle client:load />
-            <button id="mobile-menu-button" class="md:hidden text-base-content" aria-label="Toggle menu">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <button
+              id="mobile-menu-button"
+              class="md:hidden text-base-content"
+              aria-label="Toggle menu"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
           </div>
@@ -53,18 +96,54 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
       </nav>
 
       <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-base-200 border-t border-base-300">
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-base-200 border-t border-base-300"
+      >
         <div class="container mx-auto px-4 py-4">
           <ul class="space-y-3">
-            <li><a href="/" class="block text-base-content hover:text-accent-cyan py-2 transition">Home</a></li>
-            <li><a href="/about" class="block text-base-content hover:text-accent-cyan py-2 transition">About</a></li>
-            <li><a href="/history" class="block text-base-content hover:text-accent-cyan py-2 transition">History</a></li>
-            <li><a href="/seekers" class="block text-base-content hover:text-accent-cyan py-2 transition">Seekers</a></li>
-            <li><a href="/resources" class="block text-base-content hover:text-accent-cyan py-2 transition">Resources</a></li>
-            <li><a href="/study" class="block text-base-content hover:text-accent-cyan py-2 transition">Study</a></li>
-            <li><a href="/devotional" class="block text-base-content hover:text-accent-cyan py-2 transition">Devotional</a></li>
-            <li><a href="/events" class="block text-base-content hover:text-accent-cyan py-2 transition">Events</a></li>
-            <li><a href="/contact" class="block text-base-content hover:text-accent-cyan py-2 transition">Contact</a></li>
+            <li>
+              <a
+                href="/"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >Home</a>
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >About</a>
+            </li>
+            <li>
+              <a
+                href="/history"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >History</a>
+            </li>
+            <li>
+              <a
+                href="/study"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >Study</a>
+            </li>
+            <li>
+              <a
+                href="/devotional"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >Devotional</a>
+            </li>
+            <li>
+              <a
+                href="/events"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >Events</a>
+            </li>
+            <li>
+              <a
+                href="/contact"
+                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                >Contact</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -80,48 +159,85 @@ const { title, description = 'Haringey Baháʼí Community Website' } = Astro.pr
           <div>
             <h3 class="text-lg font-bold mb-4">About Us</h3>
             <p class="opacity-80 text-sm">
-              The Baháʼí Faith is a religion that teaches the essential worth of all religions and the unity of all people.
+              The Baháʼí Faith is a religion that teaches the essential worth of
+              all religions and the unity of all people.
             </p>
           </div>
           <div>
             <h3 class="text-lg font-bold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-sm">
-              <li><a href="/about" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">About the Faith</a></li>
-              <li><a href="/history" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">History</a></li>
-              <li><a href="/community" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Community Life</a></li>
-              <li><a href="/events" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Events</a></li>
-              <li><a href="/contact" class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition">Contact Us</a></li>
+              <li>
+                <a
+                  href="/about"
+                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  >About the Faith</a>
+              </li>
+              <li>
+                <a
+                  href="/history"
+                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  >History</a>
+              </li>
+              <li>
+                <a
+                  href="/community"
+                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  >Community Life</a>
+              </li>
+              <li>
+                <a
+                  href="/events"
+                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  >Events</a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  >Contact Us</a>
+              </li>
             </ul>
           </div>
           <div>
             <h3 class="text-lg font-bold mb-4">Connect</h3>
-            <p class="opacity-80 text-sm mb-2">Join us for devotional gatherings, study circles, and community events.</p>
-            <a href="/contact" class="inline-block bg-primary hover:bg-accent-cyan-dark text-white px-4 py-2 rounded transition text-sm">
+            <p class="opacity-80 text-sm mb-2">
+              Join us for devotional gatherings, study circles, and community
+              events.
+            </p>
+            <a
+              href="/contact"
+              class="inline-block bg-primary hover:bg-accent-cyan-dark text-white px-4 py-2 rounded transition text-sm"
+            >
               Get in Touch
             </a>
           </div>
         </div>
-        <div class="mt-8 pt-8 border-t border-footer-text/20 text-center text-sm opacity-70">
-          <p>&copy; {new Date().getFullYear()} Haringey Baháʼí Community. All rights reserved.</p>
+        <div
+          class="mt-8 pt-8 border-t border-footer-text/20 text-center text-sm opacity-70"
+        >
+          <p>
+            &copy; {new Date().getFullYear()} Haringey Baháʼí Community. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>
 
     <script>
       // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
 
       if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
         });
 
         // Close menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
           });
         });
       }
