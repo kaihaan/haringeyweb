@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import ThemeToggle from "../components/ThemeToggle";
+import ThemeDrawer from "../components/ThemeDrawer";
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="zen-garden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,9 @@ const { title, description = "Haringey Baháʼí Community Website" } =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       // Set theme before page renders to avoid flash
-      const theme = localStorage.getItem("theme") || "light";
+      const savedTheme = localStorage.getItem("theme");
+      const validThemes = ['light', 'dark', 'zen-garden', 'zen-garden-dark', 'serene-ocean', 'serene-ocean-dark', 'tranquil-dawn', 'tranquil-dawn-dark'];
+      const theme = validThemes.includes(savedTheme) ? savedTheme : "zen-garden";
       document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
@@ -72,7 +74,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
                   >Contact</a>
               </li>
             </ul>
-            <ThemeToggle client:load />
+            <ThemeDrawer client:load />
             <button
               id="mobile-menu-button"
               class="md:hidden text-base-content"

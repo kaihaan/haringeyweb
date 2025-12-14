@@ -26,6 +26,12 @@ node debug-normalize.mjs   # Debug data normalization
 ## code generation
 Rule: Always use context7 when I need code generation
 
+## Documentation
+User and enerated documentatoin should be stored in .claude/docs in these folders:
+- briefs: written by the user for features, components and design tasks
+- database: written by claude to document and remember database design decisions
+- plans: written by claude to remember plans and TODO lists.
+
 
 ## UI Design Principles
 
@@ -42,6 +48,16 @@ Rule: Always use context7 when I need code generation
 - Limit  multi page app pattern for very little client side state, and strong SEO needs.
 - Avoid loading spinners - use progress bards instead.
 - avoid popup menus - use expanding drawers instead.
+- Always use a color theme for easy dark/light switching and site wide color updates
+
+### Legibility & Contrast
+
+- **WCAG AA minimum**: Normal text 4.5:1, large text 3:1 contrast ratio
+- **Use semantic colors**: Always use `text-base-content` (not fixed colors like `text-neutral`)
+- **Avoid opacity on text**: Never use `opacity-70/80/90` on text - use semantic color classes instead
+- **Theme-aware design**: All text must be legible in BOTH light and dark modes
+- **Overlays**: Text on dark overlays (images, gradients) must be `text-white`
+- **Test both themes**: Verify contrast in light mode AND dark mode before committing
 
 ## Architecture
 

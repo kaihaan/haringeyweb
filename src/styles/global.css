@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Semantic text colors for proper contrast in both light and dark themes */
+/* Semantic text colors for proper contrast in all wellness themes */
 @layer base {
-  [data-theme="light"] {
+  /* Light themes */
+  [data-theme="zen-garden"],
+  [data-theme="serene-ocean"],
+  [data-theme="tranquil-dawn"] {
     --color-text-secondary: oklch(40% 0 0);      /* Dark gray for secondary text */
     --color-text-muted: oklch(50% 0 0);          /* Medium gray for muted/tertiary text */
   }
 
-  [data-theme="dark"] {
+  /* Dark themes */
+  [data-theme="zen-garden-dark"],
+  [data-theme="serene-ocean-dark"],
+  [data-theme="tranquil-dawn-dark"] {
     --color-text-secondary: oklch(75% 0 0);      /* Light gray for secondary text */
     --color-text-muted: oklch(65% 0 0);          /* Dimmer but readable for muted text */
   }
