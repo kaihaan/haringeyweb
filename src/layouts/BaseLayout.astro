@@ -12,7 +12,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
 ---
 
 <!doctype html>
-<html lang="en" data-theme="tranquil">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       // Set theme before page renders to avoid flash
-      const theme = localStorage.getItem("theme") || "tranquil";
+      const theme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
@@ -30,7 +30,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
     <header class="bg-base-200 shadow-sm">
       <nav class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <a href="/" class="text-2xl font-bold text-neutral"
+          <a href="/" class="text-2xl font-bold text-base-content"
             >Haringey Baháʼí Community</a
           >
           <div class="flex items-center gap-4">
@@ -38,37 +38,37 @@ const { title, description = "Haringey Baháʼí Community Website" } =
               <li>
                 <a
                   href="/"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >Home</a>
               </li>
               <li>
                 <a
                   href="/about"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >About</a>
               </li>
               <li>
                 <a
                   href="/study"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >Study</a>
               </li>
               <li>
                 <a
                   href="/devotional"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >Devotional</a>
               </li>
               <li>
                 <a
                   href="/events"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >Events</a>
               </li>
               <li>
                 <a
                   href="/contact"
-                  class="text-base-content hover:text-accent-cyan transition"
+                  class="text-base-content hover:text-primary transition"
                   >Contact</a>
               </li>
             </ul>
@@ -105,43 +105,43 @@ const { title, description = "Haringey Baháʼí Community Website" } =
             <li>
               <a
                 href="/"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >Home</a>
             </li>
             <li>
               <a
                 href="/about"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >About</a>
             </li>
             <li>
               <a
                 href="/history"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >History</a>
             </li>
             <li>
               <a
                 href="/study"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >Study</a>
             </li>
             <li>
               <a
                 href="/devotional"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >Devotional</a>
             </li>
             <li>
               <a
                 href="/events"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >Events</a>
             </li>
             <li>
               <a
                 href="/contact"
-                class="block text-base-content hover:text-accent-cyan py-2 transition"
+                class="block text-base-content hover:text-primary py-2 transition"
                 >Contact</a>
             </li>
           </ul>
@@ -169,31 +169,31 @@ const { title, description = "Haringey Baháʼí Community Website" } =
               <li>
                 <a
                   href="/about"
-                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  class="opacity-80 hover:opacity-100 hover:text-primary transition"
                   >About the Faith</a>
               </li>
               <li>
                 <a
                   href="/history"
-                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  class="opacity-80 hover:opacity-100 hover:text-primary transition"
                   >History</a>
               </li>
               <li>
                 <a
                   href="/community"
-                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  class="opacity-80 hover:opacity-100 hover:text-primary transition"
                   >Community Life</a>
               </li>
               <li>
                 <a
                   href="/events"
-                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  class="opacity-80 hover:opacity-100 hover:text-primary transition"
                   >Events</a>
               </li>
               <li>
                 <a
                   href="/contact"
-                  class="opacity-80 hover:opacity-100 hover:text-accent-cyan transition"
+                  class="opacity-80 hover:opacity-100 hover:text-primary transition"
                   >Contact Us</a>
               </li>
             </ul>
@@ -206,14 +206,14 @@ const { title, description = "Haringey Baháʼí Community Website" } =
             </p>
             <a
               href="/contact"
-              class="inline-block bg-primary hover:bg-accent-cyan-dark text-white px-4 py-2 rounded transition text-sm"
+              class="inline-block bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded transition text-sm"
             >
               Get in Touch
             </a>
           </div>
         </div>
         <div
-          class="mt-8 pt-8 border-t border-footer-text/20 text-center text-sm opacity-70"
+          class="mt-8 pt-8 border-t border-footer-text/20 text-center text-sm opacity-80"
         >
           <p>
             &copy; {new Date().getFullYear()} Haringey Baháʼí Community. All rights

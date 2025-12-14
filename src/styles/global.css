@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Semantic text colors for proper contrast in both light and dark themes */
+@layer base {
+  [data-theme="light"] {
+    --color-text-secondary: oklch(40% 0 0);      /* Dark gray for secondary text */
+    --color-text-muted: oklch(50% 0 0);          /* Medium gray for muted/tertiary text */
+  }
+
+  [data-theme="dark"] {
+    --color-text-secondary: oklch(75% 0 0);      /* Light gray for secondary text */
+    --color-text-muted: oklch(65% 0 0);          /* Dimmer but readable for muted text */
+  }
+}

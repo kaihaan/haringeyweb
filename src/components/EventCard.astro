@@ -34,7 +34,7 @@ const recurrenceText = formatRecurrencePattern(event);
       <div class="text-2xl font-bold text-primary">
         {startDate.getDate()}
       </div>
-      <div class="text-sm text-accent-cyan-dark uppercase">
+      <div class="text-sm text-primary uppercase">
         {startDate.toLocaleDateString('en-GB', { month: 'short', timeZone: 'Europe/London' })}
       </div>
     </div>
@@ -42,12 +42,12 @@ const recurrenceText = formatRecurrencePattern(event);
     <div class="flex-grow">
       <div class="flex items-start justify-between mb-2">
         <h3 class="text-xl font-bold text-base-content">
-          <a href={`/events/${event.id}`} class="hover:text-accent-cyan-dark transition">
+          <a href={`/events/${event.id}`} class="hover:text-primary transition">
             {event.title}
           </a>
         </h3>
         {event.is_recurring && (
-          <div class="flex items-center gap-1 text-xs text-accent-cyan bg-primary/5 px-2 py-1 rounded-full">
+          <div class="flex items-center gap-1 text-xs text-primary bg-primary/5 px-2 py-1 rounded-full">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
@@ -57,7 +57,7 @@ const recurrenceText = formatRecurrencePattern(event);
       </div>
 
       {event.is_recurring && recurrenceText && (
-        <div class="flex items-center gap-2 text-sm text-accent-cyan-dark mb-2 font-medium">
+        <div class="flex items-center gap-2 text-sm text-primary mb-2 font-medium">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
@@ -65,14 +65,14 @@ const recurrenceText = formatRecurrencePattern(event);
         </div>
       )}
 
-      <div class="flex items-center gap-2 text-sm text-base-content opacity-70 mb-2">
+      <div class="flex items-center gap-2 text-sm text-text-secondary mb-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <span><strong>Next:</strong> {occurrence.display_date}</span>
       </div>
 
-      <div class="flex items-center gap-2 text-sm text-base-content opacity-70 mb-3">
+      <div class="flex items-center gap-2 text-sm text-text-secondary mb-3">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -80,7 +80,7 @@ const recurrenceText = formatRecurrencePattern(event);
         <span>{event.location}</span>
       </div>
 
-      <p class="text-base-content opacity-90 mb-4">{event.description}</p>
+      <p class="text-base-content mb-4">{event.description}</p>
 
       {event.category && (
         <span class="inline-block bg-base-300 text-base-content text-xs px-3 py-1 rounded-full mb-4">
@@ -91,7 +91,7 @@ const recurrenceText = formatRecurrencePattern(event);
       <div class="flex items-center gap-3">
         <a
           href={`/events/${event.id}`}
-          class="text-accent-cyan hover:text-accent-cyan-dark font-medium text-sm"
+          class="text-primary hover:text-primary/80 font-medium text-sm"
         >
           Learn More →
         </a>
@@ -100,7 +100,7 @@ const recurrenceText = formatRecurrencePattern(event);
             href={event.registration_link}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-primary hover:bg-accent-cyan-dark text-white px-4 py-2 rounded text-sm font-medium transition"
+            class="bg-primary hover:bg-primary/80 text-primary-content px-4 py-2 rounded text-sm font-medium transition"
           >
             Register
           </a>

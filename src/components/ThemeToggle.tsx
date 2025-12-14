@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'tranquil' | 'tranquil-dark'>('tranquil');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Get saved theme from localStorage or default to 'tranquil'
-    const savedTheme = localStorage.getItem('theme') as 'tranquil' | 'tranquil-dark';
+    // Get saved theme from localStorage or default to 'light'
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.setAttribute('data-theme', savedTheme);
@@ -15,12 +15,10 @@ export default function ThemeToggle() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'tranquil' ? 'tranquil-dark' : 'tranquil';
-    console.log('Toggling theme from', theme, 'to', newTheme);
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    console.log('Theme changed. Current data-theme:', document.documentElement.getAttribute('data-theme'));
   };
 
   // Prevent hydration mismatch by not rendering until mounted
@@ -41,10 +39,10 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       className="p-2 rounded-lg bg-base-200 hover:bg-base-300 transition"
-      aria-label={`Switch to ${theme === 'tranquil' ? 'dark' : 'light'} mode`}
-      title={`Switch to ${theme === 'tranquil' ? 'dark' : 'light'} mode`}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {theme === 'tranquil' ? (
+      {theme === 'light' ? (
         // Moon icon for dark mode
         <svg className="w-5 h-5 text-base-content" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />

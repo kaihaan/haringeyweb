@@ -31,7 +31,7 @@ export default function LocaleSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-blue-900 transition rounded-md hover:bg-gray-100"
+        className="flex items-center gap-2 px-3 py-2 text-base-content hover:text-primary transition rounded-md hover:bg-base-200"
         aria-label="Select language"
       >
         <span className="text-xl">{selectedLocale.flag}</span>
@@ -57,13 +57,13 @@ export default function LocaleSwitcher() {
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           ></div>
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
+          <div className="absolute right-0 mt-2 w-48 bg-base-100 rounded-lg shadow-lg border border-base-200 py-2 z-20">
             {locales.map((locale) => (
               <button
                 key={locale.code}
                 onClick={() => handleLocaleChange(locale.code)}
-                className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-gray-100 transition ${
-                  locale.code === currentLocale ? 'bg-blue-50 text-blue-900' : 'text-gray-700'
+                className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-base-200 transition ${
+                  locale.code === currentLocale ? 'bg-primary/10 text-primary' : 'text-base-content'
                 }`}
               >
                 <span className="text-xl">{locale.flag}</span>

@@ -145,7 +145,7 @@ const searchResults = searchContent(query);
                     {result.title}
                   </a>
                 </h3>
-                <p class="text-base-content opacity-90 mb-4">{result.excerpt}</p>
+                <p class="text-base-content mb-4">{result.excerpt}</p>
                 <a href={result.url} class="text-accent-cyan hover:text-accent-cyan-dark font-medium inline-flex items-center gap-1">
                   View {result.type}
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@ const searchResults = searchContent(query);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <h3 class="text-xl font-bold text-base-content mb-2">No Results Found</h3>
-            <p class="text-base-content opacity-70 mb-6">
+            <p class="text-text-secondary mb-6">
               We couldn't find any results matching your search. Try using different keywords or browse our pages:
             </p>
             <div class="flex flex-wrap gap-4 justify-center">
@@ -176,7 +176,7 @@ const searchResults = searchContent(query);
         {!query && (
           <div class="bg-primary/5 rounded-lg p-8 border border-primary/20 text-center">
             <h3 class="text-xl font-bold text-base-content mb-3">What are you looking for?</h3>
-            <p class="text-base-content opacity-90 mb-6">
+            <p class="text-base-content mb-6">
               Search for prayers, events, writings, and resources. Try searching for topics like "unity", "children", "devotional", or "study".
             </p>
             <div class="flex flex-wrap gap-3 justify-center">

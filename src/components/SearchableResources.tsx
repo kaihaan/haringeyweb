@@ -184,13 +184,13 @@ export default function SearchableResources({ resources, categories, allTags }: 
 
               {/* Author */}
               {resource.author && (
-                <p className="text-sm text-base-content opacity-70 mb-2">
+                <p className="text-sm text-text-secondary mb-2">
                   by {resource.author}
                 </p>
               )}
 
               {/* Description */}
-              <p className="text-sm text-base-content opacity-80 mb-4 flex-grow">
+              <p className="text-sm text-text-secondary mb-4 flex-grow">
                 {resource.description}
               </p>
 
@@ -232,7 +232,7 @@ export default function SearchableResources({ resources, categories, allTags }: 
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <h3 className="text-xl font-bold text-base-content mb-2">No resources found</h3>
-          <p className="text-base-content opacity-70 mb-4">
+          <p className="text-text-secondary mb-4">
             Try adjusting your search or filters to find what you're looking for.
           </p>
           <button

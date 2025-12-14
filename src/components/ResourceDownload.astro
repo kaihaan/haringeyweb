@@ -38,10 +38,10 @@ const getTypeLabel = (type: string) => {
 };
 ---
 
-<article class="bg-white rounded-lg shadow-md hover:shadow-lg transition p-6 flex gap-4">
+<article class="bg-base-100 rounded-lg shadow-md hover:shadow-lg transition p-6 flex gap-4">
   <div class="flex-shrink-0">
-    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-      <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+      <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <Fragment set:html={getIcon(resource.type)} />
       </svg>
     </div>
@@ -49,15 +49,15 @@ const getTypeLabel = (type: string) => {
 
   <div class="flex-grow">
     <div class="mb-2">
-      <h3 class="text-lg font-bold text-gray-900 mb-1">
+      <h3 class="text-lg font-bold text-base-content mb-1">
         {resource.title}
       </h3>
-      <p class="text-xs text-gray-500 uppercase">
+      <p class="text-xs text-base-content/50 uppercase">
         {getTypeLabel(resource.type)} • {resource.category}
       </p>
     </div>
 
-    <p class="text-gray-700 text-sm mb-4">
+    <p class="text-base-content/70 text-sm mb-4">
       {resource.description}
     </p>
 
@@ -65,7 +65,7 @@ const getTypeLabel = (type: string) => {
       {resource.fileUrl && (
         <a
           href={resource.fileUrl}
-          class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition"
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary/80 text-primary-content px-4 py-2 rounded text-sm font-medium transition"
           target={resource.type === 'link' ? '_blank' : undefined}
           rel={resource.type === 'link' ? 'noopener noreferrer' : undefined}
         >
@@ -90,7 +90,7 @@ const getTypeLabel = (type: string) => {
 
     <div class="mt-3 flex flex-wrap gap-2">
       {resource.tags.map((tag) => (
-        <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">
+        <span class="text-xs text-base-content/60 bg-base-200 px-2 py-1 rounded">
           #{tag}
         </span>
       ))}

@@ -21,14 +21,14 @@ const displayTitle = getPrayerSnippet(prayer.text, 8);
 <article class="bg-base-200 rounded-lg shadow-md hover:shadow-lg transition p-6">
   <div class="mb-3">
     <h3 class="text-xl font-bold text-base-content mb-1">
-      <a href={`/devotional/prayers/${prayer.id}`} class="hover:text-accent-cyan-dark transition">
+      <a href={`/devotional/prayers/${prayer.id}`} class="hover:text-primary transition">
         {displayTitle}
       </a>
     </h3>
-    <p class="text-sm text-base-content opacity-70">{prayer.category}</p>
+    <p class="text-sm text-text-secondary">{prayer.category}</p>
   </div>
 
-  <div class="text-base-content opacity-90 italic leading-relaxed mb-4">
+  <div class="text-base-content italic leading-relaxed mb-4">
     {showFullText ? (
       <p class="whitespace-pre-line">{prayer.text}</p>
     ) : (
@@ -39,7 +39,7 @@ const displayTitle = getPrayerSnippet(prayer.text, 8);
   {!showFullText && (
     <a
       href={`/devotional/prayers/${prayer.id}`}
-      class="text-accent-cyan hover:text-accent-cyan-dark font-medium text-sm inline-flex items-center gap-1"
+      class="text-primary hover:text-primary/80 font-medium text-sm inline-flex items-center gap-1"
     >
       Read Full Prayer
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ const displayTitle = getPrayerSnippet(prayer.text, 8);
     <div class="mt-4 pt-4 border-t border-base-300">
       <div class="flex flex-wrap gap-2">
         {prayer.tags.map((tag) => (
-          <span class="text-xs text-base-content opacity-70 bg-base-300 px-2 py-1 rounded">
+          <span class="text-xs text-text-muted bg-base-300 px-2 py-1 rounded">
             #{tag}
           </span>
         ))}

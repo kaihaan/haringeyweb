@@ -76,7 +76,7 @@ const hasExpandedContent = expandedContent && expandedContent.trim().length > 0;
       <!-- Main Content -->
       <div class="prose prose-lg max-w-none mb-6">
         <p
-          class="text-base-content opacity-90 leading-relaxed"
+          class="text-base-content leading-relaxed"
           set:html={content}
         />
       </div>
@@ -87,7 +87,7 @@ const hasExpandedContent = expandedContent && expandedContent.trim().length > 0;
           <div class="bg-primary/5 border-l-4 border-primary rounded-r-lg p-6 mb-6 italic">
             <p class="text-base-content text-lg mb-2">"{quote}"</p>
             {quoteAuthor && (
-              <p class="text-base-content opacity-70 text-sm font-medium">
+              <p class="text-text-secondary text-sm font-medium">
                 — {quoteAuthor}
               </p>
             )}
@@ -117,7 +117,7 @@ const hasExpandedContent = expandedContent && expandedContent.trim().length > 0;
             </summary>
             <div class="mt-4 pl-7 prose prose-lg max-w-none">
               <div
-                class="text-base-content opacity-90 leading-relaxed"
+                class="text-base-content leading-relaxed"
                 set:html={expandedContent}
               />
             </div>
