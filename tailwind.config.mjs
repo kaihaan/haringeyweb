@@ -10,6 +10,9 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Commissioner', 'system-ui', 'sans-serif'],
+      },
       colors: {
         // Footer uses fixed colors - always dark regardless of theme
         'footer-bg': '#2C3532',      // Dark grey-green for footer

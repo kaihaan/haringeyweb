@@ -20,6 +20,9 @@ const { title, description = "Haringey Baháʼí Community Website" } =
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap" rel="stylesheet" />
     <script is:inline>
       // Set theme before page renders to avoid flash
       const savedTheme = localStorage.getItem("theme");
@@ -29,7 +32,10 @@ const { title, description = "Haringey Baháʼí Community Website" } =
     </script>
   </head>
   <body class="min-h-screen flex flex-col bg-base-100">
-    <header class="bg-base-200 shadow-sm">
+    <header
+      id="main-header"
+      class="sticky top-0 z-50 bg-base-200 shadow-sm transition-transform duration-300 ease-in-out"
+    >
       <nav class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <a href="/" class="text-2xl font-bold text-base-content"
@@ -103,7 +109,7 @@ const { title, description = "Haringey Baháʼí Community Website" } =
         class="hidden md:hidden bg-base-200 border-t border-base-300"
       >
         <div class="container mx-auto px-4 py-4">
-          <ul class="space-y-3">
+          <ul class="space-y-3 text-right">
             <li>
               <a
                 href="/"
@@ -115,12 +121,6 @@ const { title, description = "Haringey Baháʼí Community Website" } =
                 href="/about"
                 class="block text-base-content hover:text-primary py-2 transition"
                 >About</a>
-            </li>
-            <li>
-              <a
-                href="/history"
-                class="block text-base-content hover:text-primary py-2 transition"
-                >History</a>
             </li>
             <li>
               <a
@@ -150,6 +150,9 @@ const { title, description = "Haringey Baháʼí Community Website" } =
         </div>
       </div>
     </header>
+
+    <!-- Theme drawer portal target -->
+    <div id="theme-drawer-root"></div>
 
     <main class="flex-grow container mx-auto px-4 py-8">
       <slot />
@@ -243,6 +246,51 @@ const { title, description = "Haringey Baháʼí Community Website" } =
           });
         });
       }
+
+      // Auto-hide navbar on scroll
+      const header = document.getElementById("main-header");
+      let lastScrollY = window.scrollY;
+      let scrollTimeout = null;
+
+      const showHeader = () => {
+        header.style.transform = "translateY(0)";
+      };
+
+      const hideHeader = () => {
+        header.style.transform = "translateY(-100%)";
+      };
+
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        // Clear existing timeout
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        // Always show at top of page
+        if (currentScrollY < 50) {
+          showHeader();
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        // Scrolling down - hide
+        if (currentScrollY > lastScrollY) {
+          hideHeader();
+        }
+        // Scrolling up - show
+        else if (currentScrollY < lastScrollY) {
+          showHeader();
+        }
+
+        // Set timeout to show header after 2s of no scrolling
+        scrollTimeout = setTimeout(showHeader, 2000);
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
     </script>
   </body>
 </html>
