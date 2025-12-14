@@ -23,6 +23,26 @@ node debug-build.mjs       # Debug build process with event data
 node debug-normalize.mjs   # Debug data normalization
 ```
 
+## code generation
+Rule: Always use context7 when I need code generation
+
+
+## UI Design Principles
+
+- Minimal design language with maximum negative space
+- Responsive UI for mobile and desktop 
+- Clear information hierarchy (important = center, larger, bolder)
+- No more than 3 text sizes; consistent corner radii
+- CSS animations for page loads and micro-interactions (Motion library for React)
+- Layered backgrounds with gradients for depth
+- All DaisyUI themes available as user preference
+- Avoid modals - use only for calling attention to urgent actions and alerts
+- Optomise page load times
+- Use a single page application pattern with for content with client side state
+- Limit  multi page app pattern for very little client side state, and strong SEO needs.
+- Avoid loading spinners - use progress bards instead.
+- avoid popup menus - use expanding drawers instead.
+
 ## Architecture
 
 ### Content Strategy
