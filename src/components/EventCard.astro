@@ -1,6 +1,7 @@
 ---
 import type { EventOccurrence } from '../lib/directus';
 import { formatRecurrencePattern } from '../lib/recurrence';
+import AddToCalendar from './AddToCalendar.astro';
 
 interface Props {
   occurrence: EventOccurrence;
@@ -88,13 +89,14 @@ const recurrenceText = formatRecurrencePattern(event);
         </span>
       )}
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 flex-wrap">
         <a
           href={`/events/${event.id}`}
           class="text-primary hover:text-primary/80 font-medium text-sm"
         >
           Learn More →
         </a>
+        <AddToCalendar occurrence={occurrence} />
         {event.registration_link && (
           <a
             href={event.registration_link}

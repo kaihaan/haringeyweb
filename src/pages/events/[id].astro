@@ -1,35 +1,71 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AddToCalendar from '../../components/AddToCalendar.astro';
+import { getPublishedItems, type Event, type EventOccurrence } from '../../lib/directus';
+import { getNextOccurrences, formatEventDate, formatRecurrencePattern } from '../../lib/recurrence';
 
 export async function getStaticPaths() {
-  const eventsCollection = await getCollection('events');
-  return eventsCollection.map((entry) => ({
-    params: { id: entry.id },
-    props: { event: { id: entry.id, ...entry.data } },
+  const events = await getPublishedItems<Event>('events');
+  return events.map((event) => ({
+    params: { id: event.id },
+    props: { event },
   }));
+}
+
+interface Props {
+  event: Event;
 }
 
 const { event } = Astro.props;
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
+// Get next occurrence for this event
+const now = new Date();
+let occurrence_date: Date;
+let display_date: string;
+
+if (event.is_recurring) {
+  const occurrences = getNextOccurrences(event, 1, now);
+  occurrence_date = occurrences[0] || new Date(event.start_datetime);
+  display_date = formatEventDate(occurrence_date);
+} else {
+  occurrence_date = new Date(event.start_datetime);
+  display_date = formatEventDate(occurrence_date);
+}
+
+// Create EventOccurrence for AddToCalendar component
+const occurrence: EventOccurrence = {
+  event,
+  occurrence_date,
+  display_date,
+};
+
+// Calculate end time
+const templateStart = new Date(event.start_datetime);
+const templateEnd = new Date(event.end_datetime);
+const durationMs = templateEnd.getTime() - templateStart.getTime();
+const durationMinutes = Math.round(durationMs / (1000 * 60));
+const endDate = new Date(occurrence_date.getTime() + durationMs);
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-GB', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'Europe/London',
   });
 };
 
-const formatTime = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleTimeString('en-US', {
+const formatTime = (date: Date) => {
+  return date.toLocaleTimeString('en-GB', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'Europe/London',
   });
 };
+
+const recurrenceText = formatRecurrencePattern(event);
 ---
 
 <BaseLayout title={`${event.title} - Events`} description={event.description}>
@@ -49,29 +85,48 @@ const formatTime = (dateString: string) => {
           <div class="flex items-start gap-4 mb-6">
             <div class="flex-shrink-0 bg-primary/10 rounded-lg p-4 text-center">
               <div class="text-3xl font-bold text-primary">
-                {new Date(event.startDateTime).getDate()}
+                {occurrence_date.getDate()}
               </div>
               <div class="text-sm text-primary uppercase">
-                {new Date(event.startDateTime).toLocaleDateString('en-US', { month: 'short' })}
+                {occurrence_date.toLocaleDateString('en-GB', { month: 'short', timeZone: 'Europe/London' })}
               </div>
             </div>
 
             <div class="flex-grow">
-              <h1 class="text-4xl font-bold text-base-content mb-4">{event.title}</h1>
+              <div class="flex items-start justify-between mb-2">
+                <h1 class="text-4xl font-bold text-base-content">{event.title}</h1>
+                {event.is_recurring && (
+                  <div class="flex items-center gap-1 text-xs text-primary bg-primary/5 px-2 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span>Recurring</span>
+                  </div>
+                )}
+              </div>
+
+              {event.is_recurring && recurrenceText && (
+                <div class="flex items-center gap-2 text-sm text-primary mb-3 font-medium">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span>{recurrenceText}</span>
+                </div>
+              )}
 
               <div class="flex flex-wrap gap-4 text-base-content">
                 <div class="flex items-center gap-2">
                   <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <span>{formatDate(event.startDateTime)}</span>
+                  <span><strong>Next:</strong> {formatDate(occurrence_date)}</span>
                 </div>
 
                 <div class="flex items-center gap-2">
                   <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>{formatTime(event.startDateTime)} - {formatTime(event.endDateTime)}</span>
+                  <span>{formatTime(occurrence_date)} - {formatTime(endDate)}</span>
                 </div>
 
                 <div class="flex items-center gap-2">
@@ -93,13 +148,15 @@ const formatTime = (dateString: string) => {
           <div class="border-t border-base-300 pt-6 mb-6">
             <h2 class="text-2xl font-bold text-base-content mb-4">Details</h2>
             <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <dt class="text-sm font-medium text-text-secondary mb-1">Event Type</dt>
-                <dd class="text-base-content">Community Gathering</dd>
-              </div>
+              {event.category && (
+                <div>
+                  <dt class="text-sm font-medium text-text-secondary mb-1">Event Type</dt>
+                  <dd class="text-base-content">{event.category}</dd>
+                </div>
+              )}
               <div>
                 <dt class="text-sm font-medium text-base-content/50 mb-1">Open to Public</dt>
-                <dd class="text-base-content">{event.isPublic ? 'Yes' : 'Members Only'}</dd>
+                <dd class="text-base-content">{event.is_public ? 'Yes' : 'Members Only'}</dd>
               </div>
               <div>
                 <dt class="text-sm font-medium text-base-content/50 mb-1">Location</dt>
@@ -107,23 +164,24 @@ const formatTime = (dateString: string) => {
               </div>
               <div>
                 <dt class="text-sm font-medium text-base-content/50 mb-1">Duration</dt>
-                <dd class="text-base-content">
-                  {Math.abs(new Date(event.endDateTime).getTime() - new Date(event.startDateTime).getTime()) / (1000 * 60)} minutes
-                </dd>
+                <dd class="text-base-content">{durationMinutes} minutes</dd>
               </div>
             </dl>
           </div>
 
-          {event.registrationLink && (
-            <div class="border-t border-base-300 pt-6">
+          <div class="border-t border-base-300 pt-6 flex flex-wrap gap-4 items-center">
+            <AddToCalendar occurrence={occurrence} class="flex-shrink-0" />
+            {event.registration_link && (
               <a
-                href={event.registrationLink}
-                class="inline-block bg-primary hover:bg-primary/80 text-primary-content px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105"
+                href={event.registration_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block bg-primary hover:bg-primary/80 text-primary-content px-8 py-3 rounded-lg font-semibold transition"
               >
                 Register for This Event
               </a>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <div class="bg-primary/10 rounded-lg p-6 border border-primary/20">
