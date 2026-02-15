@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # local Claude files
 .claude/TODO.md
+.claude/Brief/
+
+# Playwright MCP logs
+.playwright-mcp/
