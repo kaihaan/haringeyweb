@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:e2e:deployed": "node tests/deployed-smoke.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
