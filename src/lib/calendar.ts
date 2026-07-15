@@ -5,7 +5,7 @@
  * Supports Google Calendar, Outlook, and universal ICS format.
  */
 
-import type { Event, EventOccurrence } from './directus';
+import type { EventOccurrence } from './directus';
 
 /**
  * Format date for Google Calendar URL (YYYYMMDDTHHmmssZ)
@@ -15,17 +15,68 @@ function formatGoogleDate(date: Date): string {
 }
 
 /**
- * Format date for ICS file (YYYYMMDDTHHmmss)
- * Uses local time without Z suffix for floating time
+ * The IANA timezone all community events are anchored to. Emitted as a TZID on
+ * DTSTART/DTEND together with the VTIMEZONE block below, so subscribed calendars
+ * render the correct local time regardless of the viewer's own timezone.
  */
-function formatIcsDate(date: Date): string {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
-  return `${year}${month}${day}T${hours}${minutes}${seconds}`;
+const LONDON_TZID = 'Europe/London';
+
+/**
+ * VTIMEZONE definition for Europe/London (GMT ⇄ BST). Included once per calendar
+ * so clients can resolve TZID=Europe/London without their own tz database quirks.
+ * Transition rules: BST starts last Sunday of March, GMT resumes last Sunday of October.
+ */
+const VTIMEZONE_LONDON = [
+  'BEGIN:VTIMEZONE',
+  'TZID:Europe/London',
+  'BEGIN:DAYLIGHT',
+  'TZOFFSETFROM:+0000',
+  'TZOFFSETTO:+0100',
+  'TZNAME:BST',
+  'DTSTART:19700329T010000',
+  'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+  'END:DAYLIGHT',
+  'BEGIN:STANDARD',
+  'TZOFFSETFROM:+0100',
+  'TZOFFSETTO:+0000',
+  'TZNAME:GMT',
+  'DTSTART:19701025T020000',
+  'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+  'END:STANDARD',
+  'END:VTIMEZONE',
+].join('\r\n');
+
+/**
+ * Format a Date as an ICS local date-time (YYYYMMDDTHHmmss) expressed in the
+ * Europe/London wall clock. Paired with `;TZID=Europe/London` on the property.
+ *
+ * Uses Intl to read the London wall-clock components so the output is correct no
+ * matter what timezone the build/serverless host runs in (Vercel uses UTC).
+ */
+function formatIcsDateLondon(date: Date): string {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: LONDON_TZID,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).formatToParts(date);
+
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '00';
+  // Intl can emit '24' for midnight in some engines; normalise to '00'.
+  const hour = get('hour') === '24' ? '00' : get('hour');
+  return `${get('year')}${get('month')}${get('day')}T${hour}${get('minute')}${get('second')}`;
+}
+
+/**
+ * Format a Date as a UTC ICS timestamp (YYYYMMDDTHHmmssZ). Used for DTSTAMP,
+ * which must be in UTC per RFC 5545.
+ */
+function formatIcsUtc(date: Date): string {
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
 }
 
 /**
@@ -96,31 +147,47 @@ export function generateOutlookUrl(occurrence: EventOccurrence): string {
 }
 
 /**
- * Generate ICS content for a single event occurrence
+ * Build the VEVENT lines for a single occurrence, anchored to Europe/London.
+ * Cancelled events are marked STATUS:CANCELLED so subscribers see them struck
+ * through / removed rather than silently disappearing.
+ */
+function buildVevent(occurrence: EventOccurrence): string {
+  const { event, occurrence_date } = occurrence;
+  const endDate = calculateEndDate(occurrence);
+  const uid = `${event.id}-${occurrence_date.getTime()}@haringeybahai.org.uk`;
+
+  const lines = [
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${formatIcsUtc(new Date())}`,
+    `DTSTART;TZID=${LONDON_TZID}:${formatIcsDateLondon(occurrence_date)}`,
+    `DTEND;TZID=${LONDON_TZID}:${formatIcsDateLondon(endDate)}`,
+    `SUMMARY:${escapeIcsText(event.title)}`,
+    `DESCRIPTION:${escapeIcsText(event.description || '')}`,
+    `LOCATION:${escapeIcsText(event.location || '')}`,
+  ];
+  if (event.status === 'cancelled') {
+    lines.push('STATUS:CANCELLED');
+  }
+  lines.push('END:VEVENT');
+  return lines.join('\r\n');
+}
+
+/**
+ * Generate ICS content for a single event occurrence (used for one-off downloads).
  *
  * @param occurrence - Event occurrence with calculated date
  * @returns ICS file content string
  */
 export function generateIcsContent(occurrence: EventOccurrence): string {
-  const { event, occurrence_date } = occurrence;
-  const endDate = calculateEndDate(occurrence);
-  const uid = `${event.id}-${occurrence_date.getTime()}@haringeybahai.org.uk`;
-
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Haringey Bahai Community//Events//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${formatIcsDate(new Date())}`,
-    `DTSTART:${formatIcsDate(occurrence_date)}`,
-    `DTEND:${formatIcsDate(endDate)}`,
-    `SUMMARY:${escapeIcsText(event.title)}`,
-    `DESCRIPTION:${escapeIcsText(event.description || '')}`,
-    `LOCATION:${escapeIcsText(event.location || '')}`,
-    'END:VEVENT',
+    VTIMEZONE_LONDON,
+    buildVevent(occurrence),
     'END:VCALENDAR',
   ];
 
@@ -128,29 +195,21 @@ export function generateIcsContent(occurrence: EventOccurrence): string {
 }
 
 /**
- * Generate ICS content for multiple event occurrences
+ * Generate a subscribable ICS calendar containing many occurrences.
+ *
+ * Includes refresh hints (REFRESH-INTERVAL / X-PUBLISHED-TTL) so Google/Outlook/
+ * Apple re-poll roughly twice a day, and a VTIMEZONE so times render correctly
+ * in any viewer timezone.
  *
  * @param occurrences - Array of event occurrences
+ * @param calName - Calendar display name shown in the user's calendar app
  * @returns ICS file content string with all events
  */
-export function generateAllEventsIcs(occurrences: EventOccurrence[]): string {
-  const events = occurrences.map((occurrence) => {
-    const { event, occurrence_date } = occurrence;
-    const endDate = calculateEndDate(occurrence);
-    const uid = `${event.id}-${occurrence_date.getTime()}@haringeybahai.org.uk`;
-
-    return [
-      'BEGIN:VEVENT',
-      `UID:${uid}`,
-      `DTSTAMP:${formatIcsDate(new Date())}`,
-      `DTSTART:${formatIcsDate(occurrence_date)}`,
-      `DTEND:${formatIcsDate(endDate)}`,
-      `SUMMARY:${escapeIcsText(event.title)}`,
-      `DESCRIPTION:${escapeIcsText(event.description || '')}`,
-      `LOCATION:${escapeIcsText(event.location || '')}`,
-      'END:VEVENT',
-    ].join('\r\n');
-  });
+export function generateAllEventsIcs(
+  occurrences: EventOccurrence[],
+  calName: string = 'Haringey Baháʼí Community Events'
+): string {
+  const events = occurrences.map(buildVevent);
 
   const lines = [
     'BEGIN:VCALENDAR',
@@ -158,7 +217,11 @@ export function generateAllEventsIcs(occurrences: EventOccurrence[]): string {
     'PRODID:-//Haringey Bahai Community//Events//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'X-WR-CALNAME:Haringey Bahai Community Events',
+    `X-WR-CALNAME:${escapeIcsText(calName)}`,
+    `X-WR-TIMEZONE:${LONDON_TZID}`,
+    'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
+    'X-PUBLISHED-TTL:PT12H',
+    VTIMEZONE_LONDON,
     ...events,
     'END:VCALENDAR',
   ];

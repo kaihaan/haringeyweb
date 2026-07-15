@@ -10,7 +10,15 @@
  * const event = await getItemBySlug('events', 'nineteen-day-feast');
  */
 
-import { createDirectus, rest, readItems, readItem, staticToken } from '@directus/sdk';
+import {
+  createDirectus,
+  rest,
+  readItems,
+  readItem,
+  readUsers,
+  updateUser,
+  staticToken,
+} from '@directus/sdk';
 
 // Environment variables
 const DIRECTUS_URL = import.meta.env.PUBLIC_DIRECTUS_URL;
@@ -25,11 +33,53 @@ if (!DIRECTUS_TOKEN) {
 }
 
 /**
- * Initialize Directus client
+ * The public Directus URL. Exported so members-only routes (login, logout,
+ * refresh) can call Directus auth endpoints directly.
+ */
+export const directusUrl = DIRECTUS_URL as string;
+
+/**
+ * Initialize Directus client (build-time / public content).
+ * Uses the shared read-only static token scoped to public content.
  */
 export const directus = createDirectus(DIRECTUS_URL)
   .with(rest())
   .with(staticToken(DIRECTUS_TOKEN));
+
+/**
+ * Build a Directus REST client authenticated with a specific access token.
+ *
+ * Used by members-only routes to fetch content *as the logged-in member*, so
+ * Directus itself enforces the "Community Member" role's permissions (e.g. the
+ * ability to read non-public events). Pass a member's access token from their
+ * session cookie, or the service-account token for privileged lookups.
+ *
+ * @param token - A Directus access token (member session token or service token)
+ */
+export function createTokenClient(token: string) {
+  return createDirectus(DIRECTUS_URL as string)
+    .with(rest())
+    .with(staticToken(token));
+}
+
+/**
+ * Server-only service-account client.
+ *
+ * Backed by DIRECTUS_ADMIN_TOKEN — a dedicated Directus service account that can
+ * (a) resolve a member by their calendar `feed_token`, and (b) read all events
+ * (public + members-only). This token is never exposed to the client and is only
+ * used inside on-demand (prerender = false) routes such as the personal iCal feed.
+ *
+ * Throws lazily (only when called) so the public static build, which never needs
+ * it, is unaffected if the variable is absent.
+ */
+export function getServiceClient() {
+  const adminToken = import.meta.env.DIRECTUS_ADMIN_TOKEN;
+  if (!adminToken) {
+    throw new Error('DIRECTUS_ADMIN_TOKEN environment variable is not set');
+  }
+  return createTokenClient(adminToken as string);
+}
 
 /**
  * Type definitions for Directus collections
@@ -77,6 +127,21 @@ export interface EventOccurrence {
   event: Event;
   occurrence_date: Date;
   display_date: string;
+}
+
+/**
+ * A Directus user in the "Community Member" role.
+ *
+ * `feed_token` is a custom field added to `directus_users`: a per-member secret
+ * that forms their personal, revocable iCal subscription URL
+ * (`/members/feed/<feed_token>.ics`). Rotating it instantly invalidates the old URL.
+ */
+export interface MemberUser {
+  id: string;
+  email: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  feed_token?: string | null;
 }
 
 export interface Writing {
@@ -286,6 +351,119 @@ export async function getPublishedItems<T>(
       status: { _eq: 'published' },
     },
   });
+}
+
+/**
+ * Fetch items from a collection using a caller-supplied client.
+ *
+ * Mirrors `getItems`, but runs the request against `client` instead of the shared
+ * build-time client — so members-only routes can fetch *as the logged-in member*
+ * (their token) and let Directus enforce role permissions.
+ *
+ * @param client - A client from `createTokenClient` / `getServiceClient`
+ * @param collection - Collection name
+ * @param params - Optional query parameters
+ */
+export async function getItemsWith<T>(
+  client: ReturnType<typeof createTokenClient>,
+  collection: string,
+  params?: QueryParams
+): Promise<T[]> {
+  const query: any = {};
+  if (params?.filter) query.filter = params.filter;
+  if (params?.sort) query.sort = params.sort;
+  if (params?.limit !== undefined) query.limit = params.limit;
+  if (params?.offset !== undefined) query.offset = params.offset;
+  if (params?.fields) query.fields = params.fields;
+
+  const result = await client.request(readItems(collection, query));
+  return result as T[];
+}
+
+/**
+ * Fetch all published events a member is allowed to see — public AND members-only.
+ *
+ * Deliberately omits the `is_public` filter: access is enforced by Directus based
+ * on the token's role. Pass a member's client (their session token) or the service
+ * client (for the personal feed endpoint).
+ *
+ * @param client - Authenticated client (member token or service token)
+ */
+export async function getAllPublishedEvents(
+  client: ReturnType<typeof createTokenClient>
+): Promise<Event[]> {
+  return await getItemsWith<Event>(client, 'events', {
+    filter: { status: { _eq: 'published' } },
+    sort: ['start_datetime'],
+  });
+}
+
+/**
+ * Resolve the member who owns a given calendar `feed_token`.
+ *
+ * Uses the server-only service client. Returns null if no user matches, so the
+ * feed endpoint can respond with 404 for unknown/rotated tokens.
+ *
+ * @param feedToken - The secret token from a personal feed URL
+ */
+export async function getUserByFeedToken(
+  feedToken: string
+): Promise<MemberUser | null> {
+  if (!feedToken) return null;
+  try {
+    const users = await getServiceClient().request(
+      readUsers({
+        filter: { feed_token: { _eq: feedToken } },
+        fields: ['id', 'email', 'first_name', 'last_name', 'feed_token'],
+        limit: 1,
+      })
+    );
+    return (users?.[0] as MemberUser) ?? null;
+  } catch (error) {
+    console.error('Error resolving user by feed_token:', error);
+    return null;
+  }
+}
+
+/**
+ * Generate a new, unguessable calendar feed token.
+ *
+ * Two UUIDs concatenated (~256 bits) so the personal feed URL can't be guessed.
+ * Treated like a password: whoever holds it can read the member calendar.
+ */
+export function generateFeedToken(): string {
+  return `${crypto.randomUUID()}${crypto.randomUUID()}`.replace(/-/g, '');
+}
+
+/**
+ * Persist a feed token onto a Directus user via the service account.
+ * Used to issue a first token and to rotate (revoke) an existing one.
+ *
+ * @param userId - Directus user id
+ * @param feedToken - The new token, or null to disable the member's feed
+ */
+export async function setUserFeedToken(
+  userId: string,
+  feedToken: string | null
+): Promise<void> {
+  // `feed_token` is a custom field on directus_users, unknown to the SDK's
+  // default system-user type — cast to satisfy TypeScript.
+  await getServiceClient().request(
+    updateUser(userId, { feed_token: feedToken } as any)
+  );
+}
+
+/**
+ * Ensure a member has a feed token, minting and persisting one on first use.
+ *
+ * @param user - The current member (from middleware / session)
+ * @returns The member's feed token
+ */
+export async function ensureFeedToken(user: MemberUser): Promise<string> {
+  if (user.feed_token) return user.feed_token;
+  const token = generateFeedToken();
+  await setUserFeedToken(user.id, token);
+  return token;
 }
 
 /**

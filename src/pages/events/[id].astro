@@ -5,7 +5,11 @@ import { getPublishedItems, type Event, type EventOccurrence } from '../../lib/d
 import { getNextOccurrences, formatEventDate, formatRecurrencePattern } from '../../lib/recurrence';
 
 export async function getStaticPaths() {
-  const events = await getPublishedItems<Event>('events');
+  // Only build detail pages for PUBLIC events. Members-only events (is_public =
+  // false) must not be reachable on the public, prerendered site.
+  const events = await getPublishedItems<Event>('events', {
+    filter: { is_public: { _eq: true } },
+  });
   return events.map((event) => ({
     params: { id: event.id },
     props: { event },
