@@ -12,8 +12,11 @@ import { getNextOccurrences, formatEventDate } from '../lib/recurrence';
 import { generateAllEventsIcs } from '../lib/calendar';
 
 export const GET: APIRoute = async () => {
-  // Fetch all published events
-  const events = await getPublishedItems<Event>('events');
+  // Fetch published, PUBLIC events only. Members-only events (is_public = false)
+  // are never exposed on the public feed — they live behind /members/*.
+  const events = await getPublishedItems<Event>('events', {
+    filter: { is_public: { _eq: true } },
+  });
 
   // Expand recurring events to show next 10 occurrences each
   const eventOccurrences = expandRecurringEventsSync(

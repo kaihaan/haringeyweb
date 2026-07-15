@@ -1,0 +1,95 @@
+---
+/**
+ * /members/login — Community member sign-in.
+ *
+ * On-demand rendered so it can read query flags (?error, ?loggedout, ?redirect)
+ * and skip the form entirely for members who already have a valid session.
+ */
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { COOKIE_ACCESS, directusMe } from '../../lib/auth';
+
+// If already signed in, go straight to the calendar.
+const existing = Astro.cookies.get(COOKIE_ACCESS)?.value;
+if (existing && (await directusMe(existing))) {
+  return Astro.redirect('/members/events');
+}
+
+const params = Astro.url.searchParams;
+const hasError = params.get('error') === '1';
+const loggedOut = params.get('loggedout') === '1';
+const redirectParam = params.get('redirect') ?? '/members/events';
+// Only echo an internal members path back into the form.
+const redirectTo = redirectParam.startsWith('/members/')
+  ? redirectParam
+  : '/members/events';
+---
+
+<BaseLayout title="Members Login — Haringey Baháʼí Community">
+  <section class="max-w-md mx-auto py-10">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-base-content mb-2">Community Members</h1>
+      <p class="text-base-content">
+        Sign in to view the community calendar and subscribe from your own calendar app.
+      </p>
+    </div>
+
+    {loggedOut && (
+      <div role="status" class="alert alert-success mb-6">
+        <span>You have been signed out.</span>
+      </div>
+    )}
+
+    {hasError && (
+      <div role="alert" class="alert alert-error mb-6">
+        <span>Incorrect email or password. Please try again.</span>
+      </div>
+    )}
+
+    <form
+      method="POST"
+      action="/members/api/login"
+      class="card bg-base-200 shadow-sm p-6 space-y-4"
+    >
+      <input type="hidden" name="redirect" value={redirectTo} />
+
+      <div class="form-control">
+        <label class="label" for="email">
+          <span class="label-text text-base-content">Email</span>
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class="input input-bordered w-full"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div class="form-control">
+        <label class="label" for="password">
+          <span class="label-text text-base-content">Password</span>
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          class="input input-bordered w-full"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full">Sign In</button>
+    </form>
+
+    <p class="text-center text-sm text-base-content mt-6">
+      Membership is by invitation. If you are a member of the Haringey Baháʼí
+      community and need access, please <a href="/contact" class="link link-primary">contact us</a>.
+    </p>
+  </section>
+</BaseLayout>

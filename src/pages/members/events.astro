@@ -1,0 +1,174 @@
+---
+/**
+ * /members/events — the members-only community calendar.
+ *
+ * Gated by src/middleware.ts (locals.member + locals.accessToken are guaranteed).
+ * Fetches events AS THE MEMBER, so Directus enforces the Community Member role and
+ * returns members-only events the public build never sees. Also surfaces the
+ * member's personal, revocable calendar subscription URL.
+ */
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import EventCard from '../../components/EventCard.astro';
+import Calendar from '../../components/Calendar.astro';
+import {
+  createTokenClient,
+  getAllPublishedEvents,
+  expandRecurringEventsSync,
+  ensureFeedToken,
+  type Event,
+} from '../../lib/directus';
+import { getNextOccurrences, formatEventDate } from '../../lib/recurrence';
+
+const member = Astro.locals.member!;
+const accessToken = Astro.locals.accessToken!;
+
+// Fetch events as the member — Directus authorises via the role (includes non-public).
+const client = createTokenClient(accessToken);
+const events = await getAllPublishedEvents(client);
+const eventOccurrences = expandRecurringEventsSync(
+  events as Event[],
+  getNextOccurrences,
+  formatEventDate,
+  5
+);
+
+// Ensure the member has a personal feed token and build their subscription URLs.
+const feedToken = await ensureFeedToken(member);
+const feedUrl = new URL(`/members/feed/${feedToken}.ics`, Astro.site).href;
+const webcalUrl = feedUrl.replace(/^https?:/, 'webcal:');
+const googleUrl = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(
+  webcalUrl
+)}`;
+
+const greetingName = member.first_name || member.email;
+const justRotated = Astro.url.searchParams.get('feed') === 'rotated';
+---
+
+<BaseLayout title="Members Calendar — Haringey Baháʼí Community">
+  <Hero
+    title="Community Calendar"
+    subtitle="Devotional gatherings, Feasts, Holy Days and community activities"
+    imageUrl="/images/bahai/buildings/houses-of-worship/north-america/north-america-001.jpg"
+    overlayOpacity={60}
+  />
+
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+        <p class="text-base-content">
+          Welcome back, <span class="font-semibold">{greetingName}</span>.
+        </p>
+        <form method="POST" action="/members/api/logout">
+          <button type="submit" class="btn btn-ghost btn-sm">Sign out</button>
+        </form>
+      </div>
+
+      {justRotated && (
+        <div role="status" class="alert alert-success mb-6">
+          <span>Your calendar link was regenerated. Update any existing subscriptions to the new URL below.</span>
+        </div>
+      )}
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold text-base-content mb-6">Upcoming Events</h2>
+
+          <div class="space-y-6">
+            {eventOccurrences.map((occurrence) => (
+              <EventCard occurrence={occurrence} />
+            ))}
+          </div>
+
+          {eventOccurrences.length === 0 && (
+            <div class="bg-base-200 rounded-lg shadow-md p-12 text-center">
+              <h3 class="text-xl font-bold text-base-content mb-2">No Upcoming Events</h3>
+              <p class="text-base-content">Check back soon, or subscribe below so new events appear in your own calendar automatically.</p>
+            </div>
+          )}
+        </div>
+
+        <div class="space-y-8">
+          <Calendar occurrences={eventOccurrences} title="At a Glance" />
+
+          <!-- Personal subscription panel -->
+          <div class="bg-primary/10 rounded-lg p-6 border border-primary/20">
+            <h3 class="text-lg font-bold text-base-content mb-2">Sync to your calendar</h3>
+            <p class="text-base-content text-sm mb-4">
+              Add the community calendar to your own app. It updates automatically
+              when events change — this link is personal to you, so please don't share it.
+            </p>
+
+            <div class="flex flex-col gap-2">
+              <a href={webcalUrl} class="btn btn-primary btn-sm w-full">
+                Subscribe (Apple / Outlook)
+              </a>
+              <a
+                href={googleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline btn-sm w-full"
+              >
+                Add to Google Calendar
+              </a>
+            </div>
+
+            <div class="mt-4">
+              <label class="label" for="feed-url">
+                <span class="label-text text-base-content text-xs">Your calendar URL</span>
+              </label>
+              <div class="join w-full">
+                <input
+                  id="feed-url"
+                  type="text"
+                  readonly
+                  value={feedUrl}
+                  class="input input-bordered input-sm join-item w-full text-xs"
+                />
+                <button id="copy-feed-url" class="btn btn-sm join-item" type="button">
+                  Copy
+                </button>
+              </div>
+            </div>
+
+            <!-- Per-app instructions: expanding drawer, not a modal -->
+            <details class="collapse collapse-arrow bg-base-100 mt-4 rounded-lg">
+              <summary class="collapse-title text-sm font-medium text-base-content">
+                How to add it to each app
+              </summary>
+              <div class="collapse-content text-sm text-base-content space-y-3">
+                <p><span class="font-semibold">Google Calendar:</span> use “Add to Google Calendar” above, or Settings → Add calendar → From URL, and paste your calendar URL.</p>
+                <p><span class="font-semibold">Apple Calendar (iPhone/Mac):</span> tap “Subscribe” above, or File → New Calendar Subscription and paste the URL.</p>
+                <p><span class="font-semibold">Outlook:</span> tap “Subscribe” above, or Add calendar → Subscribe from web, and paste the URL.</p>
+              </div>
+            </details>
+
+            <form method="POST" action="/members/api/regenerate-feed" class="mt-4">
+              <button type="submit" class="btn btn-ghost btn-xs text-base-content">
+                Regenerate link (if it was shared)
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const btn = document.getElementById('copy-feed-url');
+    const input = document.getElementById('feed-url') as HTMLInputElement | null;
+    btn?.addEventListener('click', async () => {
+      if (!input) return;
+      try {
+        await navigator.clipboard.writeText(input.value);
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+      }
+    });
+  </script>
+</BaseLayout>

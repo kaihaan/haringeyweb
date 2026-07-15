@@ -8,7 +8,8 @@ import Hero from '../components/Hero.astro';
 // import type { Event } from '../lib/directus';
 
 // --- TEMPORARY: Directus event fetching commented out for Ayyam-i-Ha flyer ---
-// const events = await getPublishedItems<Event>('events');
+// Note: filter to public events only — members-only events live behind /members/*.
+// const events = await getPublishedItems<Event>('events', { filter: { is_public: { _eq: true } } });
 // const eventOccurrences = expandRecurringEventsSync(events, getNextOccurrences, formatEventDate, 5);
 ---
 
@@ -113,7 +114,7 @@ import Hero from '../components/Hero.astro';
               <ul tabindex="0" class="dropdown-content z-[100] menu p-2 shadow-lg bg-base-100 rounded-box w-full border border-base-300">
                 <li>
                   <a
-                    href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent('webcal://haringeyweb.vercel.app/events.ics')}`}
+                    href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent('webcal://haringeybahai.org.uk/events.ics')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="flex items-center gap-2"
@@ -170,7 +171,7 @@ import Hero from '../components/Hero.astro';
     const copyText = document.getElementById('copy-text');
 
     copyBtn?.addEventListener('click', async () => {
-      const calendarUrl = 'https://haringeyweb.vercel.app/events.ics';
+      const calendarUrl = 'https://haringeybahai.org.uk/events.ics';
       try {
         await navigator.clipboard.writeText(calendarUrl);
         if (copyText) {
