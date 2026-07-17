@@ -58,6 +58,48 @@ export function clearSessionCookies(cookies: AstroCookies) {
 }
 
 /**
+ * Decode the email out of a Directus invite token (a JWT: header.payload.signature).
+ * We only read the payload (no signature check) so we can log the member in after
+ * they accept — Directus itself verifies the token during accept.
+ */
+export function emailFromInviteToken(token: string): string | null {
+  try {
+    const payload = token.split('.')[1];
+    if (!payload) return null;
+    const json = JSON.parse(
+      Buffer.from(payload.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf-8')
+    );
+    return typeof json?.email === 'string' ? json.email : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Accept a Directus invite: sets the member's password and activates the account.
+ * Returns { ok } and, on failure, a human-readable message from Directus.
+ */
+export async function directusAcceptInvite(
+  token: string,
+  password: string
+): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const res = await fetch(`${directusUrl}/users/invite/accept`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token, password }),
+    });
+    if (res.ok) return { ok: true };
+    const json = await res.json().catch(() => null);
+    const message = json?.errors?.[0]?.message ?? 'Could not accept the invitation.';
+    return { ok: false, error: message };
+  } catch (error) {
+    console.error('Directus accept-invite failed:', error);
+    return { ok: false, error: 'Network error while accepting the invitation.' };
+  }
+}
+
+/**
  * Exchange email + password for Directus tokens. Returns null on bad credentials.
  */
 export async function directusLogin(

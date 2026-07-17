@@ -1,0 +1,110 @@
+---
+/**
+ * /members/accept-invite — where an invited member sets their password.
+ *
+ * The invite email links here with ?token=<invite JWT>. Setting a password posts
+ * to /members/api/accept-invite, which activates the account and logs them in.
+ * On-demand rendered so it can read the token/error query params.
+ */
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { emailFromInviteToken } from '../../lib/auth';
+
+const params = Astro.url.searchParams;
+const token = params.get('token') ?? '';
+const error = params.get('error');
+const email = token ? emailFromInviteToken(token) : null;
+---
+
+<BaseLayout title="Accept Invitation — Haringey Baháʼí Community">
+  <section class="max-w-md mx-auto py-10">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-base-content mb-2">Welcome</h1>
+      <p class="text-base-content">
+        Set a password to activate your Haringey Baháʼí Community members account.
+      </p>
+    </div>
+
+    {!token && (
+      <div role="alert" class="alert alert-error mb-6">
+        <span>This invitation link is missing or invalid. Please use the link from your invitation email, or <a href="/contact" class="link">contact us</a>.</span>
+      </div>
+    )}
+
+    {error && (
+      <div role="alert" class="alert alert-error mb-6">
+        <span>{error}</span>
+      </div>
+    )}
+
+    {token && (
+      <form
+        method="POST"
+        action="/members/api/accept-invite"
+        id="accept-form"
+        class="card bg-base-200 shadow-sm p-6 space-y-4"
+      >
+        <input type="hidden" name="token" value={token} />
+
+        {email && (
+          <div class="form-control">
+            <label class="label"><span class="label-text text-base-content">Email</span></label>
+            <input type="email" value={email} readonly class="input input-bordered w-full opacity-70" />
+          </div>
+        )}
+
+        <div class="form-control">
+          <label class="label" for="password">
+            <span class="label-text text-base-content">Choose a password</span>
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            class="input input-bordered w-full"
+            placeholder="At least 8 characters"
+          />
+        </div>
+
+        <div class="form-control">
+          <label class="label" for="confirm">
+            <span class="label-text text-base-content">Confirm password</span>
+          </label>
+          <input
+            id="confirm"
+            type="password"
+            autocomplete="new-password"
+            required
+            minlength="8"
+            class="input input-bordered w-full"
+            placeholder="Re-enter your password"
+          />
+          <p id="mismatch" class="text-error text-sm mt-1 hidden">Passwords don't match.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Activate account</button>
+      </form>
+    )}
+
+    <p class="text-center text-sm text-base-content mt-6">
+      Already have an account? <a href="/members/login" class="link link-primary">Sign in</a>
+    </p>
+  </section>
+
+  <script>
+    const form = document.getElementById('accept-form') as HTMLFormElement | null;
+    const pw = document.getElementById('password') as HTMLInputElement | null;
+    const confirm = document.getElementById('confirm') as HTMLInputElement | null;
+    const mismatch = document.getElementById('mismatch');
+    form?.addEventListener('submit', (e) => {
+      if (pw && confirm && pw.value !== confirm.value) {
+        e.preventDefault();
+        mismatch?.classList.remove('hidden');
+      }
+    });
+  </script>
+</BaseLayout>
