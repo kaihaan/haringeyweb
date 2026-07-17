@@ -15,6 +15,8 @@
  * NOT gated here (each handles its own credential):
  *   - /members/login            (the login form itself)
  *   - /members/api/login        (verifies email/password)
+ *   - /members/accept-invite    (set-password page; authed by the invite token in the URL)
+ *   - /members/api/accept-invite (verifies the invite token)
  *   - /members/feed/*.ics        (authenticated by the per-member feed token in the URL)
  */
 
@@ -34,6 +36,8 @@ function isGatedPath(pathname: string): boolean {
   if (!pathname.startsWith('/members')) return false;
   if (pathname.startsWith('/members/login')) return false;
   if (pathname.startsWith('/members/api/login')) return false;
+  if (pathname.startsWith('/members/accept-invite')) return false;
+  if (pathname.startsWith('/members/api/accept-invite')) return false;
   if (pathname.startsWith('/members/feed')) return false;
   return true;
 }

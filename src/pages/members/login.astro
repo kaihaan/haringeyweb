@@ -19,6 +19,7 @@ if (existing && (await directusMe(existing))) {
 const params = Astro.url.searchParams;
 const hasError = params.get('error') === '1';
 const loggedOut = params.get('loggedout') === '1';
+const activated = params.get('activated') === '1';
 const redirectParam = params.get('redirect') ?? '/members/events';
 // Only echo an internal members path back into the form.
 const redirectTo = redirectParam.startsWith('/members/')
@@ -34,6 +35,12 @@ const redirectTo = redirectParam.startsWith('/members/')
         Sign in to view the community calendar and subscribe from your own calendar app.
       </p>
     </div>
+
+    {activated && (
+      <div role="status" class="alert alert-success mb-6">
+        <span>Your account is active. Please sign in.</span>
+      </div>
+    )}
 
     {loggedOut && (
       <div role="status" class="alert alert-success mb-6">
