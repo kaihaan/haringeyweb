@@ -146,7 +146,7 @@ Introduce visitors to key aspects of the Bahai Faith
 ## Data Sources
 
 ### Directus CMS (Remote - Render Hosting)
-API Endpoint: `https://haringey-directus.onrender.com`
+API Endpoint: `https://directus.kaihaan.com`
 
 **Collections**:
 

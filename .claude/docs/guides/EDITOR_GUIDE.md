@@ -2,7 +2,7 @@
 
 This guide is for community members who will be editing and managing content for the Haringey Baháʼí Community website.
 
-**CMS URL**: https://haringey-directus.onrender.com
+**CMS URL**: https://directus.kaihaan.com
 **Website URL**: https://haringeyweb.vercel.app (or your custom domain)
 
 ---
@@ -20,7 +20,7 @@ This guide is for community members who will be editing and managing content for
 
 ## Logging In
 
-1. Visit: https://haringey-directus.onrender.com
+1. Visit: https://directus.kaihaan.com
 2. Enter your email and password
 3. Click **Sign In**
 
@@ -267,7 +267,7 @@ Content is live!
 **Developer Contact**: kaihaan@gmail.com
 
 **Useful Links**:
-- Directus CMS: https://haringey-directus.onrender.com
+- Directus CMS: https://directus.kaihaan.com
 - Live Website: https://haringeyweb.vercel.app
 - Directus Documentation: https://docs.directus.io/
 

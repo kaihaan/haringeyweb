@@ -23,7 +23,7 @@ Phase 2 successfully integrated Directus CMS with the Haringey Baháʼí Communi
 - Status: ✅ Live and connected
 
 **CMS: Directus on Render**
-- URL: https://haringey-directus.onrender.com
+- URL: https://directus.kaihaan.com
 - Version: 11.12.0
 - Instance: Free tier (512 MB RAM)
 - Status: ✅ Live and accessible
@@ -187,7 +187,7 @@ Phase 2 successfully integrated Directus CMS with the Haringey Baháʼí Communi
                    ▼
 ┌─────────────────────────────────────────────────────┐
 │  DIRECTUS CMS                                       │
-│  https://haringey-directus.onrender.com           │
+│  https://directus.kaihaan.com           │
 │  - Edit prayers                                     │
 │  - Publish content                                  │
 │  - Triggers webhook on publish                      │
@@ -230,7 +230,7 @@ Phase 2 successfully integrated Directus CMS with the Haringey Baháʼí Communi
 ### Local Development (`.env`)
 
 ```env
-PUBLIC_DIRECTUS_URL=https://haringey-directus.onrender.com
+PUBLIC_DIRECTUS_URL=https://directus.kaihaan.com
 DIRECTUS_TOKEN=QnTBtD_JoKsM3tn_3RIYK6q9MxneerZR
 ```
 
@@ -388,7 +388,7 @@ getPrayerExcerpt(text, maxLength) → string
 
 **Live Services:**
 - Website: https://haringeyweb.vercel.app
-- CMS: https://haringey-directus.onrender.com
+- CMS: https://directus.kaihaan.com
 - GitHub: https://github.com/kaihaan/haringeyweb
 
 **Documentation:**

@@ -172,7 +172,7 @@ Vercel (deployed static site)
 Required environment variables (copy from `.env.example`):
 
 ```env
-PUBLIC_DIRECTUS_URL=https://haringey-directus.onrender.com
+PUBLIC_DIRECTUS_URL=https://directus.kaihaan.com
 DIRECTUS_TOKEN=your-static-api-token
 ```
 

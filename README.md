@@ -173,7 +173,7 @@ Phase 2 CMS integration is now complete:
 Create a `.env` file with:
 
 ```env
-PUBLIC_DIRECTUS_URL=https://haringey-directus.onrender.com
+PUBLIC_DIRECTUS_URL=https://directus.kaihaan.com
 DIRECTUS_TOKEN=your-static-api-token
 ```
 

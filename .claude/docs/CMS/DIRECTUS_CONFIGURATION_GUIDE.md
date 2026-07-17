@@ -2,7 +2,7 @@
 
 Step-by-step instructions to configure Directus collections for the Haringey Baháʼí Community website.
 
-**Directus URL**: https://haringey-directus.onrender.com
+**Directus URL**: https://directus.kaihaan.com
 
 ---
 
